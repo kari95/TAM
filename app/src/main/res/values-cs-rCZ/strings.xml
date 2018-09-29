@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="breakfast">Snídaně</string>
+  <string name="lunch">Oběd</string>
+  <string name="dinner">Večeře</string>
+  <string name="meal_now">Jídlo hned</string>
+  <string name="meal_planned">Plánovaná jídla</string>
+  <string name="account">Účet</string>
+  <string name="sign_in">Přihlásit</string>
+  <string name="sign_up">Registrovat</string>
+  <string name="sign_out">Odhlásit</string>
+</resources>
