@@ -18,13 +18,16 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-  var binding: ActivityMainBinding? = null
+  lateinit var binding: ActivityMainBinding
+  lateinit var viewModel: MainViewModel
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
     binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-    binding?.viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+    viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+
+    binding.viewModel = viewModel
     setSupportActionBar(toolbar)
 
     fab.setOnClickListener { view ->
@@ -32,13 +35,10 @@ class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelected
         .setAction("Action", null).show()
     }
 
-    val toggle = ActionBarDrawerToggle(
-      this, drawer_layout, toolbar, R.string.navigation_drawer_open,
-      R.string.navigation_drawer_close)
-    drawer_layout.addDrawerListener(toggle)
-    toggle.syncState()
 
-    nav_view.setNavigationItemSelectedListener(this)
+
+    setupView()
+    setupListeners()
   }
 
   override fun onBackPressed() {
@@ -60,7 +60,10 @@ class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelected
     // automatically handle clicks on the Home/Up button, so long
     // as you specify a parent activity in AndroidManifest.xml.
     when (item.itemId) {
-      R.id.action_settings -> return true
+      R.id.action_groups -> {
+        viewModel.onGroupsClick()
+        return true
+      }
       else -> return super.onOptionsItemSelected(item)
     }
   }
@@ -69,17 +72,49 @@ class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelected
     // Handle navigation view item clicks here.
     when (item.itemId) {
       R.id.nav_now -> {
-        // Handle the camera action
+        viewModel.onMealTypeChanged(MainViewModel.MealType.NOW)
       }
       R.id.nav_planned -> {
-
+        viewModel.onMealTypeChanged(MainViewModel.MealType.PLANNED)
       }
       R.id.nav_sign_in -> {
-
+        viewModel.onSignInClick()
       }
     }
 
     drawer_layout.closeDrawer(GravityCompat.START)
     return true
+  }
+
+  private fun setupView() {
+    viewModel.mealType.get()?.let { setMealType(it) }
+  }
+
+  private fun setupListeners() {
+    val toggle = ActionBarDrawerToggle(
+      this, drawer_layout, toolbar, R.string.navigation_drawer_open,
+      R.string.navigation_drawer_close)
+    drawer_layout.addDrawerListener(toggle)
+    toggle.syncState()
+
+    nav_view.setNavigationItemSelectedListener(this)
+
+    viewModel.mealType.addOnPropertyChangedCallback(mealTypeChangedListener)
+  }
+
+  private fun setMealType(type: MainViewModel.MealType) {
+    nav_view.setCheckedItem(when (type) {
+      MainViewModel.MealType.NOW -> R.id.nav_now
+      MainViewModel.MealType.PLANNED -> R.id.nav_planned
+    })
+  }
+
+  private val mealTypeChangedListener = object: Observable.OnPropertyChangedCallback() {
+    override fun onPropertyChanged(sender: Observable, propertyId: Int) {
+      if (sender is ObservableField<*>) {
+        val type = sender.get() as MainViewModel.MealType
+        setMealType(type)
+      }
+    }
   }
 }
