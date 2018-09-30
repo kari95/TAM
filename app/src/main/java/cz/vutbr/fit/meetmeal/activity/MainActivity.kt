@@ -103,6 +103,13 @@ class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelected
 
   private fun setupListeners() {
 
+    val toggle = ActionBarDrawerToggle(
+    this, drawer_layout, toolbar, R.string.navigation_drawer_open,
+    R.string.navigation_drawer_close)
+    drawer_layout.addDrawerListener(toggle)
+    toggle.syncState()
+
+
     nav_view.setNavigationItemSelectedListener(this)
 
     viewModel.mealType.addOnPropertyChangedCallback(mealTypeChangedListener)
