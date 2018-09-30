@@ -20,7 +20,7 @@ class MainViewModel(app: Application): AndroidViewModel(app) {
 
   init {
     setMealType(MealType.NOW)
-    meals.value = ArrayList()
+    meals.value = getTestingData()
   }
 
   fun onMealTypeChanged(type: MealType) {
@@ -29,7 +29,7 @@ class MainViewModel(app: Application): AndroidViewModel(app) {
 
   fun onAddClick() {
     val newMeals = ArrayList(meals.value)
-    newMeals.add(NowMeal("test", DateTime.now()))
+    newMeals.add(NowMeal())
     meals.value = newMeals
   }
 
@@ -42,5 +42,25 @@ class MainViewModel(app: Application): AndroidViewModel(app) {
   private fun setMealType(type: MealType) {
     dayTimePickerVisible.set(type == MealType.PLANNED)
     mealType.set(type)
+  }
+
+  private fun getTestingData(): ArrayList<Meal> {
+    val user = User(name = "Name", email = "neco@mail.com")
+    val address = Address("Ulice 12", "Brno", "123 00")
+    return arrayListOf(
+      NowMeal(time = DateTime.now().plusHours(5), user = user),
+      NowMeal(user = user, place = "place"),
+      NowMeal(user = user, place = "place"),
+      NowMeal(user = user, place = "place"),
+      PlannedMeal(user = user, address = address),
+      PlannedMeal(user = user, address = address),
+      PlannedMeal(user = user, address = address),
+      NowMeal(user = user),
+      NowMeal(),
+      PlannedMeal(address = address),
+      PlannedMeal(),
+      PlannedMeal(),
+      NowMeal()
+    )
   }
 }

@@ -9,4 +9,11 @@
   <string name="sign_in">Přihlásit</string>
   <string name="sign_up">Registrovat</string>
   <string name="sign_out">Odhlásit</string>
+
+  <string name="male">muž</string>
+  <string name="female">žena</string>
+  <string name="booth">obje</string>
+  <string name="unknown">nezmámé</string>
+
+  <string name="peoples">lidí</string>
 </resources>

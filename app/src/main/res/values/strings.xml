@@ -11,9 +11,11 @@
   <string name="sign_up">Sign Up</string>
   <string name="sign_out">Sign Out</string>
 
+  <string name="male">Male</string>
+  <string name="female">Female</string>
+  <string name="booth">Booth</string>
+  <string name="unknown">Unknown</string>
 
+  <string name="peoples">peoples</string>
 
-
-  <string name="navigation_drawer_open">Open navigation drawer</string>
-  <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
