@@ -47,7 +47,7 @@ class PlannedMeal (
 
   val formatedTime: String
     get() {
-      val formater = DateTimeFormat.forPattern("EEEE d. MMMM")
+      val formater = DateTimeFormat.forPattern("d. MMMM HH:mm")
       return time.toString(formater)
     }
 }
