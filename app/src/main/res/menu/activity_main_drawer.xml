@@ -7,12 +7,12 @@
   <group android:checkableBehavior="single">
     <item
       android:id="@+id/nav_now"
-      android:icon="@drawable/ic_av_timer"
+      android:icon="@drawable/ic_restaurant"
       android:title="@string/meal_now"
       />
     <item
       android:id="@+id/nav_planned"
-      android:icon="@drawable/ic_restaurant"
+      android:icon="@drawable/ic_av_timer"
       android:title="@string/meal_planned"
       />
   </group>

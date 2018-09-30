@@ -3,19 +3,24 @@ package cz.vutbr.fit.meetmeal.viewmodel
 import android.app.*
 import android.arch.lifecycle.*
 import android.databinding.*
+import cz.vutbr.fit.meetmeal.model.*
+import org.joda.time.*
 
 class MainViewModel(app: Application): AndroidViewModel(app) {
 
-  enum class MealType {
-    NOW,
-    PLANNED
+  enum class MealType(val value: Int) {
+    NOW(0),
+    PLANNED(1)
   }
+
+  val meals: MutableLiveData<ArrayList<Meal>> = MutableLiveData()
 
   val dayTimePickerVisible: ObservableField<Boolean> = ObservableField()
   val mealType: ObservableField<MealType> = ObservableField()
 
   init {
     setMealType(MealType.NOW)
+    meals.value = ArrayList()
   }
 
   fun onMealTypeChanged(type: MealType) {
@@ -23,15 +28,15 @@ class MainViewModel(app: Application): AndroidViewModel(app) {
   }
 
   fun onAddClick() {
-    setMealType(MealType.NOW)
+    val newMeals = ArrayList(meals.value)
+    newMeals.add(NowMeal("test", DateTime.now()))
+    meals.value = newMeals
   }
 
   fun onSignInClick() {
-    dayTimePickerVisible.set(!(dayTimePickerVisible.get() ?: false))
   }
 
   fun onGroupsClick() {
-    setMealType(MealType.PLANNED)
   }
 
   private fun setMealType(type: MealType) {

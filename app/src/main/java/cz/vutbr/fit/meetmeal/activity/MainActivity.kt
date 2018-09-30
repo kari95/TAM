@@ -8,18 +8,22 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.*
 import android.view.Menu
 import android.view.MenuItem
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.content_main.*
+import ml.kari.justdoit.adapter.*
 
 class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
   lateinit var binding: ActivityMainBinding
   lateinit var viewModel: MainViewModel
+
+  private val adapter = MealAdapter()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -87,6 +91,13 @@ class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelected
   }
 
   private fun setupView() {
+    val layoutManager = LinearLayoutManager(this)
+    val dividerItemDecoration = DividerItemDecoration(this, layoutManager.orientation)
+
+    meal_list.adapter = adapter
+    meal_list.layoutManager = layoutManager
+    meal_list.addItemDecoration(dividerItemDecoration)
+
     viewModel.mealType.get()?.let { setMealType(it) }
   }
 
@@ -100,6 +111,13 @@ class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelected
     nav_view.setNavigationItemSelectedListener(this)
 
     viewModel.mealType.addOnPropertyChangedCallback(mealTypeChangedListener)
+
+
+    viewModel.meals.observe(this, Observer { meals ->
+      if (meals == null)
+        return@Observer
+      adapter.meals = meals
+    })
   }
 
   private fun setMealType(type: MainViewModel.MealType) {
