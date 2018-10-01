@@ -8,7 +8,15 @@ abstract class Meal (
   open val time: DateTime,
   val gender: User.Gender,
   var user: User?
-)
+) {
+
+  enum class MealType(val value: Int) {
+    NOW(0),
+    PLANNED(1)
+  }
+
+  abstract val type: MealType
+}
 
 class NowMeal (
   id: Int = 0,
@@ -33,6 +41,9 @@ class NowMeal (
           period.withMinutes(1)
       )
     }
+
+
+  override val type: MealType = MealType.NOW
 }
 
 class PlannedMeal (
@@ -50,4 +61,6 @@ class PlannedMeal (
       val formater = DateTimeFormat.forPattern("d. MMMM HH:mm")
       return time.toString(formater)
     }
+
+  override val type: MealType = MealType.PLANNED
 }

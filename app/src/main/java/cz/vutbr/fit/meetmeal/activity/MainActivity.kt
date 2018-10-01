@@ -12,11 +12,12 @@ import android.support.v7.widget.*
 import android.view.Menu
 import android.view.MenuItem
 import cz.vutbr.fit.meetmeal.R
+import cz.vutbr.fit.meetmeal.adapter.*
 import cz.vutbr.fit.meetmeal.databinding.*
+import cz.vutbr.fit.meetmeal.model.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import ml.kari.justdoit.adapter.*
 
 class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -63,12 +64,12 @@ class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelected
     // Handle action bar item clicks here. The action bar will
     // automatically handle clicks on the Home/Up button, so long
     // as you specify a parent activity in AndroidManifest.xml.
-    when (item.itemId) {
+    return when (item.itemId) {
       R.id.action_groups -> {
         viewModel.onGroupsClick()
-        return true
+        true
       }
-      else -> return super.onOptionsItemSelected(item)
+      else -> super.onOptionsItemSelected(item)
     }
   }
 
@@ -76,10 +77,10 @@ class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelected
     // Handle navigation view item clicks here.
     when (item.itemId) {
       R.id.nav_now -> {
-        viewModel.onMealTypeChanged(MainViewModel.MealType.NOW)
+        viewModel.onMealTypeChanged(Meal.MealType.NOW)
       }
       R.id.nav_planned -> {
-        viewModel.onMealTypeChanged(MainViewModel.MealType.PLANNED)
+        viewModel.onMealTypeChanged(Meal.MealType.PLANNED)
       }
       R.id.nav_sign_in -> {
         viewModel.onSignInClick()
@@ -122,17 +123,17 @@ class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelected
     })
   }
 
-  private fun setMealType(type: MainViewModel.MealType) {
+  private fun setMealType(type: Meal.MealType) {
     nav_view.setCheckedItem(when (type) {
-      MainViewModel.MealType.NOW -> R.id.nav_now
-      MainViewModel.MealType.PLANNED -> R.id.nav_planned
+      Meal.MealType.NOW -> R.id.nav_now
+      Meal.MealType.PLANNED -> R.id.nav_planned
     })
   }
 
   private val mealTypeChangedListener = object: Observable.OnPropertyChangedCallback() {
     override fun onPropertyChanged(sender: Observable, propertyId: Int) {
       if (sender is ObservableField<*>) {
-        val type = sender.get() as MainViewModel.MealType
+        val type = sender.get() as Meal.MealType
         setMealType(type)
       }
     }

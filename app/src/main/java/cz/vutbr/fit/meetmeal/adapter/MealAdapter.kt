@@ -1,4 +1,4 @@
-package ml.kari.justdoit.adapter
+package cz.vutbr.fit.meetmeal.adapter
 
 import android.databinding.*
 import android.support.v7.util.*
@@ -6,7 +6,6 @@ import android.support.v7.widget.*
 import android.view.*
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.model.*
-import cz.vutbr.fit.meetmeal.viewmodel.*
 
 class MealAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -21,7 +20,7 @@ class MealAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
     val inflater = LayoutInflater.from(parent.context)
     return when (viewType) {
-      MainViewModel.MealType.NOW.value ->
+      Meal.MealType.NOW.value ->
         NowMealViewHolder(ItemNowMealBinding.inflate(inflater, parent, false))
       else ->
         PlannedMealViewHolder(ItemPlannedMealBinding.inflate(inflater, parent, false))
@@ -40,8 +39,8 @@ class MealAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
   }
 
   override fun getItemViewType(position: Int): Int = when (meals[position]) {
-    is NowMeal -> MainViewModel.MealType.NOW.value
-    else -> MainViewModel.MealType.PLANNED.value
+    is NowMeal -> Meal.MealType.NOW.value
+    else -> Meal.MealType.PLANNED.value
   }
 }
 
