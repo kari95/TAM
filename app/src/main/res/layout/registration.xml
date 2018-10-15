@@ -14,7 +14,7 @@ android:layout_height="match_parent">
     android:layout_marginTop="60dp">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textEmail"
         android:layout_width="wrap_content"
         android:layout_height="15dp"
         android:layout_gravity="center"
@@ -22,7 +22,7 @@ android:layout_height="match_parent">
         android:text="E-mail" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -32,7 +32,7 @@ android:layout_height="match_parent">
         android:text="example@gmail.com" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -40,7 +40,7 @@ android:layout_height="match_parent">
         android:text="Heslo" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/pass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -49,7 +49,7 @@ android:layout_height="match_parent">
         android:inputType="textPassword" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textPassAgain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -57,7 +57,7 @@ android:layout_height="match_parent">
         android:text="Heslo znovu" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/passAgain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -65,13 +65,57 @@ android:layout_height="match_parent">
         android:layout_marginTop="10dp"
         android:inputType="textPassword" />
 
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textSex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:text="Pohlaví:" />
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton android:id="@+id/woman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Žena"
+                    android:layout_marginRight="30dp"
+                    android:onClick="onRadioButtonClicked"/>
+
+                <RadioButton android:id="@+id/man"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Muž"
+                    android:onClick="onRadioButtonClicked"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/reg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:text="Registrovat se" />
+
 
 </LinearLayout>
 
