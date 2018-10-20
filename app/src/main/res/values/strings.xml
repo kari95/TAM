@@ -13,10 +13,10 @@
 
   <string name="male">Male</string>
   <string name="female">Female</string>
-  <string name="booth">Booth</string>
+  <string name="both">Both</string>
   <string name="unknown">Unknown</string>
 
-  <string name="peoples">peoples</string>
+  <string name="people">people</string>
 
   <string name="navigation_drawer_open">Open navigation drawer</string>
   <string name="navigation_drawer_close">Close navigation drawer</string>
