@@ -13,8 +13,6 @@ import org.joda.time.*
 
 class MainViewModel(app: Application): AndroidViewModel(app) {
 
-  private var db = FirebaseFirestore.getInstance()
-
   val meals: MutableLiveData<ArrayList<Meal>> = MutableLiveData()
 
   val dayTimePickerVisible: ObservableField<Boolean> = ObservableField()
