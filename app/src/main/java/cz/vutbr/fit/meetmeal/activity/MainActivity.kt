@@ -14,10 +14,11 @@ import android.view.MenuItem
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.adapter.*
 import cz.vutbr.fit.meetmeal.databinding.*
-import cz.vutbr.fit.meetmeal.model.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+
+
 
 class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -75,11 +76,8 @@ class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelected
   override fun onNavigationItemSelected(item: MenuItem): Boolean {
     // Handle navigation view item clicks here.
     when (item.itemId) {
-      R.id.nav_now -> {
-        viewModel.onMealTypeChanged(Meal.MealType.NOW)
-      }
-      R.id.nav_planned -> {
-        viewModel.onMealTypeChanged(Meal.MealType.PLANNED)
+      R.id.nav_meals -> {
+        viewModel.onMealsClick()
       }
       R.id.nav_sign_in -> {
         viewModel.onSignInClick()
@@ -97,8 +95,6 @@ class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelected
     meal_list.adapter = adapter
     meal_list.layoutManager = layoutManager
     meal_list.addItemDecoration(dividerItemDecoration)
-
-    viewModel.mealType.get()?.let { setMealType(it) }
   }
 
   private fun setupListeners() {
@@ -112,8 +108,6 @@ class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelected
 
     nav_view.setNavigationItemSelectedListener(this)
 
-    viewModel.mealType.addOnPropertyChangedCallback(mealTypeChangedListener)
-
 
     viewModel.meals.observe(this, Observer { meals ->
       if (meals == null)
@@ -121,14 +115,14 @@ class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelected
       adapter.meals = meals
     })
   }
-
+/*
   private fun setMealType(type: Meal.MealType) {
     nav_view.setCheckedItem(when (type) {
       Meal.MealType.NOW -> R.id.nav_now
       Meal.MealType.PLANNED -> R.id.nav_planned
     })
   }
-
+*//*
   private val mealTypeChangedListener = object: Observable.OnPropertyChangedCallback() {
     override fun onPropertyChanged(sender: Observable, propertyId: Int) {
       if (sender is ObservableField<*>) {
@@ -136,5 +130,5 @@ class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelected
         setMealType(type)
       }
     }
-  }
+  }*/
 }

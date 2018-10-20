@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "667602898396",
+    "firebase_url": "https://meet-meal.firebaseio.com",
+    "project_id": "meet-meal",
+    "storage_bucket": "meet-meal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667602898396:android:de0ea2660cca3029",
+        "android_client_info": {
+          "package_name": "cz.vutbr.fit.meetmeal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667602898396-9g2nuclhket0klbon1mjdi6s1bg5ljva.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHZpa-ZzNmZQWz7RVGRmT9C9doj6ajabk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

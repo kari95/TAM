@@ -19,12 +19,7 @@ class MealAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
     val inflater = LayoutInflater.from(parent.context)
-    return when (viewType) {
-      Meal.MealType.NOW.value ->
-        NowMealViewHolder(ItemNowMealBinding.inflate(inflater, parent, false))
-      else ->
-        PlannedMealViewHolder(ItemPlannedMealBinding.inflate(inflater, parent, false))
-    }
+    return MealViewHolder(ItemMealBinding.inflate(inflater, parent, false))
   }
 
   override fun getItemCount() = meals.size
@@ -32,30 +27,16 @@ class MealAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
   override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
     val task = meals[position]
     when (holder) {
-      is NowMealViewHolder -> holder.bind(task)
-      is PlannedMealViewHolder -> holder.bind(task)
+      is MealViewHolder -> holder.bind(task)
     }
 
   }
-
-  override fun getItemViewType(position: Int): Int = when (meals[position]) {
-    is NowMeal -> Meal.MealType.NOW.value
-    else -> Meal.MealType.PLANNED.value
-  }
 }
 
-class NowMealViewHolder(val binding: ViewDataBinding): RecyclerView.ViewHolder(binding.root) {
+class MealViewHolder(val binding: ViewDataBinding): RecyclerView.ViewHolder(binding.root) {
 
   fun bind(meal: Meal) {
-    if (binding is ItemNowMealBinding && meal is NowMeal)
-      binding.meal = meal
-  }
-}
-
-class PlannedMealViewHolder(val binding: ViewDataBinding): RecyclerView.ViewHolder(binding.root) {
-
-  fun bind(meal: Meal) {
-    if (binding is ItemPlannedMealBinding && meal is PlannedMeal)
+    if (binding is ItemMealBinding)
       binding.meal = meal
   }
 }
