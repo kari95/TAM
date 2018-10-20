@@ -8,7 +8,7 @@
     <import type="android.view.View"/>
     <variable
       name="meal"
-      type="cz.vutbr.fit.meetmeal.model.PlannedMeal"
+      type="cz.vutbr.fit.meetmeal.model.Meal"
       />
   </data>
   <android.support.constraint.ConstraintLayout
