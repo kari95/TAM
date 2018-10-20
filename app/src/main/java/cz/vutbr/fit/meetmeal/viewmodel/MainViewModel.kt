@@ -70,12 +70,12 @@ class MainViewModel(app: Application): AndroidViewModel(app) {
     return arrayListOf(
       NowMeal(time = DateTime.now().plusHours(1), user = user, place = "Zastávka"),
       NowMeal(time = DateTime.now().plusHours(2), user = user2, place = "Před kolejemi"),
-      PlannedMeal(user = user, address = address, totalPrice = 500, peoplesCount = 4,
+      PlannedMeal(user = user, address = address, totalPrice = 500, peopleCount = 4,
         gender = User.Gender.MALE),
       NowMeal(time = DateTime.now().plusHours(4), user = user3, place = "Hospoda"),
       NowMeal(time = DateTime.now().plusHours(6), user = user4, place = "Na nádvoří"),
-      PlannedMeal(user = user, address = address2, totalPrice = 350, peoplesCount = 3),
-      PlannedMeal(user = user4, address = address3, totalPrice = 420, peoplesCount = 2,
+      PlannedMeal(user = user, address = address2, totalPrice = 350, peopleCount = 3),
+      PlannedMeal(user = user4, address = address3, totalPrice = 420, peopleCount = 2,
         gender = User.Gender.FEMALE)
     )
   }

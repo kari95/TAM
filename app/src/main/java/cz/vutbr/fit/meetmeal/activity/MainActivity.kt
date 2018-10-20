@@ -41,7 +41,6 @@ class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelected
     }
 
 
-
     setupView()
     setupListeners()
   }

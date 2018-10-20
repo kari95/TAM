@@ -28,5 +28,6 @@
   <string name="add_meal_people_invited">Počet pozvaných lidí:</string>
   <string name="add_meal_same_sex">Stejné pohlaví?</string>
   <string name="add_meal_create">Vytvořit</string>
+  <string name="add_meal_date_incorrect_value">Zadali jste špatné datum</string>
 
 </resources>

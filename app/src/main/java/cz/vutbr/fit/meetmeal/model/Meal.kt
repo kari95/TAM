@@ -51,7 +51,7 @@ class PlannedMeal (
   time: DateTime = DateTime.now(),
   gender: User.Gender = User.Gender.BOOTH,
   user: User? = null,
-  val peoplesCount: Int = 0,
+  val peopleCount: Int = 0,
   val totalPrice: Int = 0,
   val address: Address = Address()
 ): Meal(id, time, gender, user) {
