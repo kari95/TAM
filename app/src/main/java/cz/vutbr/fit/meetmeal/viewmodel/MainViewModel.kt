@@ -2,8 +2,11 @@ package cz.vutbr.fit.meetmeal.viewmodel
 
 import android.app.*
 import android.arch.lifecycle.*
+import android.content.*
 import android.databinding.*
 import com.google.firebase.firestore.*
+import android.support.v4.content.ContextCompat.*
+import cz.vutbr.fit.meetmeal.activity.*
 import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.Observable
 import org.joda.time.*
@@ -27,6 +30,10 @@ class MainViewModel(app: Application): AndroidViewModel(app) {
   }
 
   fun onAddClick() {
+    val intent = Intent(this.getApplication(), AddMealActivity::class.java)
+
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    startActivity(this.getApplication(), intent, null)
   }
 
   fun onSignInClick() {

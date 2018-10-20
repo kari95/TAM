@@ -8,5 +8,7 @@
 
   <dimen name="list_item_padding">8dp</dimen>
 
+  <!-- Margins -->
+  <dimen name="margin_normal">15dp</dimen>
 
 </resources>

@@ -25,7 +25,7 @@ data class User (
     ),
     BOOTH(
       "booth",
-      R.string.booth,
+      R.string.both,
       R.drawable.ic_gender_male_female
     ),
     UNKNOWN(

@@ -10,10 +10,23 @@
   <string name="sign_up">Registrovat</string>
   <string name="sign_out">Odhlásit</string>
 
-  <string name="male">muž</string>
-  <string name="female">žena</string>
-  <string name="booth">obje</string>
-  <string name="unknown">nezmámé</string>
+  <string name="male">Muž</string>
+  <string name="female">Žena</string>
+  <string name="both">Obě</string>
+  <string name="unknown">Nezmámé</string>
 
-  <string name="peoples">lidí</string>
+  <string name="people">lidí</string>
+
+  <string name="navigation_drawer_open">Open navigation drawer</string>
+  <string name="navigation_drawer_close">Close navigation drawer</string>
+
+  <!-- Add meal -->
+  <string name="add_meal_cost">Předpokládané náklady:</string>
+  <string name="add_meal_address">Adresa:</string>
+  <string name="add_meal_time">Čas:</string>
+  <string name="add_meal_date">Datum:</string>
+  <string name="add_meal_people_invited">Počet pozvaných lidí:</string>
+  <string name="add_meal_same_sex">Stejné pohlaví?</string>
+  <string name="add_meal_create">Vytvořit</string>
+
 </resources>
