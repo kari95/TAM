@@ -1,9 +1,9 @@
 package cz.vutbr.fit.meetmeal.activity
 
-import android.arch.lifecycle.*
-import android.databinding.*
+import androidx.lifecycle.*
+import androidx.databinding.*
 import android.os.*
-import android.support.v7.app.*
+import androidx.appcompat.app.*
 import android.text.format.*
 import android.widget.*
 import com.wdullaer.materialdatetimepicker.date.*

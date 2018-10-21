@@ -1,6 +1,6 @@
 package cz.vutbr.fit.meetmeal.viewmodel
 
-import android.arch.lifecycle.*
+import androidx.lifecycle.*
 
 class RegistrationViewModel: ViewModel() {
   // TODO: Implement the ViewModel

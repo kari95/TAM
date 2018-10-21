@@ -1,10 +1,10 @@
 package cz.vutbr.fit.meetmeal.viewmodel
 
 import android.app.*
-import android.arch.lifecycle.*
+import androidx.lifecycle.*
 import android.content.*
-import android.databinding.*
-import android.support.v4.content.ContextCompat.*
+import androidx.databinding.*
+import androidx.core.content.ContextCompat.*
 import android.util.*
 import cz.vutbr.fit.meetmeal.activity.*
 import cz.vutbr.fit.meetmeal.engine.*

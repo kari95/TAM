@@ -1,7 +1,7 @@
 package cz.vutbr.fit.meetmeal.viewmodel
 
 import android.app.*
-import android.arch.lifecycle.*
+import androidx.lifecycle.*
 import java.util.*
 
 class AddMealViewModel(app: Application): AndroidViewModel(app) {

@@ -1,11 +1,13 @@
 package cz.vutbr.fit.meetmeal.fragment
 
-import android.arch.lifecycle.*
-import android.databinding.*
+import androidx.lifecycle.*
+import androidx.databinding.*
 import android.os.*
-import android.support.v4.app.*
-import android.support.v7.widget.*
+import androidx.core.app.*
+import androidx.appcompat.widget.*
 import android.view.*
+import androidx.fragment.app.*
+import androidx.recyclerview.widget.*
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.adapter.*
 import cz.vutbr.fit.meetmeal.databinding.*
@@ -46,7 +48,8 @@ class MealListFragment: Fragment() {
 
   private fun setupView() {
     val layoutManager = LinearLayoutManager(activity)
-    val dividerItemDecoration = DividerItemDecoration(activity, layoutManager.orientation)
+    val dividerItemDecoration = DividerItemDecoration(activity,
+      layoutManager.orientation)
 
     binding.mealList.adapter = adapter
     binding.mealList.layoutManager = layoutManager

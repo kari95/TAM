@@ -1,8 +1,8 @@
 package cz.vutbr.fit.meetmeal.adapter
 
-import android.databinding.*
-import android.support.v7.util.*
-import android.support.v7.widget.*
+import androidx.databinding.*
+import androidx.recyclerview.widget.*
+import androidx.appcompat.widget.*
 import android.view.*
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.model.*

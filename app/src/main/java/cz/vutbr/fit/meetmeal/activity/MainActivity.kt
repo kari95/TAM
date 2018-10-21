@@ -1,12 +1,11 @@
 package cz.vutbr.fit.meetmeal.activity
 
 import android.os.Bundle
-import android.support.design.widget.*
-import android.support.v7.app.*
-import android.support.v7.widget.*
-import android.view.*
+import androidx.appcompat.app.*
+import androidx.appcompat.widget.*
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import cz.vutbr.fit.meetmeal.*
 
 class MainActivity : AppCompatActivity() {
