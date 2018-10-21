@@ -9,28 +9,25 @@ import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
 
-class MealDetailFragment: Fragment() {
+class GroupsFragment: Fragment() {
 
-  private lateinit var binding: FragmentMealDetailBinding
-  private lateinit var viewModel: MealDetailFragmentViewModel
+  private lateinit var binding: FragmentGroupsBinding
+  private lateinit var viewModel: GroupsViewModel
 
   companion object {
-
-    fun newInstance(): MealDetailFragment {
-      return MealDetailFragment()
-    }
+    fun newInstance() = GroupsFragment()
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?): View? {
 
-    binding = DataBindingUtil.inflate(inflater, R.layout.fragment_meal_detail, container, false)
+    binding = DataBindingUtil.inflate(inflater, R.layout.fragment_groups, container, false)
     return binding.root
   }
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
-    viewModel = ViewModelProviders.of(this).get(MealDetailFragmentViewModel::class.java)
+    viewModel = ViewModelProviders.of(this).get(GroupsViewModel::class.java)
     binding.viewModel = viewModel
     // TODO: Use the ViewModel
   }

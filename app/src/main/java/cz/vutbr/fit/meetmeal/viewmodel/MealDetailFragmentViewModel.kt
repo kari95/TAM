@@ -4,7 +4,6 @@ import android.arch.lifecycle.*
 
 class MealDetailFragmentViewModel: ViewModel() {
 
-
   fun getIcon() {
 
     return

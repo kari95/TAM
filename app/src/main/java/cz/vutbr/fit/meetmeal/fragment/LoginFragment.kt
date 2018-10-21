@@ -15,12 +15,12 @@ import cz.vutbr.fit.meetmeal.viewmodel.*
 
 class LoginFragment: Fragment() {
 
+  private lateinit var binding: FragmentLoginBinding
+  private lateinit var viewModel: LoginViewModel
+
   companion object {
     fun newInstance() = LoginFragment()
   }
-
-  private lateinit var binding: FragmentLoginBinding
-  private lateinit var viewModel: LoginViewModel
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?): View? {
