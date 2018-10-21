@@ -9,15 +9,15 @@
     <import type="android.view.View"/>
     <variable
       name="viewModel"
-      type="cz.vutbr.fit.meetmeal.viewmodel.MainViewModel"
+      type="cz.vutbr.fit.meetmeal.viewmodel.OldMainViewModel"
       />
   </data>
   <android.support.constraint.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_main"
-    tools:context=".activity.MainActivity"
+    tools:showIn="@layout/old_activity_main"
+    tools:context=".activity.OldMainActivity"
     >
     <android.support.v4.widget.SwipeRefreshLayout
       android:layout_width="match_parent"

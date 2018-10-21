@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  >
+  <data>
+    <import type="android.view.View"/>
+    <variable
+      name="viewModel"
+      type="cz.vutbr.fit.meetmeal.viewmodel.OldMainViewModel"
+      />
+  </data>
+  <android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start"
+    >
+
+    <android.support.design.widget.CoordinatorLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      tools:context=".activity.OldMainActivity"
+      >
+
+      <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:animateLayoutChanges="true"
+        >
+
+        <android.support.v7.widget.Toolbar
+          android:id="@+id/toolbar"
+          android:layout_width="match_parent"
+          android:layout_height="?attr/actionBarSize"
+          android:background="?attr/colorPrimary"
+          app:title="@string/app_name"
+          app:popupTheme="@style/AppTheme.PopupOverlay"
+          />
+        <android.support.design.widget.TabLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:layout_anchorGravity="top|center"
+          android:visibility="@{viewModel.dayTimePickerVisible ? View.VISIBLE : View.GONE}"
+          >
+
+          <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/breakfast"
+            />
+          <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lunch"
+            />
+          <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dinner"
+            />
+        </android.support.design.widget.TabLayout>
+
+      </android.support.design.widget.AppBarLayout>
+
+      <include
+        android:id="@+id/content"
+        layout="@layout/content_main"
+        app:viewModel="@{viewModel}"
+        />
+
+      <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_gravity="bottom|end"
+        app:srcCompat="@drawable/ic_add"
+        android:onClick="@{(view) -> viewModel.onAddClick()}"
+        />
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <android.support.design.widget.NavigationView
+      android:id="@+id/nav_view"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:layout_gravity="start"
+      android:fitsSystemWindows="true"
+      app:menu="@menu/activity_main_drawer"
+      >
+    </android.support.design.widget.NavigationView>
+
+  </android.support.v4.widget.DrawerLayout>
+</layout>
