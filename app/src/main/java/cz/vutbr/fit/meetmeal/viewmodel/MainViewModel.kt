@@ -4,7 +4,6 @@ import android.app.*
 import android.arch.lifecycle.*
 import android.content.*
 import android.databinding.*
-import com.google.firebase.firestore.*
 import android.support.v4.content.ContextCompat.*
 import cz.vutbr.fit.meetmeal.activity.*
 import cz.vutbr.fit.meetmeal.model.*
@@ -39,20 +38,20 @@ class MainViewModel(app: Application): AndroidViewModel(app) {
 
   fun onGroupsClick() {
   }
-/*
-  private fun setMealType(type: Meal.MealType) {
-    dayTimePickerVisible.set(type == Meal.MealType.PLANNED)
-    mealType.set(type)
-    getMeals()
-      .subscribeOn(Schedulers.io())
-      .map {
-        it.filter {
-          type == it.type
+  /*
+    private fun setMealType(type: Meal.MealType) {
+      dayTimePickerVisible.set(type == Meal.MealType.PLANNED)
+      mealType.set(type)
+      getMeals()
+        .subscribeOn(Schedulers.io())
+        .map {
+          it.filter {
+            type == it.type
+          }
         }
-      }
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribe {setMeals(it)}
-  }*/
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe {setMeals(it)}
+    }*/
 
   private fun setMeals(newMeals: List<Meal>) {
     meals.value = ArrayList(newMeals)
@@ -72,10 +71,11 @@ class MainViewModel(app: Application): AndroidViewModel(app) {
     val address3 = Address("Palackého vrch 1050", "Brno", "123 45")
     return Observable.just(arrayListOf(
       Meal(id = 1, user = user, address = address, totalPrice = 500, peopleCount = 4,
-        gender = User.Gender.MALE, time=DateTime.now()),
-      Meal(id = 2, user = user, address = address2, totalPrice = 350, peopleCount = 3, time=DateTime.now()),
+        gender = User.Gender.MALE, time = DateTime.now()),
+      Meal(id = 2, user = user, address = address2, totalPrice = 350, peopleCount = 3,
+        time = DateTime.now()),
       Meal(id = 3, user = user4, address = address3, totalPrice = 420, peopleCount = 2,
-        gender = User.Gender.FEMALE, time=DateTime.now())
+        gender = User.Gender.FEMALE, time = DateTime.now())
     ))
   }
 }

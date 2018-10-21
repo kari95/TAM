@@ -2,21 +2,19 @@ package cz.vutbr.fit.meetmeal.activity
 
 import android.arch.lifecycle.*
 import android.databinding.*
+import android.os.*
 import android.support.v7.app.*
-import cz.vutbr.fit.meetmeal.R
-import cz.vutbr.fit.meetmeal.viewmodel.*
-import cz.vutbr.fit.meetmeal.databinding.*
-import kotlinx.android.synthetic.main.add_meal.*
-import android.os.Bundle
 import android.text.format.*
 import android.widget.*
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
+import com.wdullaer.materialdatetimepicker.date.*
+import cz.vutbr.fit.meetmeal.R
+import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.model.*
-import java.text.*
-import java.text.DateFormat
+import cz.vutbr.fit.meetmeal.viewmodel.*
+import kotlinx.android.synthetic.main.add_meal.*
 import java.util.*
 
-class AddMealActivity : AppCompatActivity() {
+class AddMealActivity: AppCompatActivity() {
 
   private val MEAL_DATE = "meal_date"
 
@@ -39,7 +37,8 @@ class AddMealActivity : AppCompatActivity() {
   private fun updateViews() {
     removeListeners()
 
-    add_meal_date_edit_text.text = DateUtils.getRelativeTimeSpanString(mealTime * 1000, TimeZone.getDefault().getRawOffset().toLong(), DateUtils.DAY_IN_MILLIS);
+    add_meal_date_edit_text.text = DateUtils.getRelativeTimeSpanString(mealTime * 1000,
+      TimeZone.getDefault().getRawOffset().toLong(), DateUtils.DAY_IN_MILLIS);
     addListeners()
   }
 
@@ -58,7 +57,9 @@ class AddMealActivity : AppCompatActivity() {
         mealDate.get(Calendar.MONTH),
         mealDate.get(Calendar.DAY_OF_MONTH)
       )
-      dialog.setOnDismissListener { dialogView -> doValidateDateField(add_meal_date_edit_text, mealTime) }
+      dialog.setOnDismissListener { dialogView ->
+        doValidateDateField(add_meal_date_edit_text, mealTime)
+      }
       dialog.minDate = Calendar.getInstance()
       dialog.show(this.fragmentManager, MEAL_DATE)
     }
@@ -75,5 +76,4 @@ class AddMealActivity : AppCompatActivity() {
       view.error = resources.getString(R.string.add_meal_date_incorrect_value)
     }
   }
-
 }

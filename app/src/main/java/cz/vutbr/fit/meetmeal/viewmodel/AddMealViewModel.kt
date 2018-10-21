@@ -2,18 +2,9 @@ package cz.vutbr.fit.meetmeal.viewmodel
 
 import android.app.*
 import android.arch.lifecycle.*
-import android.app.DatePickerDialog
-import android.widget.*
 import java.util.*
-import java.text.*
-import android.R.attr.startYear
-import android.text.format.*
-import cz.vutbr.fit.meetmeal.activity.MainActivity
-
-
 
 class AddMealViewModel(app: Application): AndroidViewModel(app) {
-
 
   fun createDateCalendar(): Calendar {
     val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
