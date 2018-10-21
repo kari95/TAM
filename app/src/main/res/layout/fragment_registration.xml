@@ -10,134 +10,109 @@
       type="cz.vutbr.fit.meetmeal.viewmodel.RegistrationViewModel"
       />
   </data>
-  <android.support.constraint.ConstraintLayout
+  <LinearLayout
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/margin_mega"
+    android:layout_gravity="center"
     >
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:text="@string/registration_email"
+      />
+
+    <EditText
+      android:id="@+id/registration_email"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:ems="10"
+      />
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/margin_normal"
+      android:layout_gravity="center"
+      android:text="@string/registration_password"
+      />
+
+    <EditText
+      android:id="@+id/registration_password"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:inputType="textPassword"
+      android:ems="10"
+      />
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/margin_normal"
+      android:layout_gravity="center"
+      android:text="@string/registration_password_again"
+      />
+
+    <EditText
+      android:id="@+id/registration_password_again"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:inputType="textPassword"
+      android:ems="10"
+      />
+
     <LinearLayout
-      xmlns:android="http://schemas.android.com/apk/res/android"
-      android:orientation="vertical"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_marginTop="60dp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/margin_normal"
       android:layout_gravity="center"
       >
-
       <TextView
-        android:id="@+id/textEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:text="E-mail"
-        />
-
-      <EditText
-        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:layout_marginRight="@dimen/margin_huge"
         android:layout_gravity="center"
-        android:text="example@gmail.com"
-        android:inputType="textPersonName"
-        android:ems="10"
+        android:text="@string/registration_gender"
         />
 
-      <TextView
-        android:id="@+id/textPass"
-        android:layout_width="wrap_content"
+      <RadioGroup
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:text="Heslo"
-        />
-
-      <EditText
-        android:id="@+id/pass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:inputType="textPassword"
-        android:ems="10"
-        />
-
-      <TextView
-        android:id="@+id/textPassAgain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:text="Heslo znovu"
-        />
-
-      <EditText
-        android:id="@+id/passAgain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:inputType="textPassword"
-        android:ems="10"
-        />
-
-      <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
+        android:layout_weight="1"
         >
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                      android:orientation="horizontal"
-                      android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-          >
+        <RadioButton
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginRight="@dimen/margin_huge"
+          android:text="@string/registration_woman"
+          android:onClick="@{() -> viewModel.onGenderButtonClick(true)}"
+          />
 
-          <TextView
-            android:id="@+id/textSex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_gravity="center"
-            android:text="Pohlaví:"
-            />
+        <RadioButton
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/registration_man"
+          android:onClick="@{() -> viewModel.onGenderButtonClick(false)}"
+          />
 
-          <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                      android:orientation="horizontal"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-            >
-
-            <RadioButton
-              android:id="@+id/woman"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginRight="30dp"
-              android:text="Žena"
-              android:onClick="onRadioButtonClicked"
-              />
-
-            <RadioButton
-              android:id="@+id/man"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="Muž"
-              android:onClick="onRadioButtonClicked"
-              />
-
-          </RadioGroup>
-        </LinearLayout>
-      </FrameLayout>
-
-      <Button
-        android:id="@+id/reg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center"
-        android:text="Registrovat se"
-        />
+      </RadioGroup>
     </LinearLayout>
-  </android.support.constraint.ConstraintLayout>
+
+    <Button
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="30dp"
+      android:layout_gravity="center"
+      android:text="@string/registration_register"
+      />
+  </LinearLayout>
 </layout>

@@ -28,16 +28,25 @@
   <string name="add_meal_time">Čas:</string>
   <string name="add_meal_date">Datum:</string>
   <string name="add_meal_people_invited">Počet pozvaných lidí:</string>
-  <string name="add_meal_same_sex">Stejné pohlaví?</string>
+  <string name="add_meal_same_gender">Stejné pohlaví?</string>
   <string name="add_meal_create">Vytvořit</string>
   <string name="add_meal_date_incorrect_value">Zadali jste špatné datum</string>
   <string name="add_meal_pick_date">VYBRAT DATUM</string>
 
   <!-- Meal detail -->
-  <string name="meal_detail_same_sex">Stejné pohlaví</string>
+  <string name="meal_detail_same_gender">Stejné pohlaví</string>
   <string name="meal_detail_provider">Pořadatel</string>
   <string name="meal_detail_time">Čas:</string>
   <string name="meal_detail_cost">Cena:</string>
   <string name="meal_detail_save">Uložit</string>
+
+  <!-- Registration -->
+  <string name="registration_email">E-mail:</string>
+  <string name="registration_password">Heslo:</string>
+  <string name="registration_password_again">Heslo znovu:</string>
+  <string name="registration_gender">Pohlaví:</string>
+  <string name="registration_woman">Žena</string>
+  <string name="registration_man">Muž</string>
+  <string name="registration_register">Registrovat</string>
 
 </resources>
