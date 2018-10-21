@@ -99,13 +99,5 @@
         android:textAlignment="textStart"
         />
     </LinearLayout>
-    <Button
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="@dimen/margin_mega"
-      android:layout_gravity="center"
-      android:text="@string/meal_detail_save"
-      android:visibility="gone"
-      />
   </LinearLayout>
 </layout>
