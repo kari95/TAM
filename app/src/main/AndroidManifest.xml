@@ -14,7 +14,8 @@
     android:theme="@style/AppTheme"
     tools:ignore="GoogleAppIndexingWarning"
     >
-    <activity android:name=".activity.MainActivity">
+    <activity android:name=".activity.SplashActivity"
+      android:theme="@style/AppTheme.Launcher">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
@@ -22,11 +23,13 @@
       </intent-filter>
     </activity>
 
+    <activity android:name=".activity.MainActivity" />
     <activity android:name=".activity.AddMealActivity">
       <intent-filter>
         <action android:name="android.intent.action.DEFAULT"/>
       </intent-filter>
     </activity>
+
   </application>
 
 </manifest>

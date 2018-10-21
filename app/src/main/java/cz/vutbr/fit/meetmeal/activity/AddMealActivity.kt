@@ -18,7 +18,7 @@ class AddMealActivity: AppCompatActivity() {
 
   private val MEAL_DATE = "meal_date"
 
-  lateinit var binding: AddMealBinding
+  lateinit var binding: ActivityAddMealBinding
 
   lateinit var viewModel: AddMealViewModel
 
