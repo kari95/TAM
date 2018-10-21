@@ -42,9 +42,9 @@
   <string name="meal_detail_save">Save</string>
 
   <!-- Registration -->
-  <string name="registration_email">E-mail:</string>
-  <string name="registration_password">Password:</string>
-  <string name="registration_password_again">Password again:</string>
+  <string name="registration_email">E-mail</string>
+  <string name="registration_password">Password</string>
+  <string name="registration_password_again">Password again</string>
   <string name="registration_gender">Gender:</string>
   <string name="registration_woman">Woman</string>
   <string name="registration_man">Man</string>
