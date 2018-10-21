@@ -32,4 +32,11 @@
   <string name="add_meal_date_incorrect_value">Zadali jste špatné datum</string>
   <string name="add_meal_pick_date">VYBRAT DATUM</string>
 
+  <!-- Meal detail -->
+  <string name="meal_detail_same_sex">Stejné pohlaví</string>
+  <string name="meal_detail_provider">Pořadatel</string>
+  <string name="meal_detail_time">Čas:</string>
+  <string name="meal_detail_cost">Cena:</string>
+  <string name="meal_detail_save">Uložit</string>
+
 </resources>

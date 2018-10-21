@@ -33,4 +33,11 @@
   <string name="add_meal_date_incorrect_value">Wrong date added</string>
   <string name="add_meal_pick_date">PICK DATE</string>
 
+  <!-- Meal detail -->
+  <string name="meal_detail_same_sex">Same sex</string>
+  <string name="meal_detail_provider">Provider</string>
+  <string name="meal_detail_time">Time:</string>
+  <string name="meal_detail_cost">Cost:</string>
+  <string name="meal_detail_save">Save</string>
+
 </resources>
