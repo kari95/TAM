@@ -11,7 +11,7 @@ import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.model.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
-import kotlinx.android.synthetic.main.add_meal.*
+import kotlinx.android.synthetic.main.activity_add_meal.*
 import java.util.*
 
 class AddMealActivity: AppCompatActivity() {
@@ -28,7 +28,7 @@ class AddMealActivity: AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    binding = DataBindingUtil.setContentView(this, R.layout.add_meal)
+    binding = DataBindingUtil.setContentView(this, R.layout.activity_add_meal)
     viewModel = ViewModelProviders.of(this).get(AddMealViewModel::class.java)
 
     addListeners()
