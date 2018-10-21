@@ -7,6 +7,7 @@ import android.widget.*
 import java.util.*
 import java.text.*
 import android.R.attr.startYear
+import android.text.format.*
 import cz.vutbr.fit.meetmeal.activity.MainActivity
 
 
@@ -17,11 +18,8 @@ class AddMealViewModel(app: Application): AndroidViewModel(app) {
   fun createDateCalendar(): Calendar {
     val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
 
-    calendar.set(Calendar.YEAR, 0, 1)
-    calendar.set(Calendar.HOUR_OF_DAY, 0)
-    calendar.set(Calendar.MINUTE, 0)
-    calendar.set(Calendar.SECOND, 0)
-    calendar.set(Calendar.MILLISECOND, 0)
+    calendar.set(Calendar.YEAR, Calendar.getInstance().get(Calendar.YEAR))
+    calendar.set(Calendar.DAY_OF_MONTH, Calendar.getInstance().get(Calendar.DAY_OF_MONTH))
 
     return calendar
   }
@@ -30,10 +28,6 @@ class AddMealViewModel(app: Application): AndroidViewModel(app) {
     val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
 
     calendar.set(year, monthOfYear, dayOfMonth)
-    calendar.set(Calendar.HOUR_OF_DAY, 0)
-    calendar.set(Calendar.MINUTE, 0)
-    calendar.set(Calendar.SECOND, 0)
-    calendar.set(Calendar.MILLISECOND, 0)
 
     return calendar
   }
@@ -45,8 +39,8 @@ class AddMealViewModel(app: Application): AndroidViewModel(app) {
     }
 
     val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-    calendar.timeInMillis = mealDate * 1000L
+    calendar.timeInMillis = (mealDate * 1000L) + 5000
 
-    return calendar.before(Calendar.getInstance(TimeZone.getTimeZone("UTC")))
+    return calendar.after(Calendar.getInstance(TimeZone.getTimeZone("UTC")))
   }
 }

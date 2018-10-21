@@ -5,6 +5,8 @@
   <string name="lunch">Lunch</string>
   <string name="dinner">Dinner</string>
   <string name="meals">Meals</string>
+  <string name="meal_now">Meal now</string>
+  <string name="meal_planned">Planned meal</string>
   <string name="account">Account</string>
   <string name="sign_in">Sign In</string>
   <string name="sign_up">Sign Up</string>
@@ -29,5 +31,6 @@
   <string name="add_meal_same_sex">Same sex?</string>
   <string name="add_meal_create">Create</string>
   <string name="add_meal_date_incorrect_value">Wrong date added</string>
+  <string name="add_meal_pick_date">PICK DATE</string>
 
 </resources>

@@ -8,9 +8,12 @@ import cz.vutbr.fit.meetmeal.viewmodel.*
 import cz.vutbr.fit.meetmeal.databinding.*
 import kotlinx.android.synthetic.main.add_meal.*
 import android.os.Bundle
+import android.text.format.*
 import android.widget.*
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import cz.vutbr.fit.meetmeal.model.*
+import java.text.*
+import java.text.DateFormat
 import java.util.*
 
 class AddMealActivity : AppCompatActivity() {
@@ -36,8 +39,7 @@ class AddMealActivity : AppCompatActivity() {
   private fun updateViews() {
     removeListeners()
 
-    add_meal_date_edit_text.text = Date(mealTime).toString()
-
+    add_meal_date_edit_text.text = DateUtils.getRelativeTimeSpanString(mealTime * 1000, TimeZone.getDefault().getRawOffset().toLong(), DateUtils.DAY_IN_MILLIS);
     addListeners()
   }
 
@@ -56,10 +58,8 @@ class AddMealActivity : AppCompatActivity() {
         mealDate.get(Calendar.MONTH),
         mealDate.get(Calendar.DAY_OF_MONTH)
       )
-      dialog.setOnDismissListener(
-        { dialogView -> doValidateDateField(add_meal_date_edit_text, mealTime) }
-      )
-      dialog.setMaxDate(Calendar.getInstance()) // Sets maximal supported date of birth (today).
+      dialog.setOnDismissListener { dialogView -> doValidateDateField(add_meal_date_edit_text, mealTime) }
+      dialog.minDate = Calendar.getInstance()
       dialog.show(this.fragmentManager, MEAL_DATE)
     }
   }

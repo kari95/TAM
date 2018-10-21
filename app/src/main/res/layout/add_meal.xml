@@ -85,6 +85,7 @@
       android:layout_height="wrap_content"
       android:layout_gravity="center"
       android:textAlignment="center"
+      android:text="@string/add_meal_pick_date"
       android:ems="10"
       />
 
