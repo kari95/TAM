@@ -29,13 +29,13 @@
   <string name="add_meal_time">Time:</string>
   <string name="add_meal_date">Date:</string>
   <string name="add_meal_people_invited">People invited:</string>
-  <string name="add_meal_same_sex">Same sex?</string>
+  <string name="add_meal_same_gender">Same gender?</string>
   <string name="add_meal_create">Create</string>
   <string name="add_meal_date_incorrect_value">Wrong date added</string>
   <string name="add_meal_pick_date">PICK DATE</string>
 
   <!-- Meal detail -->
-  <string name="meal_detail_same_sex">Same sex</string>
+  <string name="meal_detail_same_gender">Same gender</string>
   <string name="meal_detail_provider">Provider</string>
   <string name="meal_detail_time">Time:</string>
   <string name="meal_detail_cost">Cost:</string>

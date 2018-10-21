@@ -84,8 +84,8 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="center"
-      android:textAlignment="center"
       android:text="@string/add_meal_pick_date"
+      android:textAlignment="center"
       android:ems="10"
       />
 
@@ -109,12 +109,12 @@
       />
 
     <Switch
-      android:id="@+id/add_meal_same_sex_switch"
+      android:id="@+id/add_meal_same_gender_switch"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="@dimen/margin_normal"
       android:layout_gravity="center"
-      android:text="@string/add_meal_same_sex"
+      android:text="@string/add_meal_same_gender"
       />
 
     <Button

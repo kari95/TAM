@@ -25,11 +25,11 @@ class MealListViewModel(app: Application): AndroidViewModel(app) {
   private val mealEngine = MealEngine()
 
   init {
-    requetsMeals()
+    requestMeals()
   }
 
   fun onMealsClick() {
-    requetsMeals()
+    requestMeals()
   }
 
   fun onAddClick() {
@@ -47,7 +47,7 @@ class MealListViewModel(app: Application): AndroidViewModel(app) {
 
   fun onRefresh() {
     isLoading.set(true)
-    requetsMeals()
+    requestMeals()
   }
   /*
     private fun setMealType(type: Meal.MealType) {
@@ -68,7 +68,7 @@ class MealListViewModel(app: Application): AndroidViewModel(app) {
     meals.value = ArrayList(newMeals)
   }
 
-  private fun requetsMeals(): Disposable {
+  private fun requestMeals(): Disposable {
     return getTestingData()
       .doOnNext { isLoading.set(false) }
       .subscribe({
