@@ -15,7 +15,7 @@ import io.reactivex.disposables.*
 import io.reactivex.schedulers.*
 import org.joda.time.*
 
-class MainViewModel(app: Application): AndroidViewModel(app) {
+class MealListViewModel(app: Application): AndroidViewModel(app) {
 
   val meals: MutableLiveData<ArrayList<Meal>> = MutableLiveData()
 
@@ -69,12 +69,12 @@ class MainViewModel(app: Application): AndroidViewModel(app) {
   }
 
   private fun requetsMeals(): Disposable {
-    return getMeals()
-      .doOnNext {isLoading.set(false)}
+    return getTestingData()
+      .doOnNext { isLoading.set(false) }
       .subscribe({
         setMeals(it)
       }, {
-        Log.e("MainViewModel", "getMeals(): onError", it)
+        Log.e("OldMainViewModel", "getMeals(): onError", it)
       })
   }
 

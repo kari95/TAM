@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  package="cz.vutbr.fit.meetmeal"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="cz.vutbr.fit.meetmeal"
   >
 
   <application
@@ -14,18 +13,23 @@
     android:theme="@style/AppTheme"
     tools:ignore="GoogleAppIndexingWarning"
     >
-    <activity android:name=".activity.SplashActivity"
-      android:theme="@style/AppTheme.Launcher">
+    <activity
+      android:name=".activity.SplashActivity"
+      android:theme="@style/AppTheme.Launcher"
+      >
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
+        <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
 
-    <activity android:name=".activity.MainActivity" />
-    <activity android:name=".activity.AddMealActivity">
+    <activity android:name=".activity.MainActivity">
+      <nav-graph android:value="@navigation/app_navigation"/>
     </activity>
+
+    <activity android:name=".activity.AddMealActivity"/>
 
   </application>
 
