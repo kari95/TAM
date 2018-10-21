@@ -2,6 +2,6 @@ package cz.vutbr.fit.meetmeal.viewmodel
 
 import android.arch.lifecycle.*
 
-class LoginViewModel: ViewModel() {
+class MyMealDetailViewModel: ViewModel() {
   // TODO: Implement the ViewModel
 }

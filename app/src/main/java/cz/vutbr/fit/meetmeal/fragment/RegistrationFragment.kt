@@ -1,6 +1,7 @@
 package cz.vutbr.fit.meetmeal.fragment
 
 import android.arch.lifecycle.*
+import android.databinding.*
 import android.os.*
 import android.support.v4.app.*
 import android.view.*
@@ -19,7 +20,9 @@ class RegistrationFragment: Fragment() {
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?): View? {
-    return inflater.inflate(R.layout.fragment_registration, container, false)
+
+    binding = DataBindingUtil.inflate(inflater, R.layout.fragment_registration, container, false)
+    return binding.root
   }
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {

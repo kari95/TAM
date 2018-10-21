@@ -5,7 +5,6 @@ import android.databinding.*
 import android.os.*
 import android.support.v4.app.*
 import android.view.*
-import cz.vutbr.fit.meetmeal.*
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
@@ -34,7 +33,5 @@ class MealDetailFragment: Fragment() {
     viewModel = ViewModelProviders.of(this).get(MealDetailFragmentViewModel::class.java)
     binding.viewModel = viewModel
     // TODO: Use the ViewModel
-
   }
-
 }

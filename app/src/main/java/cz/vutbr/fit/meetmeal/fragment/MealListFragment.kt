@@ -1,16 +1,11 @@
 package cz.vutbr.fit.meetmeal.fragment
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import android.arch.lifecycle.*
 import android.databinding.*
-import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.app.*
+import android.os.*
+import android.support.v4.app.*
 import android.support.v7.widget.*
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-
+import android.view.*
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.adapter.*
 import cz.vutbr.fit.meetmeal.databinding.*
@@ -29,6 +24,7 @@ class MealListFragment: Fragment() {
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?): View? {
+
     binding = DataBindingUtil.inflate(inflater, R.layout.fragment_meal_list, container, false)
     return binding.root
   }
@@ -59,5 +55,4 @@ class MealListFragment: Fragment() {
       adapter.meals = meals
     })
   }
-
 }
