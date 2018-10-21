@@ -43,10 +43,10 @@ class AddMealActivity : AppCompatActivity() {
 
   private fun addListeners() {
     add_meal_date_edit_text.setOnClickListener { view ->
-      val mealDate = createDateCalendar()
+      val mealDate = viewModel.createDateCalendar()
       val dialog = DatePickerDialog.newInstance(
         { dialogView, year, monthOfYear, dayOfMonth ->
-          val calendar = createCalendar(year, monthOfYear, dayOfMonth)
+          val calendar = viewModel.createCalendar(year, monthOfYear, dayOfMonth)
           mealTime = (calendar.getTimeInMillis() / 1000L)
 
           doValidateDateField(add_meal_date_edit_text, mealTime)
@@ -68,48 +68,12 @@ class AddMealActivity : AppCompatActivity() {
     //TODO fix memory leaks
   }
 
-
-  private fun createDateCalendar(): Calendar {
-    val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-
-      calendar.set(Calendar.YEAR, 0, 1)
-      calendar.set(Calendar.HOUR_OF_DAY, 0)
-      calendar.set(Calendar.MINUTE, 0)
-      calendar.set(Calendar.SECOND, 0)
-      calendar.set(Calendar.MILLISECOND, 0)
-
-    return calendar
-  }
-
-  private fun createCalendar(year: Int, monthOfYear: Int, dayOfMonth: Int): Calendar {
-    val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-
-    calendar.set(year, monthOfYear, dayOfMonth)
-    calendar.set(Calendar.HOUR_OF_DAY, 0)
-    calendar.set(Calendar.MINUTE, 0)
-    calendar.set(Calendar.SECOND, 0)
-    calendar.set(Calendar.MILLISECOND, 0)
-
-    return calendar
-  }
-
-  private fun doValidateDateField(view: TextView, timestamp: Long?) {
-    if (isMealDateValid(timestamp)) {
+  fun doValidateDateField(view: TextView, timestamp: Long?) {
+    if (viewModel.isMealDateValid(timestamp)) {
       view.error = null
     } else {
       view.error = resources.getString(R.string.add_meal_date_incorrect_value)
     }
   }
 
-  fun isMealDateValid(mealDate: Long?): Boolean {
-
-    if (mealDate == null) {
-      return false
-    }
-
-    val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-    calendar.timeInMillis = mealDate * 1000L
-
-    return calendar.before(Calendar.getInstance(TimeZone.getTimeZone("UTC")))
-  }
 }

@@ -14,25 +14,39 @@ import cz.vutbr.fit.meetmeal.activity.MainActivity
 class AddMealViewModel(app: Application): AndroidViewModel(app) {
 
 
-  fun onDateClick() {
-    val calendar = Calendar.getInstance()
+  fun createDateCalendar(): Calendar {
+    val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
 
+    calendar.set(Calendar.YEAR, 0, 1)
+    calendar.set(Calendar.HOUR_OF_DAY, 0)
+    calendar.set(Calendar.MINUTE, 0)
+    calendar.set(Calendar.SECOND, 0)
+    calendar.set(Calendar.MILLISECOND, 0)
 
-    val datePickerDialog = DatePicker(this.getApplication())
-
-    val datePicker = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-      // TODO Auto-generated method stub
-      calendar.set(Calendar.YEAR, year)
-      calendar.set(Calendar.MONTH, monthOfYear)
-      calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-      updateDate( calendar)
-    }
+    return calendar
   }
 
-  private fun updateDate(calendar: Calendar) {
-    val myFormat = "MM/dd/yy" //In which you need put here
-    val sdf = SimpleDateFormat(myFormat, Locale.US)
+  fun createCalendar(year: Int, monthOfYear: Int, dayOfMonth: Int): Calendar {
+    val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
 
-    //add_meal_date_edit_text.setText(sdf.format(calendar.time))
+    calendar.set(year, monthOfYear, dayOfMonth)
+    calendar.set(Calendar.HOUR_OF_DAY, 0)
+    calendar.set(Calendar.MINUTE, 0)
+    calendar.set(Calendar.SECOND, 0)
+    calendar.set(Calendar.MILLISECOND, 0)
+
+    return calendar
+  }
+
+  fun isMealDateValid(mealDate: Long?): Boolean {
+
+    if (mealDate == null) {
+      return false
+    }
+
+    val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+    calendar.timeInMillis = mealDate * 1000L
+
+    return calendar.before(Calendar.getInstance(TimeZone.getTimeZone("UTC")))
   }
 }
