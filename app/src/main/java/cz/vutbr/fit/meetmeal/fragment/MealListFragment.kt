@@ -36,6 +36,7 @@ class MealListFragment: Fragment() {
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
     viewModel = ViewModelProviders.of(this).get(MealListViewModel::class.java)
+    binding.viewModel = viewModel
     // TODO: Use the ViewModel
     setupView()
     setupListeners()
