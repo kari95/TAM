@@ -8,22 +8,27 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     >
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/margin_huge"
+      android:layout_gravity="center"
       android:text="@string/meal_detail_provider"
       />
     <LinearLayout
       android:orientation="horizontal"
-      android:layout_width="match_parent"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="@dimen/margin_normal"
+      android:layout_marginTop="@dimen/margin_huge"
+      android:layout_gravity="center"
       >
       <ImageView
         android:id="@+id/meal_detail_user_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margin_normal"
         android:src="@color/colorPrimary"
         />
       <TextView
@@ -34,62 +39,62 @@
     </LinearLayout>
     <LinearLayout
       android:orientation="horizontal"
-      android:layout_width="match_parent"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="@dimen/margin_normal"
+      android:layout_marginTop="@dimen/margin_mega"
+      android:layout_gravity="center"
       >
       <TextView
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_marginRight="@dimen/margin_normal"
         android:text="@string/meal_detail_same_sex"
         />
       <TextView
         android:id="@+id/meal_detail_same_sex"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
         android:text="ANO"
         />
     </LinearLayout>
     <LinearLayout
       android:orientation="horizontal"
-      android:layout_width="match_parent"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="@dimen/margin_normal"
+      android:layout_marginTop="@dimen/margin_huge"
+      android:layout_gravity="center"
       >
       <TextView
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_marginRight="@dimen/margin_normal"
         android:text="@string/meal_detail_time"
         />
       <TextView
         android:id="@+id/meal_detail_time"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
         android:text="12:34"
         android:textAlignment="textStart"
         />
     </LinearLayout>
     <LinearLayout
       android:orientation="horizontal"
-      android:layout_width="match_parent"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="@dimen/margin_normal"
+      android:layout_marginTop="@dimen/margin_huge"
+      android:layout_gravity="center"
       >
       <TextView
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_marginRight="@dimen/margin_normal"
         android:text="@string/meal_detail_cost"
         />
       <TextView
         android:id="@+id/meal_detail_cost"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
         android:text="42"
         android:textAlignment="textStart"
         />
@@ -97,6 +102,8 @@
     <Button
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/margin_mega"
+      android:layout_gravity="center"
       android:text="@string/meal_detail_save"
       android:visibility="gone"
       />
