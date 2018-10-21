@@ -4,13 +4,13 @@ import com.google.firebase.firestore.*
 import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.*
 
-class MealEngine() {
+class MealEngine {
 
   private val collection = "meal"
   private var db = FirebaseFirestore.getInstance()
 
-  fun findAll(): Single<List<Meal>> {
-    return Single.create{ singleSubscriber ->
+  fun findAll(): Observable<List<Meal>> {
+    return Observable.create{ singleSubscriber ->
       db.collection(collection)
         .get()
         .addOnCompleteListener { task ->
@@ -20,10 +20,10 @@ class MealEngine() {
               val data = document.data
               //list.add()
             }
+            singleSubscriber.onNext(list)
           } else {
             singleSubscriber.onError(Exception("no data"))
           }
-          singleSubscriber.onSuccess(list)
         }
     }
   }

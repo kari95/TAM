@@ -76,6 +76,9 @@ class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelected
   override fun onNavigationItemSelected(item: MenuItem): Boolean {
     // Handle navigation view item clicks here.
     when (item.itemId) {
+      R.id.nav_meals -> {
+        viewModel.onMealsClick()
+      }
       R.id.nav_sign_in -> {
         viewModel.onSignInClick()
       }

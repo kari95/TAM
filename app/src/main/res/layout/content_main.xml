@@ -19,11 +19,19 @@
     tools:showIn="@layout/activity_main"
     tools:context=".activity.MainActivity"
     >
-    <android.support.v7.widget.RecyclerView
-      android:id="@+id/meal_list"
+    <android.support.v4.widget.SwipeRefreshLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      />
+      app:onRefreshListener="@{() -> viewModel.onRefresh()}"
+      app:refreshing="@{viewModel.isLoading}"
+      >
+
+      <android.support.v7.widget.RecyclerView
+        android:id="@+id/meal_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
   </android.support.constraint.ConstraintLayout>
 </layout>

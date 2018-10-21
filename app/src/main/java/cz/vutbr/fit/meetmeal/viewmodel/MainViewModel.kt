@@ -5,25 +5,31 @@ import android.arch.lifecycle.*
 import android.content.*
 import android.databinding.*
 import android.support.v4.content.ContextCompat.*
+import android.util.*
 import cz.vutbr.fit.meetmeal.activity.*
+import cz.vutbr.fit.meetmeal.engine.*
 import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.*
+import io.reactivex.disposables.*
+import io.reactivex.schedulers.*
 import org.joda.time.*
 
 class MainViewModel(app: Application): AndroidViewModel(app) {
 
   val meals: MutableLiveData<ArrayList<Meal>> = MutableLiveData()
 
+  val isLoading: ObservableBoolean = ObservableBoolean(false)
   val dayTimePickerVisible: ObservableField<Boolean> = ObservableField()
 
+  private val mealEngine = MealEngine()
+
   init {
-    getMeals()
-      .subscribe({
-        setMeals(it)
-      })
+    requetsMeals()
   }
 
   fun onMealsClick() {
+    requetsMeals()
   }
 
   fun onAddClick() {
@@ -37,6 +43,11 @@ class MainViewModel(app: Application): AndroidViewModel(app) {
   }
 
   fun onGroupsClick() {
+  }
+
+  fun onRefresh() {
+    isLoading.set(true)
+    requetsMeals()
   }
   /*
     private fun setMealType(type: Meal.MealType) {
@@ -57,8 +68,20 @@ class MainViewModel(app: Application): AndroidViewModel(app) {
     meals.value = ArrayList(newMeals)
   }
 
-  private fun getMeals(): Observable<ArrayList<Meal>> {
-    return getTestingData()
+  private fun requetsMeals(): Disposable {
+    return getMeals()
+      .doOnNext {isLoading.set(false)}
+      .subscribe({
+        setMeals(it)
+      }, {
+        Log.e("MainViewModel", "getMeals(): onError", it)
+      })
+  }
+
+  private fun getMeals(): Observable<List<Meal>> {
+    return mealEngine.findAll()
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
   private fun getTestingData(): Observable<ArrayList<Meal>> {
