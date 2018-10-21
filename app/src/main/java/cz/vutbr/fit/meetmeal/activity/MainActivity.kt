@@ -1,8 +1,9 @@
 package cz.vutbr.fit.meetmeal.activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
+import android.support.design.widget.*
+import android.support.v7.app.*
+import android.support.v7.widget.*
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import cz.vutbr.fit.meetmeal.*
@@ -19,8 +20,9 @@ class MainActivity : AppCompatActivity() {
       .findFragmentById(R.id.navHost) as NavHostFragment
 
     val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+    val toolbar = findViewById<Toolbar>(R.id.toolbar)
 
-    NavigationUI.setupActionBarWithNavController(this, navHost.navController)
+    NavigationUI.setupWithNavController(toolbar, navHost.navController)
     NavigationUI.setupWithNavController(bottomNavigation, navHost.navController)
   }
 

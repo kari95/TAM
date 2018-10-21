@@ -38,7 +38,7 @@ class AddMealActivity: AppCompatActivity() {
     removeListeners()
 
     add_meal_date_edit_text.text = DateUtils.getRelativeTimeSpanString(mealTime * 1000,
-      TimeZone.getDefault().getRawOffset().toLong(), DateUtils.DAY_IN_MILLIS);
+      TimeZone.getDefault().getRawOffset().toLong(), DateUtils.DAY_IN_MILLIS)
     addListeners()
   }
 
