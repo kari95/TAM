@@ -3,9 +3,10 @@
   <string name="breakfast">Snídaně</string>
   <string name="lunch">Oběd</string>
   <string name="dinner">Večeře</string>
+  <string name="search">Hledat</string>
   <string name="meals">Jídla</string>
-  <string name="meal_now">Jídlo hned</string>
-  <string name="meal_planned">Plánovaná jídla</string>
+  <string name="groups">Skupiny</string>
+  <string name="my_meals">Moje jídla</string>
   <string name="account">Účet</string>
   <string name="sign_in">Přihlásit</string>
   <string name="sign_up">Registrovat</string>
