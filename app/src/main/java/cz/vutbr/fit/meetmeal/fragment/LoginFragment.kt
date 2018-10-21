@@ -1,10 +1,14 @@
 package cz.vutbr.fit.meetmeal.fragment
 
-import android.arch.lifecycle.*
+import android.arch.lifecycle.ViewModelProviders
 import android.databinding.*
-import android.os.*
-import android.support.v4.app.*
-import android.view.*
+import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.navigation.*
+
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
@@ -20,8 +24,10 @@ class LoginFragment: Fragment() {
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?): View? {
-
     binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
+    binding.registrationButton.setOnClickListener(
+      Navigation.createNavigateOnClickListener(R.id.action_registration)
+    )
     return binding.root
   }
 

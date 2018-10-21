@@ -26,6 +26,7 @@ class MealListFragment: Fragment() {
     savedInstanceState: Bundle?): View? {
 
     binding = DataBindingUtil.inflate(inflater, R.layout.fragment_meal_list, container, false)
+    setHasOptionsMenu(true)
     return binding.root
   }
 
@@ -36,6 +37,11 @@ class MealListFragment: Fragment() {
     // TODO: Use the ViewModel
     setupView()
     setupListeners()
+  }
+
+  override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
+    // Inflate the menu; this adds items to the action bar if it is present.
+    menuInflater.inflate(R.menu.actions_menu, menu)
   }
 
   private fun setupView() {

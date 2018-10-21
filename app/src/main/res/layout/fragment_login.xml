@@ -4,6 +4,8 @@
   >
   <data>
     <import type="android.view.View"/>
+    <import type="androidx.navigation.Navigation"/>
+    <import type="cz.vutbr.fit.meetmeal.R"/>
     <variable
       name="viewModel"
       type="cz.vutbr.fit.meetmeal.viewmodel.LoginViewModel"
@@ -82,13 +84,13 @@
         >
 
         <Button
-          android:id="@+id/reg"
+          android:id="@+id/registration_button"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginBottom="60dp"
           android:layout_gravity="center"
           android:text="Registrovat se"
-          />
+        />
 
       </LinearLayout>
 
