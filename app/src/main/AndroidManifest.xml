@@ -29,7 +29,6 @@
       <nav-graph android:value="@navigation/app_navigation"/>
     </activity>
 
-    <activity android:name=".activity.OldMainActivity"/>
     <activity android:name=".activity.AddMealActivity"/>
 
   </application>
