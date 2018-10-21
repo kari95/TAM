@@ -40,6 +40,10 @@
   <string name="meal_detail_time">Time:</string>
   <string name="meal_detail_cost">Cost:</string>
   <string name="meal_detail_save">Save</string>
+  <string name="meal_detail_rest_places">Rest %1$s places</string>
+  <string name="meal_detail_people_count">For %1$s people</string>
+  <string name="meal_detail_price_per_person">%1$s kč per person</string>
+  <string name="meal_detail_invited_by">You\'re invited by</string>
 
   <!-- Registration -->
   <string name="registration_email">E-mail:</string>

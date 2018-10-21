@@ -93,11 +93,11 @@ class MealListViewModel(app: Application): AndroidViewModel(app) {
     val address2 = Address("Mojmírovo náměstí 120", "Brno", "123 00")
     val address3 = Address("Palackého vrch 1050", "Brno", "123 45")
     return Observable.just(arrayListOf(
-      Meal(id = 1, user = user, address = address, totalPrice = 500, peopleCount = 4,
+      Meal(id = 1, name = "name", user = user, address = address, price = 500, peopleCount = 4,
         gender = User.Gender.MALE, time = DateTime.now()),
-      Meal(id = 2, user = user, address = address2, totalPrice = 350, peopleCount = 3,
+      Meal(id = 2, name = "name",user = user, address = address2, price = 350, peopleCount = 3,
         time = DateTime.now()),
-      Meal(id = 3, user = user4, address = address3, totalPrice = 420, peopleCount = 2,
+      Meal(id = 3, name = "name",user = user4, address = address3, price = 420, peopleCount = 2,
         gender = User.Gender.FEMALE, time = DateTime.now())
     ))
   }

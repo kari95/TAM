@@ -39,6 +39,10 @@
   <string name="meal_detail_time">Čas:</string>
   <string name="meal_detail_cost">Cena:</string>
   <string name="meal_detail_save">Uložit</string>
+  <string name="meal_detail_rest_places">Zbývá %1$s míst</string>
+  <string name="meal_detail_people_count">Pro %1$s lidí</string>
+  <string name="meal_detail_price_per_person">%1$s kč za osobu</string>
+  <string name="meal_detail_invited_by">Na jídlo zve:</string>
 
   <!-- Registration -->
   <string name="registration_email">E-mail:</string>
@@ -48,5 +52,6 @@
   <string name="registration_woman">Žena</string>
   <string name="registration_man">Muž</string>
   <string name="registration_register">Registrovat</string>
+
 
 </resources>
