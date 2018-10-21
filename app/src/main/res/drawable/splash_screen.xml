@@ -12,6 +12,7 @@
   <item>
     <bitmap
       android:src="@drawable/meet_meal_screen"
+      android:gravity="center"
       />
 
   </item>
