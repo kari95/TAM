@@ -28,6 +28,7 @@ class MainActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelected
   private val adapter = MealAdapter()
 
   override fun onCreate(savedInstanceState: Bundle?) {
+    setTheme(R.style.AppTheme)
     super.onCreate(savedInstanceState)
 
     binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
