@@ -39,4 +39,13 @@
   <string name="meal_detail_cost">Cena:</string>
   <string name="meal_detail_save">Uložit</string>
 
+  <!-- Registration -->
+  <string name="registration_email">E-mail:</string>
+  <string name="registration_password">Heslo:</string>
+  <string name="registration_password_again">Heslo znovu:</string>
+  <string name="registration_gender">Pohlaví:</string>
+  <string name="registration_woman">Žena</string>
+  <string name="registration_man">Muž</string>
+  <string name="registration_register">Registrovat</string>
+
 </resources>
