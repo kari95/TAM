@@ -7,9 +7,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.*
 import android.support.v7.widget.*
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.adapter.*
@@ -30,6 +28,7 @@ class MealListFragment: Fragment() {
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?): View? {
     binding = DataBindingUtil.inflate(inflater, R.layout.fragment_meal_list, container, false)
+    setHasOptionsMenu(true)
     return binding.root
   }
 
@@ -40,6 +39,11 @@ class MealListFragment: Fragment() {
     // TODO: Use the ViewModel
     setupView()
     setupListeners()
+  }
+
+  override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
+    // Inflate the menu; this adds items to the action bar if it is present.
+    menuInflater.inflate(R.menu.actions_menu, menu)
   }
 
   private fun setupView() {
