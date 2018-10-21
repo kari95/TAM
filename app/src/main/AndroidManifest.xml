@@ -25,9 +25,6 @@
 
     <activity android:name=".activity.MainActivity" />
     <activity android:name=".activity.AddMealActivity">
-      <intent-filter>
-        <action android:name="android.intent.action.DEFAULT"/>
-      </intent-filter>
     </activity>
 
   </application>
