@@ -11,6 +11,7 @@
   <string name="account">Account</string>
   <string name="sign_in">Sign In</string>
   <string name="registration">Registration</string>
+  <string name="register">Register</string>
   <string name="sign_out">Sign Out</string>
 
   <string name="male">Male</string>

@@ -11,7 +11,7 @@
       type="cz.vutbr.fit.meetmeal.viewmodel.LoginViewModel"
       />
   </data>
-  <androidx.constraintlayout.widget.ConstraintLayout
+  <androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -19,7 +19,7 @@
     <LinearLayout
       xmlns:android="http://schemas.android.com/apk/res/android"
       android:orientation="vertical"
-      android:layout_width="match_parent"
+      android:layout_width="wrap_content"
       android:layout_height="match_parent"
       android:layout_marginTop="60dp"
       android:layout_gravity="center"
@@ -50,12 +50,14 @@
         />
 
       <Button
+        style="@style/Widget.MaterialComponents.Button"
+        android:textSize="@dimen/mdtp_material_button_textsize"
         android:id="@+id/login"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_gravity="center|bottom"
-        android:text="Přihlásit se"
+        android:text="@string/sign_in"
         />
 
       <LinearLayout
@@ -67,12 +69,14 @@
         >
 
         <Button
+          style="@style/Widget.MaterialComponents.Button.TextButton"
+          android:textSize="@dimen/mdtp_material_button_textsize"
           android:id="@+id/registration_button"
-          android:layout_width="wrap_content"
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginBottom="60dp"
           android:layout_gravity="center"
-          android:text="Registrovat se"
+          android:text="@string/registration"
         />
 
       </LinearLayout>
@@ -80,5 +84,5 @@
 
     </LinearLayout>
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+  </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

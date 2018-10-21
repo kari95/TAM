@@ -9,7 +9,8 @@
   <string name="my_meals">Moje jídla</string>
   <string name="account">Účet</string>
   <string name="sign_in">Přihlásit</string>
-  <string name="registration">Registrovat</string>
+  <string name="registration">Registrace</string>
+  <string name="register">Registrovat</string>
   <string name="sign_out">Odhlásit</string>
 
   <string name="male">Muž</string>
