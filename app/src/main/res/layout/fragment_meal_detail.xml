@@ -2,18 +2,46 @@
 <layout
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
   >
   <data>
     <import type="android.view.View"/>
     <variable
       name="viewModel"
-      type="cz.vutbr.fit.meetmeal.viewmodel.MealDetailFragmentViewModel"
+      type="cz.vutbr.fit.meetmeal.viewmodel.MealDetailViewModel"
       />
   </data>
-  <androidx.coordinatorlayout.widget.CoordinatorLayout
+  <LinearLayout
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@{viewModel.meal.name}"
+      />
+    <View style="@style/Divider"/>
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/margin_huge"
+      android:text="time"
+      />
+    <TextView
+      style="@style/Base.TextAppearance.AppCompat.Small"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text='@{String.format("%d %s", viewModel.meal.peopleCount, @string/meal_detail_people_count)}'
+      android:drawableRight="@{context.getDrawable(viewModel.gender.icon)}"
+      />
+    <TextView
+      style="@style/Base.TextAppearance.AppCompat.Small"
+      android:id="@+id/gender"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text='@{String.format("%d %s", viewModel.meal.price, @string/meal_detail_price_per_person)}'
+      />
 
 
     <LinearLayout
@@ -111,13 +139,12 @@
           />
       </LinearLayout>
     </LinearLayout>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-      android:id="@+id/fab"
+    <View style="@style/Divider"/>
+    <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_margin="@dimen/fab_margin"
-      android:layout_gravity="bottom|end"
-      app:srcCompat="@drawable/ic_add"
+      android:text="@string/meal_detail_invited_by"
       />
-  </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+  </LinearLayout>
 </layout>

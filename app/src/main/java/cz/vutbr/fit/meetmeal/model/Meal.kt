@@ -5,11 +5,12 @@ import org.joda.time.format.*
 
 class Meal (
   val id: Int = 0,
+  val name: String,
   val time: DateTime,
   val gender: User.Gender = User.Gender.BOOTH,
   var user: User?,
   val peopleCount: Int = 0,
-  val totalPrice: Int = 0,
+  val price: Int = 0,
   val address: Address = Address()
 ) {
   val formatedTime: String

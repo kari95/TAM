@@ -13,7 +13,7 @@ import cz.vutbr.fit.meetmeal.viewmodel.*
 class MealDetailFragment: Fragment() {
 
   private lateinit var binding: FragmentMealDetailBinding
-  private lateinit var viewModel: MealDetailFragmentViewModel
+  private lateinit var viewModel: MealDetailViewModel
 
   companion object {
 
@@ -31,8 +31,13 @@ class MealDetailFragment: Fragment() {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
-    viewModel = ViewModelProviders.of(this).get(MealDetailFragmentViewModel::class.java)
+    viewModel = ViewModelProviders.of(this).get(MealDetailViewModel::class.java)
     binding.viewModel = viewModel
     // TODO: Use the ViewModel
+
+
+
+
+    // mResources.getString(R.string.rest_places, "5" )
   }
 }
