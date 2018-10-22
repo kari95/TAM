@@ -7,8 +7,7 @@ import org.joda.time.*
 
 class MealDetailViewModel: ViewModel() {
 
-  val meal: ObservableField<Meal> = ObservableField(
-    Meal(name = "", time = DateTime.now(), user = User()))
+  val meal: ObservableField<Meal> = ObservableField(Meal())
   val gender: ObservableField<User.Gender> = ObservableField(User.Gender.UNKNOWN)
 
   fun getReadableDate(): String {
