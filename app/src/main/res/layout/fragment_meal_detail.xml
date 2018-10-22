@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
   xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
   >
   <data>
     <import type="android.view.View"/>
@@ -33,7 +31,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text='@{String.format("%d %s", viewModel.meal.peopleCount, @string/meal_detail_people_count)}'
-      android:drawableRight="@{context.getDrawable(viewModel.gender.icon)}"
+      android:drawableRight="@{context.getDrawable(viewModel.meal.gender.icon)}"
       />
     <TextView
       style="@style/Base.TextAppearance.AppCompat.Small"
@@ -43,108 +41,38 @@
       android:text='@{String.format("%d %s", viewModel.meal.price, @string/meal_detail_price_per_person)}'
       />
 
-
-    <LinearLayout
-      android:orientation="vertical"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_gravity="center"
-      >
-      <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_huge"
-        android:layout_gravity="center"
-        android:text="@string/meal_detail_provider"
-        />
-      <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_huge"
-        android:layout_gravity="center"
-        >
-        <ImageView
-          android:id="@+id/meal_detail_user_icon"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginRight="@dimen/margin_normal"
-          />
-        <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="USER"
-          />
-      </LinearLayout>
-      <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_mega"
-        android:layout_gravity="center"
-        >
-        <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginRight="@dimen/margin_normal"
-          android:text="@string/meal_detail_same_gender"
-          />
-        <TextView
-          android:id="@+id/meal_detail_same_gender"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="ANO"
-          />
-      </LinearLayout>
-      <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_huge"
-        android:layout_gravity="center"
-        >
-        <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginRight="@dimen/margin_normal"
-          android:text="@string/meal_detail_time"
-          />
-        <TextView
-          android:id="@+id/meal_detail_time"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="12:34"
-          android:textAlignment="textStart"
-          />
-      </LinearLayout>
-      <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_huge"
-        android:layout_gravity="center"
-        >
-        <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginRight="@dimen/margin_normal"
-          android:text="@string/meal_detail_cost"
-          />
-        <TextView
-          android:id="@+id/meal_detail_cost"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="42"
-          android:textAlignment="textStart"
-          />
-      </LinearLayout>
-    </LinearLayout>
     <View style="@style/Divider"/>
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@string/meal_detail_invited_by"
       />
-
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@{viewModel.meal.name}"
+      android:drawableRight="@{context.getDrawable(viewModel.gender.icon)}"
+      />
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@{viewModel.meal.address.street}"
+      />
+    <LinearLayout
+      android:orientation="horizontal"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      >
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{viewModel.meal.address.zip}"
+        />
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{viewModel.meal.address.city}"
+        />
+    </LinearLayout>
   </LinearLayout>
 </layout>
