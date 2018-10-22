@@ -34,13 +34,6 @@ class MyMealsViewModel: ViewModel() {
     requestMeals()
   }
 
-  /*fun onAddClick() {
-    val intent = Intent(this.getApplication(), AddMealActivity::class.java)
-
-    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    ContextCompat.startActivity(this.getApplication(), intent, null)
-  }*/
-
   fun onSignInClick() {
   }
 
@@ -51,20 +44,6 @@ class MyMealsViewModel: ViewModel() {
     isLoading.set(true)
     requestMeals()
   }
-  /*
-    private fun setMealType(type: Meal.MealType) {
-      dayTimePickerVisible.set(type == Meal.MealType.PLANNED)
-      mealType.set(type)
-      getMeals()
-        .subscribeOn(Schedulers.io())
-        .map {
-          it.filter {
-            type == it.type
-          }
-        }
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe {setMeals(it)}
-    }*/
 
   private fun setMeals(newMeals: List<Meal>) {
     meals.value = ArrayList(newMeals)
