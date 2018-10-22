@@ -76,5 +76,10 @@
         android:text="@{viewModel.meal.address.city}"
         />
     </LinearLayout>
+    <Button
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/meal_detail_sign_in"
+      />
   </LinearLayout>
 </layout>

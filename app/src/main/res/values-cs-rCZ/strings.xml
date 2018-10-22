@@ -46,6 +46,7 @@
   <string name="meal_detail_people_count">Pro %1$s lidí</string>
   <string name="meal_detail_price_per_person">%1$s kč za osobu</string>
   <string name="meal_detail_invited_by">Na jídlo zve:</string>
+  <string name="meal_detail_sign_in">Přihásit se</string>
 
   <!-- Registration -->
   <string name="registration_name">Jméno</string>
