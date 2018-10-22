@@ -13,7 +13,7 @@ import cz.vutbr.fit.meetmeal.adapter.MealAdapter
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
 
-class MyMealsFragment: Fragment() {
+class MyMealsFragment : Fragment() {
 
   private lateinit var binding: FragmentMyMealsBinding
   private lateinit var viewModel: MyMealsViewModel
@@ -25,7 +25,7 @@ class MyMealsFragment: Fragment() {
   private val adapter = MealAdapter({meal -> viewModel.onMealClick()})
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-    savedInstanceState: Bundle?): View? {
+                            savedInstanceState: Bundle?): View? {
 
     binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_meals, container, false)
     return binding.root
@@ -43,7 +43,7 @@ class MyMealsFragment: Fragment() {
   private fun setupView() {
     val layoutManager = LinearLayoutManager(activity)
     val dividerItemDecoration = DividerItemDecoration(activity,
-            layoutManager.orientation)
+        layoutManager.orientation)
 
     binding.mealList.adapter = adapter
     binding.mealList.layoutManager = layoutManager

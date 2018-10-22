@@ -11,36 +11,44 @@
       type="cz.vutbr.fit.meetmeal.viewmodel.MealListViewModel"
       />
   </data>
-  <androidx.coordinatorlayout.widget.CoordinatorLayout
+  <LinearLayout
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/fragment_meal_list"
-    tools:context=".activity.OldMainActivity"
     >
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      app:onRefreshListener="@{() -> viewModel.onRefresh()}"
-      app:refreshing="@{viewModel.isLoading}"
+      app:layout_behavior="@string/appbar_scrolling_view_behavior"
+      tools:showIn="@layout/fragment_meal_list"
+      tools:context=".activity.OldMainActivity"
       >
 
-      <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/meal_list"
+      <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:onRefreshListener="@{() -> viewModel.onRefresh()}"
+        app:refreshing="@{viewModel.isLoading}"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/meal_list"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          />
+      </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_gravity="bottom|end"
+        app:srcCompat="@drawable/ic_add"
         />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-      android:id="@+id/fab"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_margin="@dimen/fab_margin"
-      android:layout_gravity="bottom|end"
-      app:srcCompat="@drawable/ic_add"
-      />
 
 
-  </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+  </LinearLayout>
 </layout>
