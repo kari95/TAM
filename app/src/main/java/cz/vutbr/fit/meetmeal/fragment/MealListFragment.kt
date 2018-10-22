@@ -19,7 +19,7 @@ class MealListFragment: Fragment(), MenuItem.OnMenuItemClickListener {
     fun newInstance() = MealListFragment()
   }
 
-  private val adapter = MealAdapter()
+  private val adapter = MealAdapter({meal -> viewModel.onMealClick()})
 
   private lateinit var binding: FragmentMealListBinding
   private lateinit var viewModel: MealListViewModel

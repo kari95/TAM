@@ -22,7 +22,7 @@ class MyMealsFragment: Fragment() {
     fun newInstance() = MyMealsFragment()
   }
 
-  private val adapter = MealAdapter()
+  private val adapter = MealAdapter({meal -> viewModel.onMealClick()})
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?): View? {

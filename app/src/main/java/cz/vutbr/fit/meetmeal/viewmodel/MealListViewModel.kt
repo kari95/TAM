@@ -28,7 +28,7 @@ class MealListViewModel(app: Application): AndroidViewModel(app) {
     requestMeals()
   }
 
-  fun onMealsClick() {
+  fun onMealClick() {
     requestMeals()
   }
 

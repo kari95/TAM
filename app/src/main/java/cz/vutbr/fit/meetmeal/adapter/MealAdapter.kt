@@ -7,7 +7,7 @@ import android.view.*
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.model.*
 
-class MealAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MealAdapter(val listener: (Meal) -> Unit): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
   var meals: List<Meal> = emptyList()
     set(value) {
@@ -27,7 +27,7 @@ class MealAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
   override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
     val task = meals[position]
     when (holder) {
-      is MealViewHolder -> holder.bind(task)
+      is MealViewHolder -> holder.bind(task, listener)
     }
 
   }
@@ -35,9 +35,10 @@ class MealAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 class MealViewHolder(val binding: ViewDataBinding): RecyclerView.ViewHolder(binding.root) {
 
-  fun bind(meal: Meal) {
+  fun bind(meal: Meal, listener: (Meal) -> Unit) = with(binding.root) {
     if (binding is ItemMealBinding)
       binding.meal = meal
+    setOnClickListener { listener(meal) }
   }
 }
 

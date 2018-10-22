@@ -30,7 +30,7 @@ class MyMealsViewModel: ViewModel() {
     requestMeals()
   }
 
-  fun onMealsClick() {
+  fun onMealClick() {
     requestMeals()
   }
 
