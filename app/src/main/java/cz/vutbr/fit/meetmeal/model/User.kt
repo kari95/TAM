@@ -31,7 +31,7 @@ data class User (
     UNKNOWN(
       "unknown",
       R.string.unknown,
-      0
+      R.drawable.ic_person
     )
   }
 }

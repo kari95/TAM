@@ -7,7 +7,7 @@ import cz.vutbr.fit.meetmeal.model.*
 class MealDetailViewModel: ViewModel() {
 
   val meal: ObservableField<Meal> = ObservableField()
-  val gender: ObservableField<User.Gender> = ObservableField()
+  val gender: ObservableField<User.Gender> = ObservableField(User.Gender.UNKNOWN)
 
   fun getReadableDate(): String {
 
