@@ -13,8 +13,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/margin_normal"
     >
     <TextView
+      style="@style/Base.TextAppearance.AppCompat.Medium"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@{viewModel.meal.name}"
@@ -24,17 +26,15 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="@dimen/margin_huge"
-      android:text="time"
+      android:text="@{viewModel.getReadableDate()}"
       />
     <TextView
-      style="@style/Base.TextAppearance.AppCompat.Small"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text='@{String.format("%d %s", viewModel.meal.peopleCount, @string/meal_detail_people_count)}'
       android:drawableRight="@{context.getDrawable(viewModel.meal.gender.icon)}"
       />
     <TextView
-      style="@style/Base.TextAppearance.AppCompat.Small"
       android:id="@+id/gender"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
@@ -43,15 +43,17 @@
 
     <View style="@style/Divider"/>
     <TextView
+      style="@style/Base.TextAppearance.AppCompat.Medium"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/margin_huge"
       android:text="@string/meal_detail_invited_by"
       />
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@{viewModel.meal.name}"
-      android:drawableRight="@{context.getDrawable(viewModel.gender.icon)}"
+      android:text="@{viewModel.meal.user.name}"
+      android:drawableRight="@{context.getDrawable(viewModel.meal.user.gender.icon)}"
       />
     <TextView
       android:layout_width="wrap_content"
