@@ -58,6 +58,8 @@
   <string name="registration_woman">Woman</string>
   <string name="registration_man">Man</string>
   <string name="registration_register">Register</string>
+
+  <!-- Edit meal -->
   <string name="edit_meal_save">Save</string>
 
 </resources>
