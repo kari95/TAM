@@ -8,10 +8,12 @@
   <string name="groups">Skupiny</string>
   <string name="my_meals">Moje jídla</string>
   <string name="account">Účet</string>
+  <string name="login">Přihlášení</string>
   <string name="sign_in">Přihlásit</string>
   <string name="registration">Registrace</string>
   <string name="register">Registrovat</string>
   <string name="sign_out">Odhlásit</string>
+  <string name="groups_selection">Výběr skupin</string>
 
   <string name="male">Muž</string>
   <string name="female">Žena</string>
@@ -46,6 +48,7 @@
   <string name="meal_detail_invited_by">Na jídlo zve:</string>
 
   <!-- Registration -->
+  <string name="registration_name">Jméno</string>
   <string name="registration_email">E-mail</string>
   <string name="registration_password">Heslo</string>
   <string name="registration_password_again">Heslo znovu</string>

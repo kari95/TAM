@@ -9,10 +9,12 @@
   <string name="groups">Groups</string>
   <string name="my_meals">My meals</string>
   <string name="account">Account</string>
+  <string name="login">Login</string>
   <string name="sign_in">Sign In</string>
   <string name="registration">Registration</string>
   <string name="register">Register</string>
   <string name="sign_out">Sign Out</string>
+  <string name="groups_selection">Groups selection</string>
 
   <string name="male">Male</string>
   <string name="female">Female</string>
@@ -47,6 +49,7 @@
   <string name="meal_detail_invited_by">You\'re invited by</string>
 
   <!-- Registration -->
+  <string name="registration_name">Name</string>
   <string name="registration_email">E-mail</string>
   <string name="registration_password">Password</string>
   <string name="registration_password_again">Password again</string>

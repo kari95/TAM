@@ -24,6 +24,18 @@
 
       <EditText
         style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
+        android:id="@+id/registration_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:hint="@string/registration_name"
+        android:inputType="textPersonName"
+        android:ems="10"
+        />
+
+      <EditText
+        style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
         android:id="@+id/registration_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

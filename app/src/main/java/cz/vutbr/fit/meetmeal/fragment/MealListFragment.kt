@@ -4,16 +4,16 @@ import androidx.lifecycle.*
 import androidx.databinding.*
 import android.os.*
 import androidx.core.app.*
-import androidx.appcompat.widget.*
 import android.view.*
 import androidx.fragment.app.*
+import androidx.navigation.fragment.*
 import androidx.recyclerview.widget.*
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.adapter.*
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
 
-class MealListFragment: Fragment() {
+class MealListFragment: Fragment(), MenuItem.OnMenuItemClickListener {
 
   companion object {
     fun newInstance() = MealListFragment()
@@ -44,6 +44,17 @@ class MealListFragment: Fragment() {
   override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
     // Inflate the menu; this adds items to the action bar if it is present.
     menuInflater.inflate(R.menu.actions_menu, menu)
+    menu.getItem(0).setOnMenuItemClickListener(this)
+  }
+
+  override fun onMenuItemClick(menuItem: MenuItem): Boolean {
+    when (menuItem.itemId) {
+      R.id.action_groups -> {
+        NavHostFragment.findNavController(this).navigate(R.id.action_group_add)
+        return true
+      }
+    }
+    return false
   }
 
   private fun setupView() {
