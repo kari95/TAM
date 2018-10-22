@@ -22,7 +22,6 @@ class Meal (
     }
 
   constructor(parcel: Parcel): this(
-    parcel.readInt(),
     parcel.readString(),
     TODO("time"),
     TODO("gender"),
@@ -33,7 +32,6 @@ class Meal (
   }
 
   override fun writeToParcel(parcel: Parcel, flags: Int) {
-    parcel.writeInt(id)
     parcel.writeString(name)
     parcel.writeInt(peopleCount)
     parcel.writeInt(price)
