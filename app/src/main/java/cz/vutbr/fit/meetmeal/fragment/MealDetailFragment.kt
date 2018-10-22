@@ -8,6 +8,7 @@ import android.view.*
 import androidx.fragment.app.*
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
+import cz.vutbr.fit.meetmeal.model.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
 
 class MealDetailFragment: Fragment() {
@@ -24,14 +25,16 @@ class MealDetailFragment: Fragment() {
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?): View? {
-
     binding = DataBindingUtil.inflate(inflater, R.layout.fragment_meal_detail, container, false)
     return binding.root
   }
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
+    val meal = MealDetailFragmentArgs.fromBundle(arguments).meal
+
     viewModel = ViewModelProviders.of(this).get(MealDetailViewModel::class.java)
+    viewModel.meal.set(meal)
     binding.viewModel = viewModel
     // TODO: Use the ViewModel
 
