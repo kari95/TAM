@@ -6,6 +6,7 @@ import android.os.*
 import androidx.core.app.*
 import android.view.*
 import androidx.fragment.app.*
+import androidx.navigation.fragment.*
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import cz.vutbr.fit.meetmeal.R
@@ -22,7 +23,9 @@ class MyMealsFragment : Fragment() {
     fun newInstance() = MyMealsFragment()
   }
 
-  private val adapter = MealAdapter({meal -> viewModel.onMealClick()})
+  private val adapter = MealAdapter({meal ->
+    NavHostFragment.findNavController(this).navigate(R.id.action_meal_detail)
+  })
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                             savedInstanceState: Bundle?): View? {

@@ -22,7 +22,6 @@ class MealListViewModel(app: Application): AndroidViewModel(app) {
   val meals: MutableLiveData<ArrayList<Meal>> = MutableLiveData()
 
   val isLoading: ObservableBoolean = ObservableBoolean(false)
-  val dayTimePickerVisible: ObservableField<Boolean> = ObservableField()
 
   private val mealEngine = MealEngine()
 
@@ -35,10 +34,11 @@ class MealListViewModel(app: Application): AndroidViewModel(app) {
   }
 
   fun onAddClick() {
-    val intent = Intent(this.getApplication(), AddMealActivity::class.java)
-
-    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    startActivity(this.getApplication(), intent, null)
+    getTestingData().subscribe{
+      for (item in it) {
+        mealEngine.add(item)
+      }
+    }
   }
 
   fun onSignInClick() {
@@ -71,7 +71,7 @@ class MealListViewModel(app: Application): AndroidViewModel(app) {
   }
 
   private fun requestMeals(): Disposable {
-    return getTestingData()
+    return getMeals()
       .doOnNext { isLoading.set(false) }
       .subscribe({
         setMeals(it)
@@ -88,19 +88,16 @@ class MealListViewModel(app: Application): AndroidViewModel(app) {
 
   private fun getTestingData(): Observable<ArrayList<Meal>> {
     val user = User(id = 1, name = "John", email = "john@mail.com", gender = User.Gender.MALE)
-    val user2 = User(id = 2, name = "Luke", email = "luke@mail.com", gender = User.Gender.MALE)
-    val user3 = User(id = 3, name = "Bruce", email = "bruce@mail.com", gender = User.Gender.MALE)
     val user4 = User(id = 4, name = "Jane", email = "jane@mail.com", gender = User.Gender.FEMALE)
     val address = Address("Božetěchova 12", "Brno", "123 00")
     val address2 = Address("Mojmírovo náměstí 120", "Brno", "123 00")
     val address3 = Address("Palackého vrch 1050", "Brno", "123 45")
     return Observable.just(arrayListOf(
-      Meal(id = 1, name = "name", user = user, address = address, price = 500, peopleCount = 4,
-        gender = User.Gender.MALE, time = DateTime.now()),
-      Meal(id = 2, name = "name",user = user, address = address2, price = 350, peopleCount = 3,
-        time = DateTime.now()),
-      Meal(id = 3, name = "name",user = user4, address = address3, price = 420, peopleCount = 2,
-        gender = User.Gender.FEMALE, time = DateTime.now())
+      Meal(name = "name", user = user, address = address, price = 500, peopleCount = 4,
+        gender = User.Gender.MALE),
+      Meal(name = "name",user = user, address = address2, price = 350, peopleCount = 3),
+      Meal(name = "name",user = user4, address = address3, price = 420, peopleCount = 2,
+        gender = User.Gender.FEMALE)
     ))
   }
 }
