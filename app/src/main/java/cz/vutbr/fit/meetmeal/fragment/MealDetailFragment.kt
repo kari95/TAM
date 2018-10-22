@@ -5,9 +5,11 @@ import androidx.databinding.*
 import android.os.*
 import androidx.core.app.*
 import android.view.*
+import androidx.appcompat.app.*
 import androidx.fragment.app.*
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
+import cz.vutbr.fit.meetmeal.model.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
 
 class MealDetailFragment: Fragment() {
@@ -35,9 +37,23 @@ class MealDetailFragment: Fragment() {
     binding.viewModel = viewModel
     // TODO: Use the ViewModel
 
+    setupView()
+    setupListeners()
+  }
+  
+  private fun setupView() {
+    setTitle(viewModel.meal.get())
+  }
 
+  private fun setupListeners() {
+    viewModel.meal.addOnPropertyChangedCallback(object: Observable.OnPropertyChangedCallback() {
+      override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+        setTitle(viewModel.meal.get())
+      }
+    })
+  }
 
-
-    // mResources.getString(R.string.rest_places, "5" )
+  private fun setTitle(meal: Meal?) {
+    (activity as AppCompatActivity).supportActionBar?.title = meal?.name
   }
 }
