@@ -19,7 +19,7 @@ class MealListFragment: Fragment(), MenuItem.OnMenuItemClickListener {
     fun newInstance() = MealListFragment()
   }
 
-  private val adapter = MealAdapter({meal -> viewModel.onMealClick()})
+  private val adapter = MealAdapter({meal -> NavHostFragment.findNavController(this).navigate(R.id.action_meal_detail)})
 
   private lateinit var binding: FragmentMealListBinding
   private lateinit var viewModel: MealListViewModel

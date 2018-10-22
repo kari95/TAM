@@ -16,6 +16,9 @@
     <action
       android:id="@+id/action_group_add"
       app:destination="@id/nav_groups" />
+    <action
+      android:id="@+id/action_meal_detail"
+      app:destination="@id/nav_meal_detail" />
   </fragment>
   <fragment
     android:id="@+id/nav_account"
@@ -31,7 +34,7 @@
     android:id="@+id/nav_my_meals"
     android:name="cz.vutbr.fit.meetmeal.fragment.MyMealsFragment"
     android:label="@string/app_name"
-    tools:layout="@layout/fragment_meal_detail"
+    tools:layout="@layout/fragment_my_meals"
     />
 
 
@@ -46,5 +49,12 @@
     android:name="cz.vutbr.fit.meetmeal.fragment.GroupsFragment"
     android:label="@string/groups_selection"
     tools:layout="@layout/fragment_groups"
+    />
+
+  <fragment
+    android:id="@+id/nav_meal_detail"
+    android:name="cz.vutbr.fit.meetmeal.fragment.MealDetailFragment"
+    android:label="@string/groups_selection"
+    tools:layout="@layout/fragment_meal_detail"
     />
 </navigation>

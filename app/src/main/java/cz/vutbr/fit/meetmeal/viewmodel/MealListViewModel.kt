@@ -6,6 +6,8 @@ import android.content.*
 import androidx.databinding.*
 import androidx.core.content.ContextCompat.*
 import android.util.*
+import androidx.navigation.fragment.*
+import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.activity.*
 import cz.vutbr.fit.meetmeal.engine.*
 import cz.vutbr.fit.meetmeal.model.*
@@ -29,7 +31,7 @@ class MealListViewModel(app: Application): AndroidViewModel(app) {
   }
 
   fun onMealClick() {
-    requestMeals()
+
   }
 
   fun onAddClick() {

@@ -15,14 +15,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/list_item_padding"
+    android:background="?android:attr/selectableItemBackground"
     >
     <TextView
       style="@style/TextAppearance.AppCompat.Medium"
-      android:textColor="@color/colorPrimaryText"
       android:id="@+id/name"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@{meal.user.name}"
+      android:textColor="@color/colorPrimaryText"
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       />
