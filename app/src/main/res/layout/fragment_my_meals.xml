@@ -1,36 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  >
+  xmlns:tools="http://schemas.android.com/tools">
+
   <data>
-    <import type="android.view.View"/>
+
+    <import type="android.view.View" />
+
     <variable
       name="viewModel"
-      type="cz.vutbr.fit.meetmeal.viewmodel.MyMealsViewModel"
-      />
+      type="cz.vutbr.fit.meetmeal.viewmodel.MyMealsViewModel" />
   </data>
 
   <androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.OldMainActivity"
+    tools:showIn="@layout/fragment_meal_list">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      app:layout_behavior="@string/appbar_scrolling_view_behavior"
-      tools:showIn="@layout/fragment_meal_list"
-      tools:context=".activity.OldMainActivity"
-      >
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:onRefreshListener="@{() -> viewModel.onRefresh()}"
-        app:refreshing="@{viewModel.isLoading}"
-        >
+      app:onRefreshListener="@{() -> viewModel.onRefresh()}"
+      app:refreshing="@{viewModel.isLoading}">
 
       <androidx.recyclerview.widget.RecyclerView
-          android:id="@+id/meal_list"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          />
+        android:id="@+id/meal_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
