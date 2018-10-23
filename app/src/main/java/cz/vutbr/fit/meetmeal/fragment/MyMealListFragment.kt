@@ -1,42 +1,41 @@
 package cz.vutbr.fit.meetmeal.fragment
 
-import androidx.lifecycle.*
-import androidx.databinding.*
 import android.os.*
-import androidx.core.app.*
 import android.view.*
+import androidx.databinding.*
 import androidx.fragment.app.*
+import androidx.lifecycle.*
 import androidx.navigation.fragment.*
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.*
 import cz.vutbr.fit.meetmeal.R
-import cz.vutbr.fit.meetmeal.adapter.MealAdapter
+import cz.vutbr.fit.meetmeal.adapter.*
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
 
-class MyMealsFragment : Fragment() {
+class MyMealListFragment: Fragment() {
 
-  private lateinit var binding: FragmentMyMealsBinding
-  private lateinit var viewModel: MyMealsViewModel
+  private lateinit var binding: FragmentMyMealListBinding
+  private lateinit var viewModel: MyMealListViewModel
 
   companion object {
-    fun newInstance() = MyMealsFragment()
+    fun newInstance() = MyMealListFragment()
   }
 
-  private val adapter = MealAdapter({meal ->
-    NavHostFragment.findNavController(this).navigate(R.id.action_meal_detail)
+  private val adapter = MealAdapter({ meal ->
+    NavHostFragment.findNavController(this).navigate(
+      MyMealListFragmentDirections.actionMyMealDetail(meal).setMeal(meal))
   })
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                            savedInstanceState: Bundle?): View? {
+    savedInstanceState: Bundle?): View? {
 
-    binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_meals, container, false)
+    binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_meal_list, container, false)
     return binding.root
   }
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
-    viewModel = ViewModelProviders.of(this).get(MyMealsViewModel::class.java)
+    viewModel = ViewModelProviders.of(this).get(MyMealListViewModel::class.java)
     binding.viewModel = viewModel
     // TODO: Use the ViewModel
     setupView()
@@ -46,7 +45,7 @@ class MyMealsFragment : Fragment() {
   private fun setupView() {
     val layoutManager = LinearLayoutManager(activity)
     val dividerItemDecoration = DividerItemDecoration(activity,
-        layoutManager.orientation)
+      layoutManager.orientation)
 
     binding.mealList.adapter = adapter
     binding.mealList.layoutManager = layoutManager

@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     navHost.navController.addOnNavigatedListener { _, destination ->
       binding.daytimeTabs.visibility = when (destination.id) {
-        R.id.nav_meals -> View.VISIBLE
+        R.id.nav_meal_list -> View.VISIBLE
         else -> View.GONE
       }
     }

@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
   <item
-    android:id="@+id/nav_meals"
+    android:id="@+id/nav_meal_list"
     android:icon="@drawable/ic_search"
     android:title="@string/search"
     />
   <item
-    android:id="@+id/nav_my_meals"
+    android:id="@+id/nav_my_meal_list"
     android:icon="@drawable/ic_fastfood"
     android:title="@string/my_meals"
     />

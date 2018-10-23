@@ -10,8 +10,8 @@ import io.reactivex.android.schedulers.*
 import io.reactivex.disposables.*
 import io.reactivex.schedulers.*
 
-class MyMealsViewModel: ViewModel() {
-  // TODO: Implement the ViewModel
+class MyMealListViewModel: ViewModel() {
+
   val meals: MutableLiveData<ArrayList<Meal>> = MutableLiveData()
 
   val isLoading: ObservableBoolean = ObservableBoolean(false)
