@@ -16,46 +16,50 @@
     android:layout_margin="@dimen/margin_normal"
     >
     <TextView
-      style="@style/Base.TextAppearance.AppCompat.Medium"
+      style="@style/TextAppearance.MaterialComponents.Headline4"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@{viewModel.meal.name}"
       />
-    <View style="@style/Divider"/>
+
     <TextView
+      style="@style/TextAppearance.AppCompat.Medium"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="@dimen/margin_huge"
       android:text="@{viewModel.getReadableDate()}"
       />
     <TextView
+      style="@style/TextAppearance.AppCompat.Medium"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text='@{String.format("%d %s", viewModel.meal.peopleCount, @string/meal_detail_people_count)}'
       android:drawableRight="@{context.getDrawable(viewModel.meal.gender.icon)}"
       />
     <TextView
+      style="@style/TextAppearance.AppCompat.Medium"
       android:id="@+id/gender"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text='@{String.format("%d %s", viewModel.meal.price, @string/meal_detail_price_per_person)}'
       />
 
-    <View style="@style/Divider"/>
     <TextView
-      style="@style/Base.TextAppearance.AppCompat.Medium"
+      style="@style/TextAppearance.MaterialComponents.Headline5"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="@dimen/margin_huge"
       android:text="@string/meal_detail_invited_by"
       />
     <TextView
+      style="@style/TextAppearance.AppCompat.Medium"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@{viewModel.meal.user.name}"
       android:drawableRight="@{context.getDrawable(viewModel.meal.user.gender.icon)}"
       />
     <TextView
+      style="@style/TextAppearance.AppCompat.Medium"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@{viewModel.meal.address.street}"
@@ -66,19 +70,23 @@
       android:layout_height="wrap_content"
       >
       <TextView
+        style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@{viewModel.meal.address.zip}"
         />
       <TextView
+        style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@{viewModel.meal.address.city}"
         />
     </LinearLayout>
     <Button
+      style="@style/TextAppearance.MaterialComponents.Button"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_gravity="center"
       android:text="@string/meal_detail_sign_in"
       />
   </LinearLayout>
