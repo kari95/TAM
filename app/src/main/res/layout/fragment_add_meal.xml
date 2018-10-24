@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  >
+  <data>
+    <import type="android.view.View"/>
+    <variable
+      name="viewModel"
+      type="cz.vutbr.fit.meetmeal.viewmodel.AddMealViewModel"
+      />
+  </data>
+
+  <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      >
+      <TextView
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:id="@+id/textLoad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_gravity="center"
+        android:text="@string/add_meal_cost"
+        />
+      <EditText
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:id="@+id/add_meal_cost_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="70"
+        android:inputType="numberDecimal"
+        android:textAlignment="center"
+        android:ems="10"
+        />
+
+      <TextView
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_gravity="center"
+        android:text="@string/add_meal_address"
+        />
+
+      <EditText
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:id="@+id/add_meal_address_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Budova D 231"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:ems="10"
+        />
+
+      <TextView
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_gravity="center"
+        android:text="@string/add_meal_time"
+        />
+
+      <EditText
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:id="@+id/add_meal_time_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="time"
+        android:textAlignment="center"
+        android:ems="10"
+        />
+
+      <TextView
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_gravity="center"
+        android:text="@string/add_meal_date"
+        />
+
+      <TextView
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:id="@+id/add_meal_date_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/add_meal_pick_date"
+        android:textColor="@color/colorPrimary"
+        android:textAlignment="center"
+        android:ems="10"
+        />
+
+      <TextView
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_gravity="center"
+        android:text="@string/add_meal_people_invited"
+        />
+
+      <EditText
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:id="@+id/add_meal_people_invited_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="1"
+        android:inputType="numberDecimal"
+        android:textAlignment="center"
+        android:ems="10"
+        />
+
+      <Switch
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:id="@+id/add_meal_same_gender_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_gravity="center"
+        android:text="@string/add_meal_same_gender"
+        />
+
+      <Button
+        style="@style/Widget.MaterialComponents.Button"
+        android:id="@+id/add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_gravity="center"
+        android:text="@string/add_meal_create"
+        android:textSize="@dimen/mdtp_material_button_textsize"
+        />
+    </LinearLayout>
+  </ScrollView>
+</layout>

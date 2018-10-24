@@ -29,7 +29,7 @@
       <nav-graph android:value="@navigation/app_navigation"/>
     </activity>
 
-    <activity android:name=".activity.AddMealActivity"/>
+    <activity android:name=".fragment.AddMealFragment"/>
 
   </application>
 

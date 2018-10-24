@@ -22,6 +22,10 @@
       android:id="@+id/action_meal_detail"
       app:destination="@id/nav_meal_detail"
       />
+    <action
+      android:id="@+id/action_add_meal"
+      app:destination="@id/nav_add_meal"
+      />
   </fragment>
   <fragment
     android:id="@+id/nav_meal_detail"
@@ -34,6 +38,13 @@
       app:argType="cz.vutbr.fit.meetmeal.model.Meal"
       />
   </fragment>
+  <fragment
+    android:id="@+id/nav_add_meal"
+    android:name="cz.vutbr.fit.meetmeal.fragment.AddMealFragment"
+    android:label="@string/add_meal"
+    tools:layout="@layout/fragment_add_meal"
+    >
+  </fragment>
 
   <!-- My meals -->
   <fragment
@@ -44,7 +55,8 @@
     >
     <action
       android:id="@+id/action_my_meal_detail"
-      app:destination="@id/nav_my_meal_detail" />
+      app:destination="@id/nav_my_meal_detail"
+      />
   </fragment>
   <fragment
     android:id="@+id/nav_my_meal_detail"

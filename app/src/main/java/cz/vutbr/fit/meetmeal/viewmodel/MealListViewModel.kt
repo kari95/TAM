@@ -4,12 +4,17 @@ import android.app.*
 import android.util.*
 import androidx.databinding.*
 import androidx.lifecycle.*
+import androidx.navigation.*
+import androidx.navigation.fragment.*
+import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.engine.*
+import cz.vutbr.fit.meetmeal.fragment.*
 import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.*
 import io.reactivex.disposables.*
 import io.reactivex.schedulers.*
+import kotlin.coroutines.experimental.*
 
 class MealListViewModel(app: Application): AndroidViewModel(app) {
 
@@ -27,11 +32,13 @@ class MealListViewModel(app: Application): AndroidViewModel(app) {
   }
 
   fun onAddClick() {
-    getTestingData().subscribe {
+
+    //MealListFragmentDirections.actionAddMeal()
+    /*getTestingData().subscribe {
       for (item in it) {
         mealEngine.add(item)
       }
-    }
+    }*/
   }
 
   fun onSignInClick() {

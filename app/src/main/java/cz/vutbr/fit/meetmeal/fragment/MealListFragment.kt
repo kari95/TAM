@@ -18,10 +18,10 @@ class MealListFragment: Fragment(), MenuItem.OnMenuItemClickListener {
     fun newInstance() = MealListFragment()
   }
 
-  private val adapter = MealAdapter({ meal ->
+  private val adapter = MealAdapter { meal ->
     NavHostFragment.findNavController(this).navigate(
       MealListFragmentDirections.actionMealDetail(meal).setMeal(meal))
-  })
+  }
 
   private lateinit var binding: FragmentMealListBinding
   private lateinit var viewModel: MealListViewModel
@@ -38,7 +38,7 @@ class MealListFragment: Fragment(), MenuItem.OnMenuItemClickListener {
     super.onActivityCreated(savedInstanceState)
     viewModel = ViewModelProviders.of(this).get(MealListViewModel::class.java)
     binding.viewModel = viewModel
-    // TODO: Use the ViewModel
+
     setupView()
     setupListeners()
   }
@@ -76,5 +76,9 @@ class MealListFragment: Fragment(), MenuItem.OnMenuItemClickListener {
         return@Observer
       adapter.meals = meals
     })
+
+    binding.fab.setOnClickListener(
+      { NavHostFragment.findNavController(this).navigate(R.id.action_add_meal) }
+    )
   }
 }

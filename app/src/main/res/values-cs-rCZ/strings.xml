@@ -62,5 +62,7 @@
   <!-- Edit meal -->
   <string name="edit_meal_save">Uložit</string>
 
+  <!-- Add meal -->
+  <string name="add_meal">Přidat jídlo</string>
 
 </resources>

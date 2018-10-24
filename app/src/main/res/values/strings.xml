@@ -63,4 +63,7 @@
   <!-- Edit meal -->
   <string name="edit_meal_save">Save</string>
 
+  <!-- Add meal -->
+  <string name="add_meal">Add meal</string>
+
 </resources>

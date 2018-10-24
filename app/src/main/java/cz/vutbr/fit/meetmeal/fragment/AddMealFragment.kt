@@ -1,35 +1,45 @@
-package cz.vutbr.fit.meetmeal.activity
+package cz.vutbr.fit.meetmeal.fragment
 
+import android.graphics.*
 import android.os.*
 import android.text.format.*
+import android.view.*
 import android.widget.*
 import androidx.appcompat.app.*
 import androidx.databinding.*
+import androidx.fragment.app.*
 import androidx.lifecycle.*
 import com.wdullaer.materialdatetimepicker.date.*
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.model.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
-import kotlinx.android.synthetic.main.activity_add_meal.*
+import kotlinx.android.synthetic.main.fragment_add_meal.*
 import java.util.*
 
-class AddMealActivity: AppCompatActivity() {
+class AddMealFragment: Fragment() {
 
   private val MEAL_DATE = "meal_date"
 
-  lateinit var binding: ActivityAddMealBinding
+  lateinit var binding: FragmentAddMealBinding
 
   lateinit var viewModel: AddMealViewModel
 
   val newMeal: Meal? = null
   var mealTime = 0L
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
 
-    binding = DataBindingUtil.setContentView(this, R.layout.activity_add_meal)
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+    savedInstanceState: Bundle?): View? {
+
+    binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_meal, container, false)
+    return binding.root
+  }
+
+  override fun onActivityCreated(savedInstanceState: Bundle?) {
+    super.onActivityCreated(savedInstanceState)
     viewModel = ViewModelProviders.of(this).get(AddMealViewModel::class.java)
+    binding.viewModel = viewModel
 
     addListeners()
   }
@@ -61,7 +71,8 @@ class AddMealActivity: AppCompatActivity() {
         doValidateDateField(add_meal_date_edit_text, mealTime)
       }
       dialog.minDate = Calendar.getInstance()
-      dialog.show(this.fragmentManager, MEAL_DATE)
+      dialog.show(activity?.fragmentManager, MEAL_DATE)
+      add_meal_date_edit_text.setTextColor(resources.getColor(R.color.colorSecondaryText))
     }
   }
 
