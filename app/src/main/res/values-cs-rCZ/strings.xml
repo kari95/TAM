@@ -47,6 +47,7 @@
   <string name="meal_detail_price_per_person">%1$s kč za osobu</string>
   <string name="meal_detail_invited_by">Na jídlo zve:</string>
   <string name="meal_detail_sign_in">Přihásit se</string>
+  <string name="meal_detail_edit">Upravit</string>
 
   <!-- Registration -->
   <string name="registration_name">Jméno</string>
