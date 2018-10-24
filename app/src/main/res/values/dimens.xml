@@ -9,6 +9,7 @@
   <dimen name="list_item_padding">8dp</dimen>
 
   <!-- Margins -->
+  <dimen name="margin_mini">8dp</dimen>
   <dimen name="margin_normal">16dp</dimen>
   <dimen name="margin_huge">32dp</dimen>
   <dimen name="margin_mega">64dp</dimen>

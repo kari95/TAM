@@ -48,6 +48,7 @@
   <string name="meal_detail_price_per_person">%1$s kč per person</string>
   <string name="meal_detail_invited_by">You\'re invited by</string>
   <string name="meal_detail_sign_in">I\' m in!</string>
+  <string name="meal_detail_edit">Edit</string>
 
   <!-- Registration -->
   <string name="registration_name">Name</string>
