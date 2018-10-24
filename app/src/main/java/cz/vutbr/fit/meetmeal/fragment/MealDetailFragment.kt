@@ -26,6 +26,7 @@ class MealDetailFragment: Fragment() {
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?): View? {
+
     binding = DataBindingUtil.inflate(inflater, R.layout.fragment_meal_detail, container, false)
     return binding.root
   }
@@ -37,7 +38,6 @@ class MealDetailFragment: Fragment() {
     viewModel = ViewModelProviders.of(this).get(MealDetailViewModel::class.java)
     viewModel.meal.set(meal)
     binding.viewModel = viewModel
-    // TODO: Use the ViewModel
 
     setupView()
     setupListeners()

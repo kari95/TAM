@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
   xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
   >
   <data>
     <import type="android.view.View"/>
@@ -10,17 +9,110 @@
       type="cz.vutbr.fit.meetmeal.viewmodel.MyMealDetailViewModel"
       />
   </data>
-  <LinearLayout
+  <androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.MyMealDetailFragment"
     >
-
-    <TextView
-      android:layout_width="match_parent"
+    <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="wrap_content"
       android:layout_height="match_parent"
-      android:text="Hello"
-      />
+      android:layout_marginTop="@dimen/margin_huge"
+      android:layout_gravity="center"
+      >
 
-  </LinearLayout>
+      <TextView
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@{viewModel.meal.name}"
+        />
+
+      <TextView
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_gravity="center"
+        android:text="@{viewModel.getReadableDate()}"
+        />
+      <TextView
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_gravity="center"
+        android:text='@{String.format(@string/meal_detail_people_count, viewModel.meal.peopleCount)}'
+        android:drawableRight="@{context.getDrawable(viewModel.meal.gender.icon)}"
+        />
+      <TextView
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:id="@+id/gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_gravity="center"
+        android:text='@{String.format(@string/meal_detail_price_per_person, viewModel.meal.price)}'
+        />
+
+      <TextView
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_huge"
+        android:layout_gravity="center"
+        android:text="@string/meal_detail_invited_by"
+        />
+      <TextView
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_gravity="center"
+        android:text="@{viewModel.meal.user.name}"
+        android:drawableRight="@{context.getDrawable(viewModel.meal.user.gender.icon)}"
+        />
+      <TextView
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_gravity="center"
+        android:text="@{viewModel.meal.address.street}"
+        />
+      <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_gravity="center"
+        >
+        <TextView
+          style="@style/TextAppearance.AppCompat.Medium"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginRight="@dimen/margin_mini"
+          android:layout_gravity="center"
+          android:text="@{viewModel.meal.address.zip}"
+          />
+        <TextView
+          style="@style/TextAppearance.AppCompat.Medium"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:text="@{viewModel.meal.address.city}"
+          />
+      </LinearLayout>
+      <Button
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_huge"
+        android:layout_gravity="center"
+        android:text="@string/meal_detail_edit"
+        android:textSize="@dimen/mdtp_material_button_textsize"
+        />
+    </LinearLayout>
+  </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

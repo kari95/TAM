@@ -11,7 +11,6 @@ class MealDetailViewModel: ViewModel() {
   val gender: ObservableField<User.Gender> = ObservableField(User.Gender.UNKNOWN)
 
   fun getReadableDate(): String {
-
-    return "10.5.2021"
+    return meal.get()!!.formatedTime
   }
 }

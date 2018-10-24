@@ -21,7 +21,7 @@
       android:orientation="vertical"
       android:layout_width="wrap_content"
       android:layout_height="match_parent"
-      android:layout_marginTop="60dp"
+      android:layout_marginTop="@dimen/margin_huge"
       android:layout_gravity="center"
       >
 
@@ -31,7 +31,7 @@
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/margin_normal"
         android:layout_gravity="center"
         android:hint="@string/registration_email"
         android:inputType="textEmailAddress"
@@ -42,7 +42,7 @@
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/margin_normal"
         android:layout_gravity="center"
         android:hint="@string/registration_password"
         android:inputType="textPassword"
@@ -51,13 +51,13 @@
 
       <Button
         style="@style/Widget.MaterialComponents.Button"
-        android:textSize="@dimen/mdtp_material_button_textsize"
         android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/margin_huge"
         android:layout_gravity="center|bottom"
         android:text="@string/sign_in"
+        android:textSize="@dimen/mdtp_material_button_textsize"
         />
 
       <LinearLayout
@@ -70,14 +70,14 @@
 
         <Button
           style="@style/Widget.MaterialComponents.Button.TextButton"
-          android:textSize="@dimen/mdtp_material_button_textsize"
           android:id="@+id/registration_button"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginBottom="60dp"
+          android:layout_marginBottom="@dimen/margin_mega"
           android:layout_gravity="center"
           android:text="@string/registration"
-        />
+          android:textSize="@dimen/mdtp_material_button_textsize"
+          />
 
       </LinearLayout>
 
