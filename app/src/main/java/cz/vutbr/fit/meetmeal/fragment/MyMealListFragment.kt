@@ -21,10 +21,10 @@ class MyMealListFragment: Fragment() {
     fun newInstance() = MyMealListFragment()
   }
 
-  private val adapter = MealAdapter({ meal ->
+  private val adapter = MealAdapter { meal ->
     NavHostFragment.findNavController(this).navigate(
       MyMealListFragmentDirections.actionMyMealDetail(meal).setMeal(meal))
-  })
+  }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?): View? {
@@ -37,7 +37,7 @@ class MyMealListFragment: Fragment() {
     super.onActivityCreated(savedInstanceState)
     viewModel = ViewModelProviders.of(this).get(MyMealListViewModel::class.java)
     binding.viewModel = viewModel
-    // TODO: Use the ViewModel
+
     setupView()
     setupListeners()
   }

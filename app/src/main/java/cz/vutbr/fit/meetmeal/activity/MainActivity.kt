@@ -1,17 +1,17 @@
 package cz.vutbr.fit.meetmeal.activity
 
-import android.os.Bundle
+import android.os.*
 import android.view.*
 import androidx.appcompat.app.*
 import androidx.appcompat.widget.*
 import androidx.databinding.*
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import cz.vutbr.fit.meetmeal.*
+import androidx.navigation.fragment.*
+import androidx.navigation.ui.*
+import com.google.android.material.bottomnavigation.*
+import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity: AppCompatActivity() {
 
   lateinit var binding: ActivityMainBinding
   lateinit var navHost: NavHostFragment
@@ -48,5 +48,4 @@ class MainActivity : AppCompatActivity() {
     return navHost.navController.navigateUp() || super.onSupportNavigateUp()
     //return NavigationUI.navigateUp(drawer, navHost.navController) || super.onSupportNavigateUp()
   }
-
 }

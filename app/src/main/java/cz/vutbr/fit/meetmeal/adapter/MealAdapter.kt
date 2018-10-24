@@ -1,9 +1,8 @@
 package cz.vutbr.fit.meetmeal.adapter
 
+import android.view.*
 import androidx.databinding.*
 import androidx.recyclerview.widget.*
-import androidx.appcompat.widget.*
-import android.view.*
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.model.*
 
@@ -29,7 +28,6 @@ class MealAdapter(val listener: (Meal) -> Unit): RecyclerView.Adapter<RecyclerVi
     when (holder) {
       is MealViewHolder -> holder.bind(task, listener)
     }
-
   }
 }
 
@@ -60,5 +58,4 @@ private class DiffCallback(val oldMeals: List<Meal>, val newMeals: List<Meal>)
   override fun getOldListSize() = oldMeals.size
 
   override fun getNewListSize() = newMeals.size
-
 }

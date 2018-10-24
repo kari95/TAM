@@ -14,7 +14,7 @@ class MealEngine {
   }
 
   fun findAll(): Observable<List<Meal>> {
-    return Observable.create{ singleSubscriber ->
+    return Observable.create { singleSubscriber ->
       db.collection(collection)
         .get()
         .addOnCompleteListener { task ->

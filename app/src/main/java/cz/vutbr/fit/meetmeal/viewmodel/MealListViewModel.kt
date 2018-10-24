@@ -1,21 +1,15 @@
 package cz.vutbr.fit.meetmeal.viewmodel
 
 import android.app.*
-import androidx.lifecycle.*
-import android.content.*
-import androidx.databinding.*
-import androidx.core.content.ContextCompat.*
 import android.util.*
-import androidx.navigation.fragment.*
-import cz.vutbr.fit.meetmeal.R
-import cz.vutbr.fit.meetmeal.activity.*
+import androidx.databinding.*
+import androidx.lifecycle.*
 import cz.vutbr.fit.meetmeal.engine.*
 import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.*
 import io.reactivex.disposables.*
 import io.reactivex.schedulers.*
-import org.joda.time.*
 
 class MealListViewModel(app: Application): AndroidViewModel(app) {
 
@@ -30,11 +24,10 @@ class MealListViewModel(app: Application): AndroidViewModel(app) {
   }
 
   fun onMealClick() {
-
   }
 
   fun onAddClick() {
-    getTestingData().subscribe{
+    getTestingData().subscribe {
       for (item in it) {
         mealEngine.add(item)
       }
@@ -95,8 +88,8 @@ class MealListViewModel(app: Application): AndroidViewModel(app) {
     return Observable.just(arrayListOf(
       Meal(name = "name", user = user, address = address, price = 500, peopleCount = 4,
         gender = User.Gender.MALE),
-      Meal(name = "name",user = user, address = address2, price = 350, peopleCount = 3),
-      Meal(name = "name",user = user4, address = address3, price = 420, peopleCount = 2,
+      Meal(name = "name", user = user, address = address2, price = 350, peopleCount = 3),
+      Meal(name = "name", user = user4, address = address3, price = 420, peopleCount = 2,
         gender = User.Gender.FEMALE)
     ))
   }

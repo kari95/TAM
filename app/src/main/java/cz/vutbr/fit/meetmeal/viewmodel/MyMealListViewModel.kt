@@ -44,18 +44,18 @@ class MyMealListViewModel: ViewModel() {
 
   private fun requestMeals(): Disposable {
     return getTestingData()
-            .doOnNext { isLoading.set(false) }
-            .subscribe({
-              setMeals(it)
-            }, {
-              Log.e("OldMainViewModel", "getMeals(): onError", it)
-            })
+      .doOnNext { isLoading.set(false) }
+      .subscribe({
+        setMeals(it)
+      }, {
+        Log.e("OldMainViewModel", "getMeals(): onError", it)
+      })
   }
 
   private fun getMeals(): Observable<List<Meal>> {
     return mealEngine.findAll()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
   private fun getTestingData(): Observable<ArrayList<Meal>> {
@@ -65,11 +65,11 @@ class MyMealListViewModel: ViewModel() {
     val address2 = Address("Mendlovo náměstí 120", "Brno", "123 00")
     val address3 = Address("Purykyňovy koleje 1050", "Brno", "123 45")
     return Observable.just(arrayListOf(
-            Meal(name = "name", user = user, address = address, price = 500, peopleCount = 4,
-                    gender = User.Gender.MALE),
-            Meal(name = "name",user = user, address = address2, price = 350, peopleCount = 3),
-            Meal(name = "name",user = user, address = address3, price = 420, peopleCount = 2,
-                    gender = User.Gender.FEMALE)
+      Meal(name = "name", user = user, address = address, price = 500, peopleCount = 4,
+        gender = User.Gender.MALE),
+      Meal(name = "name", user = user, address = address2, price = 350, peopleCount = 3),
+      Meal(name = "name", user = user, address = address3, price = 420, peopleCount = 2,
+        gender = User.Gender.FEMALE)
     ))
   }
 }

@@ -2,7 +2,7 @@ package cz.vutbr.fit.meetmeal.model
 
 import cz.vutbr.fit.meetmeal.*
 
-data class User (
+data class User(
   val id: Int = 0,
   val email: String = "",
   val name: String = "",

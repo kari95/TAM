@@ -1,11 +1,10 @@
 package cz.vutbr.fit.meetmeal.fragment
 
-import androidx.lifecycle.*
-import androidx.databinding.*
 import android.os.*
-import androidx.core.app.*
 import android.view.*
+import androidx.databinding.*
 import androidx.fragment.app.*
+import androidx.lifecycle.*
 import androidx.navigation.fragment.*
 import androidx.recyclerview.widget.*
 import cz.vutbr.fit.meetmeal.R

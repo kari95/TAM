@@ -1,11 +1,11 @@
 package cz.vutbr.fit.meetmeal.model
 
-import com.google.firebase.*
 import android.os.*
+import com.google.firebase.*
 import org.joda.time.*
 import org.joda.time.format.*
 
-class Meal (
+class Meal(
   var name: String = "",
   var time: Timestamp = Timestamp.now(),
   var gender: User.Gender = User.Gender.BOOTH,
