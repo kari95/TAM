@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  >
+  <data>
+    <import type="android.view.View"/>
+    <variable
+      name="group"
+      type="cz.vutbr.fit.meetmeal.model.Group"
+      />
+  </data>
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/list_item_padding"
+    android:background="?android:attr/selectableItemBackground"
+    >
+    <TextView
+      style="@style/TextAppearance.AppCompat.Medium"
+      android:id="@+id/name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@{group.name}"
+      android:textColor="@color/colorPrimaryText"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintLeft_toLeftOf="parent"
+      />
+    <CheckBox
+      style="@style/Base.TextAppearance.AppCompat.Small"
+      android:id="@+id/is_picked_check_box"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      />
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
