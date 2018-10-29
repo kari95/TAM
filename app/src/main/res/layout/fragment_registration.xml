@@ -2,34 +2,37 @@
 
 <layout
   xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   >
   <data>
     <import type="android.view.View"/>
+    <import type="cz.vutbr.fit.meetmeal.model.User.Gender"/>
     <variable
       name="viewModel"
       type="cz.vutbr.fit.meetmeal.viewmodel.RegistrationViewModel"
       />
   </data>
-  <androidx.coordinatorlayout.widget.CoordinatorLayout
+  <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
     <LinearLayout
+      android:layout_margin="@dimen/margin_normal"
       android:orientation="vertical"
-      android:layout_width="wrap_content"
-      android:layout_height="match_parent"
-      android:layout_marginTop="@dimen/margin_huge"
-      android:layout_gravity="center"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
       >
 
       <EditText
         style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
         android:id="@+id/registration_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_gravity="center"
         android:hint="@string/registration_name"
+        android:text="@={viewModel.name}"
+        app:error="@{viewModel.nameError}"
         android:inputType="textPersonName"
         android:ems="10"
         />
@@ -37,11 +40,13 @@
       <EditText
         style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
         android:id="@+id/registration_email"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_gravity="center"
         android:hint="@string/registration_email"
+        android:text="@={viewModel.email}"
+        app:error="@{viewModel.emailError}"
         android:inputType="textEmailAddress"
         android:ems="10"
         />
@@ -49,11 +54,13 @@
       <EditText
         style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
         android:id="@+id/registration_password"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_gravity="center"
         android:hint="@string/registration_password"
+        android:text="@={viewModel.password}"
+        app:error="@{viewModel.passwordError}"
         android:inputType="textPassword"
         android:ems="10"
         />
@@ -61,11 +68,13 @@
       <EditText
         style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
         android:id="@+id/registration_password_again"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_gravity="center"
         android:hint="@string/registration_password_again"
+        android:text="@={viewModel.passwordAgain}"
+        app:error="@{viewModel.passwordAgainError}"
         android:inputType="textPassword"
         android:ems="10"
         />
@@ -73,10 +82,12 @@
       <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_mega"
+        android:padding="@dimen/margin_mini"
         android:layout_gravity="center"
         >
         <TextView
+          style="@style/Base.TextAppearance.AppCompat.Medium"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:layout_weight="1"
@@ -94,14 +105,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/registration_woman"
-            android:onClick="@{() -> viewModel.onGenderButtonClick(true)}"
+            android:checked="@={viewModel.isFemale}"
             />
 
           <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/registration_man"
-            android:onClick="@{() -> viewModel.onGenderButtonClick(false)}"
+            android:checked="@={viewModel.isMale}"
             />
 
         </RadioGroup>
@@ -112,10 +123,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_mega"
+        android:layout_marginBottom="@dimen/margin_mega"
         android:layout_gravity="center"
         android:text="@string/registration_register"
         android:textSize="@dimen/mdtp_material_button_textsize"
+        android:onClick="@{() -> viewModel.onRegister()}"
         />
     </LinearLayout>
-  </androidx.coordinatorlayout.widget.CoordinatorLayout>
+  </ScrollView>
 </layout>

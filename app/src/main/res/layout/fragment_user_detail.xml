@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@{viewModel.user.email}"
+        android:text="@{viewModel.firebaseUser.email}"
         />
       <TextView
         style="@style/TextAppearance.AppCompat.Medium"

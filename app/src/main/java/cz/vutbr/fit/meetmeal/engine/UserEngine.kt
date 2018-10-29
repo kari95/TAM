@@ -20,9 +20,9 @@ class UserEngine {
     }
   }
 
-  fun registerUser(user: User, password: String)
+  fun registerUser(email: String, password: String, user: User)
     : Observable<Boolean> = Observable.create { singleSubscriber ->
-    auth.createUserWithEmailAndPassword(user.email, password).addOnCompleteListener { task ->
+    auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
       val firebaseUser = auth.currentUser
       if (task.isSuccessful && firebaseUser != null) {
         db.collection(collection)
