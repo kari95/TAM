@@ -4,7 +4,9 @@ import android.app.*
 import androidx.databinding.*
 import androidx.lifecycle.*
 import cz.vutbr.fit.meetmeal.R
+import cz.vutbr.fit.meetmeal.engine.*
 import cz.vutbr.fit.meetmeal.model.*
+import io.reactivex.android.schedulers.*
 
 class RegistrationViewModel(application: Application): AndroidViewModel(application) {
 
@@ -21,21 +23,32 @@ class RegistrationViewModel(application: Application): AndroidViewModel(applicat
 
   val passwordAgain: ObservableField<String> = ObservableField()
   val passwordAgainError: ObservableField<String> = ObservableField()
-  // TODO: Implement the ViewModel
+
+  private val userEngine = UserEngine()
 
   fun onRegister() {
-    validateName()
-    validateEmail()
-    validatePassword()
+    //validateName()
+    //validateEmail()
+    //validatePassword()
     val name = name.get()
+    val email = email.get()
+    val password = password.get()
     val gender = when {
       isFemale.get() && !isMale.get() -> User.Gender.FEMALE
       isMale.get() && !isFemale.get() -> User.Gender.MALE
       else -> User.Gender.UNKNOWN
     }
-    if (name != null) {
+    if (name != null && email != null && password != null) {
 
       val user = User(name, gender)
+      userEngine.registerUser(email, password, user)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe({ success ->
+          val suc = success
+
+        }, {
+
+        })
     }
   }
 
