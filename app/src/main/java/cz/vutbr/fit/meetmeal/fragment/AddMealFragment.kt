@@ -6,8 +6,10 @@ import android.view.*
 import android.widget.*
 import androidx.databinding.*
 import androidx.fragment.app.*
+import com.google.firebase.*
 import com.wdullaer.materialdatetimepicker.date.*
 import cz.vutbr.fit.meetmeal.*
+import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.model.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
@@ -56,6 +58,7 @@ class AddMealFragment: Fragment() {
           mealTime = (calendar.getTimeInMillis() / 1000L)
 
           doValidateDateField(add_meal_date_edit_text, mealTime)
+          viewModel.time = Timestamp(calendar.getTimeInMillis(), 0)
           updateViews()
         },
         mealDate.get(Calendar.YEAR),
