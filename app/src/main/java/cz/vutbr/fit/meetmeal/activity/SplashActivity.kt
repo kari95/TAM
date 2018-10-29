@@ -10,10 +10,7 @@ class SplashActivity: AppCompatActivity() {
 
     super.onCreate(savedInstanceState);
 
-    // Start home activity
     startActivity(Intent(this, MainActivity::class.java))
-
-    // close splash activity
 
     finish();
   }

@@ -61,14 +61,11 @@ class MyMealListViewModel: ViewModel() {
   private fun getTestingData(): Observable<ArrayList<Meal>> {
     val user = User(id = 1, name = "Jakub", email = "john@mail.com", gender = User.Gender.MALE)
 
-    val address = Address("Jánská 12", "Brno", "123 00")
-    val address2 = Address("Mendlovo náměstí 120", "Brno", "123 00")
-    val address3 = Address("Purykyňovy koleje 1050", "Brno", "123 45")
     return Observable.just(arrayListOf(
-      Meal(name = "name", user = user, address = address, price = 500, peopleCount = 4,
+      Meal(name = "name", user = user, address = "", price = 500, peopleCount = 4,
         gender = User.Gender.MALE),
-      Meal(name = "name", user = user, address = address2, price = 350, peopleCount = 3),
-      Meal(name = "name", user = user, address = address3, price = 420, peopleCount = 2,
+      Meal(name = "name", user = user, address = "", price = 350, peopleCount = 3),
+      Meal(name = "name", user = user, address = "", price = 420, peopleCount = 2,
         gender = User.Gender.FEMALE)
     ))
   }

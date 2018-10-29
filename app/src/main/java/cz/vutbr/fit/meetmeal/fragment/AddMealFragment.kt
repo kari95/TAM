@@ -1,16 +1,13 @@
 package cz.vutbr.fit.meetmeal.fragment
 
-import android.graphics.*
 import android.os.*
 import android.text.format.*
 import android.view.*
 import android.widget.*
-import androidx.appcompat.app.*
 import androidx.databinding.*
 import androidx.fragment.app.*
-import androidx.lifecycle.*
 import com.wdullaer.materialdatetimepicker.date.*
-import cz.vutbr.fit.meetmeal.R
+import cz.vutbr.fit.meetmeal.*
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.model.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
@@ -23,11 +20,10 @@ class AddMealFragment: Fragment() {
 
   lateinit var binding: FragmentAddMealBinding
 
-  lateinit var viewModel: AddMealViewModel
+  var viewModel = AddMealViewModel()
 
   val newMeal: Meal? = null
   var mealTime = 0L
-
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?): View? {
@@ -38,7 +34,6 @@ class AddMealFragment: Fragment() {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
-    viewModel = ViewModelProviders.of(this).get(AddMealViewModel::class.java)
     binding.viewModel = viewModel
 
     addListeners()
@@ -73,6 +68,10 @@ class AddMealFragment: Fragment() {
       dialog.minDate = Calendar.getInstance()
       dialog.show(activity?.fragmentManager, MEAL_DATE)
       add_meal_date_edit_text.setTextColor(resources.getColor(R.color.colorSecondaryText))
+    }
+
+    add_meal_save_button.setOnClickListener { _ ->
+      viewModel.onSaveClick()
     }
   }
 
