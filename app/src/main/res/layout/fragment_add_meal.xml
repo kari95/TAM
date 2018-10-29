@@ -4,6 +4,8 @@
   >
   <data>
     <import type="android.view.View"/>
+
+    <import type="cz.vutbr.fit.meetmeal.utils.Converter"/>
     <variable
       name="viewModel"
       type="cz.vutbr.fit.meetmeal.viewmodel.AddMealViewModel"
@@ -22,6 +24,24 @@
       >
       <TextView
         style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_gravity="center"
+        android:text="@string/add_meal_cost"
+        />
+      <EditText
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:id="@+id/add_meal_name_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@={viewModel.name}"
+        android:textAlignment="center"
+        android:ems="10"
+        />
+      <TextView
+        style="@style/TextAppearance.AppCompat.Medium"
         android:id="@+id/textLoad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="70"
+        android:text="@={Converter.intToString(viewModel.price != null ? viewModel.price : 0)}"
         android:inputType="numberDecimal"
         android:textAlignment="center"
         android:ems="10"
@@ -56,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Budova D 231"
+        android:text="@={viewModel.address}"
         android:inputType="textPersonName"
         android:textAlignment="center"
         android:ems="10"
@@ -118,7 +138,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="1"
+        android:text="@={Converter.intToString(viewModel.peopleCount)}"
         android:inputType="numberDecimal"
         android:textAlignment="center"
         android:ems="10"
@@ -136,7 +156,7 @@
 
       <Button
         style="@style/Widget.MaterialComponents.Button"
-        android:id="@+id/add"
+        android:id="@+id/add_meal_save_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"

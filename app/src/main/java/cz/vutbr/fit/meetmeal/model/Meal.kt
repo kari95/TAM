@@ -12,7 +12,7 @@ class Meal(
   var user: User = User(),
   var peopleCount: Int = 0,
   var price: Int = 0,
-  var address: Address = Address()
+  var address: String = ""
 ): Parcelable {
   val formatedTime: String
     get() {

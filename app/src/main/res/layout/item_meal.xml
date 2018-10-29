@@ -29,30 +29,12 @@
       />
     <TextView
       style="@style/Base.TextAppearance.AppCompat.Small"
-      android:id="@+id/street"
+      android:id="@+id/address"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@{meal.address.street}"
+      android:text="@{meal.address}"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toBottomOf="@id/name"
-      />
-    <TextView
-      style="@style/Base.TextAppearance.AppCompat.Small"
-      android:id="@+id/city"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@{meal.address.city}"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/street"
-      />
-    <TextView
-      style="@style/Base.TextAppearance.AppCompat.Small"
-      android:id="@+id/zip"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@{meal.address.zip}"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/city"
       />
     <TextView
       style="@style/Base.TextAppearance.AppCompat.Small"
