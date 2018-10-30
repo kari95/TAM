@@ -27,21 +27,25 @@
   <string name="navigation_drawer_close">Close navigation drawer</string>
 
   <!-- Add meal -->
-  <string name="add_meal_cost">Expected cost:</string>
-  <string name="add_meal_address">Address:</string>
-  <string name="add_meal_time">Time:</string>
-  <string name="add_meal_date">Date:</string>
-  <string name="add_meal_people_invited">People invited:</string>
+  <string name="add_meal">Add meal</string>
+  <string name="add_meal_cost">Expected cost</string>
+  <string name="add_meal_address">Address</string>
+  <string name="add_meal_time">Time</string>
+  <string name="add_meal_date">Date</string>
+  <string name="add_meal_people_invited">People invited</string>
   <string name="add_meal_same_gender">Same gender?</string>
   <string name="add_meal_create">Create</string>
   <string name="add_meal_date_incorrect_value">Wrong date added</string>
   <string name="add_meal_pick_date">PICK DATE</string>
+  <string name="add_meal_event_name">Event name</string>
+  <string name="add_meal_pick_time">PICK TIME</string>
+  <string name="time">%1$d : %2$d</string>
 
   <!-- Meal detail -->
   <string name="meal_detail_same_gender">Same gender</string>
   <string name="meal_detail_provider">Provider</string>
-  <string name="meal_detail_time">Time:</string>
-  <string name="meal_detail_cost">Cost:</string>
+  <string name="meal_detail_time">Time</string>
+  <string name="meal_detail_cost">Cost</string>
   <string name="meal_detail_save">Save</string>
   <string name="meal_detail_rest_places">Rest %1$s places</string>
   <string name="meal_detail_people_count">For %1$s people</string>
@@ -58,7 +62,7 @@
   <string name="registration_password">Password</string>
   <string name="registration_password_again">Password again</string>
   <string name="registration_password_required">Password is required</string>
-  <string name="registration_gender">Gender:</string>
+  <string name="registration_gender">Gender</string>
   <string name="registration_woman">Woman</string>
   <string name="registration_man">Man</string>
   <string name="registration_register">Register</string>
@@ -66,7 +70,5 @@
   <!-- Edit meal -->
   <string name="edit_meal_save">Save</string>
 
-  <!-- Add meal -->
-  <string name="add_meal">Add meal</string>
 
 </resources>

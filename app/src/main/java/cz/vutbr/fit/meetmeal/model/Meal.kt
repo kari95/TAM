@@ -8,7 +8,7 @@ import org.joda.time.format.*
 class Meal(
   var name: String = "",
   var time: Timestamp = Timestamp.now(),
-  var gender: User.Gender = User.Gender.BOOTH,
+  var gender: User.Gender = User.Gender.BOTH,
   var user: User = User(),
   var peopleCount: Int = 0,
   var price: Int = 0,

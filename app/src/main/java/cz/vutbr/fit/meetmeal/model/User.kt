@@ -21,7 +21,7 @@ data class User(
       R.string.female,
       R.drawable.ic_gender_female
     ),
-    BOOTH(
+    BOTH(
       "booth",
       R.string.both,
       R.drawable.ic_gender_male_female
