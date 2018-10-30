@@ -18,22 +18,21 @@
     >
     <LinearLayout
       android:orientation="vertical"
-      android:layout_width="wrap_content"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_gravity="center"
       >
       <TextView
         style="@style/TextAppearance.AppCompat.Medium"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_gravity="center"
-        android:text="@string/add_meal_cost"
+        android:text="@string/add_meal_event_name"
         />
       <EditText
         style="@style/TextAppearance.AppCompat.Medium"
         android:id="@+id/add_meal_name_edit_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@={viewModel.name}"
@@ -43,7 +42,7 @@
       <TextView
         style="@style/TextAppearance.AppCompat.Medium"
         android:id="@+id/textLoad"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_gravity="center"
@@ -52,7 +51,7 @@
       <EditText
         style="@style/TextAppearance.AppCompat.Medium"
         android:id="@+id/add_meal_cost_edit_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@={Converter.intToString(viewModel.price, viewModel.price)}"
@@ -63,7 +62,7 @@
 
       <TextView
         style="@style/TextAppearance.AppCompat.Medium"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_gravity="center"
@@ -73,7 +72,7 @@
       <EditText
         style="@style/TextAppearance.AppCompat.Medium"
         android:id="@+id/add_meal_address_edit_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@={viewModel.address}"
@@ -84,27 +83,29 @@
 
       <TextView
         style="@style/TextAppearance.AppCompat.Medium"
-        android:layout_width="wrap_content"
+        android:id="@+id/xy"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_gravity="center"
         android:text="@string/add_meal_time"
         />
 
-      <EditText
+      <TextView
         style="@style/TextAppearance.AppCompat.Medium"
         android:id="@+id/add_meal_time_edit_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:inputType="time"
+        android:text="@string/add_meal_pick_time"
+        android:textColor="@color/colorPrimary"
         android:textAlignment="center"
         android:ems="10"
         />
 
       <TextView
         style="@style/TextAppearance.AppCompat.Medium"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_gravity="center"
@@ -114,7 +115,7 @@
       <TextView
         style="@style/TextAppearance.AppCompat.Medium"
         android:id="@+id/add_meal_date_edit_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/add_meal_pick_date"
@@ -125,7 +126,7 @@
 
       <TextView
         style="@style/TextAppearance.AppCompat.Medium"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_gravity="center"
@@ -135,7 +136,7 @@
       <EditText
         style="@style/TextAppearance.AppCompat.Medium"
         android:id="@+id/add_meal_people_invited_edit_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@={Converter.intToString(viewModel.peopleCount, viewModel.peopleCount)}"
@@ -144,15 +145,43 @@
         android:ems="10"
         />
 
-      <Switch
+      <TextView
         style="@style/TextAppearance.AppCompat.Medium"
-        android:id="@+id/add_meal_same_gender_switch"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_gravity="center"
         android:text="@string/add_meal_same_gender"
         />
+
+      <RadioGroup
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        >
+
+        <RadioButton
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/both"
+          android:onClick="@{() -> viewModel.onGenderButtonClick(1)}"
+          />
+
+        <RadioButton
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/male"
+          android:onClick="@{() -> viewModel.onGenderButtonClick(2)}"
+          />
+
+        <RadioButton
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/female"
+          android:onClick="@{() -> viewModel.onGenderButtonClick(3)}"
+          />
+      </RadioGroup>
 
       <Button
         style="@style/Widget.MaterialComponents.Button"

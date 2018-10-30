@@ -27,6 +27,7 @@
   <string name="navigation_drawer_close">Close navigation drawer</string>
 
   <!-- Add meal -->
+  <string name="add_meal">Add meal</string>
   <string name="add_meal_cost">Expected cost:</string>
   <string name="add_meal_address">Address:</string>
   <string name="add_meal_time">Time:</string>
@@ -36,6 +37,9 @@
   <string name="add_meal_create">Create</string>
   <string name="add_meal_date_incorrect_value">Wrong date added</string>
   <string name="add_meal_pick_date">PICK DATE</string>
+  <string name="add_meal_event_name">Event name</string>
+  <string name="add_meal_pick_time">PICK TIME</string>
+  <string name="time">%1$d : %2$d</string>
 
   <!-- Meal detail -->
   <string name="meal_detail_same_gender">Same gender</string>
@@ -63,7 +67,6 @@
   <!-- Edit meal -->
   <string name="edit_meal_save">Save</string>
 
-  <!-- Add meal -->
-  <string name="add_meal">Add meal</string>
+
 
 </resources>
