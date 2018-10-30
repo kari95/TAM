@@ -5,11 +5,13 @@ import android.view.*
 import androidx.databinding.*
 import androidx.fragment.app.*
 import androidx.lifecycle.*
+import androidx.navigation.*
+import androidx.navigation.fragment.*
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
 
-class UserDetailFragment: Fragment() {
+class UserDetailFragment: Fragment(), MenuItem.OnMenuItemClickListener {
 
   private lateinit var binding: FragmentUserDetailBinding
   private lateinit var viewModel: UserDetailViewModel
@@ -21,6 +23,7 @@ class UserDetailFragment: Fragment() {
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?): View? {
     binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_detail, container, false)
+    setHasOptionsMenu(true)
     return binding.root
   }
 
@@ -29,6 +32,24 @@ class UserDetailFragment: Fragment() {
     viewModel = ViewModelProviders.of(this).get(
       UserDetailViewModel::class.java)
     binding.viewModel = viewModel
-    // TODO: Use the ViewModel
+
+    val controller = NavHostFragment.findNavController(this)
+    controller.navigate(UserDetailFragmentDirections.actionSignIn())
+  }
+
+  override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
+    // Inflate the menu; this adds items to the action bar if it is present.
+    menuInflater.inflate(R.menu.account_actions_menu, menu)
+    menu.getItem(0).setOnMenuItemClickListener(this)
+  }
+
+  override fun onMenuItemClick(menuItem: MenuItem): Boolean {
+    when (menuItem.itemId) {
+      R.id.action_logout -> {
+        viewModel.onLogOut()
+        return true
+      }
+    }
+    return false
   }
 }

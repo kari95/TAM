@@ -20,6 +20,10 @@ class UserEngine {
     }
   }
 
+  fun logoutUser() {
+    auth.signOut()
+  }
+
   fun registerUser(email: String, password: String, user: User)
     : Observable<Boolean> = Observable.create { singleSubscriber ->
     auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->

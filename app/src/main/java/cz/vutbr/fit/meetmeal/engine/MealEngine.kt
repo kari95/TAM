@@ -3,6 +3,7 @@ package cz.vutbr.fit.meetmeal.engine
 import com.google.firebase.firestore.*
 import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.*
+import java.lang.RuntimeException
 
 class MealEngine {
 
@@ -21,8 +22,10 @@ class MealEngine {
           val list = mutableListOf<Meal>()
           if (task.isSuccessful) {
             for (document in task.result!!) {
-              val meal = document.toObject(Meal::class.java)
-              list.add(meal)
+              try {
+                val meal = document.toObject(Meal::class.java)
+                list.add(meal)
+              } catch (e: RuntimeException) {}
             }
             singleSubscriber.onNext(list)
           } else {

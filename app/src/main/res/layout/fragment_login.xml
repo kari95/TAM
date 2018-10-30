@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
   xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   >
   <data>
     <import type="android.view.View"/>
@@ -11,40 +12,42 @@
       type="cz.vutbr.fit.meetmeal.viewmodel.LoginViewModel"
       />
   </data>
-  <androidx.coordinatorlayout.widget.CoordinatorLayout
+  <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
     <LinearLayout
-      xmlns:android="http://schemas.android.com/apk/res/android"
       android:orientation="vertical"
-      android:layout_width="wrap_content"
-      android:layout_height="match_parent"
-      android:layout_marginTop="@dimen/margin_huge"
-      android:layout_gravity="center"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/margin_normal"
       >
 
 
       <EditText
         style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
         android:id="@+id/email"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_gravity="center"
         android:hint="@string/registration_email"
         android:inputType="textEmailAddress"
+        android:text="@={viewModel.email}"
+        app:error="@{viewModel.emailError}"
         android:ems="10"
         />
 
       <EditText
         android:id="@+id/password"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_gravity="center"
         android:hint="@string/registration_password"
+        android:text="@={viewModel.password}"
+        app:error="@{viewModel.passwordError}"
         android:inputType="textPassword"
         android:ems="10"
         />
@@ -58,6 +61,7 @@
         android:layout_gravity="center|bottom"
         android:text="@string/sign_in"
         android:textSize="@dimen/mdtp_material_button_textsize"
+        android:onClick="@{() -> viewModel.onSignIn()}"
         />
 
       <LinearLayout
@@ -73,6 +77,7 @@
           android:id="@+id/registration_button"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/margin_mega"
           android:layout_marginBottom="@dimen/margin_mega"
           android:layout_gravity="center"
           android:text="@string/registration"
@@ -84,5 +89,5 @@
 
     </LinearLayout>
 
-  </androidx.coordinatorlayout.widget.CoordinatorLayout>
+  </ScrollView>
 </layout>
