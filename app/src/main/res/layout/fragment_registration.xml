@@ -17,10 +17,10 @@
     android:layout_height="match_parent"
     >
     <LinearLayout
-      android:layout_margin="@dimen/margin_normal"
       android:orientation="vertical"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:layout_margin="@dimen/margin_normal"
       >
 
       <EditText
@@ -30,10 +30,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_gravity="center"
-        android:hint="@string/registration_name"
         android:text="@={viewModel.name}"
-        app:error="@{viewModel.nameError}"
+        android:hint="@string/registration_name"
         android:inputType="textPersonName"
+        app:error="@{viewModel.nameError}"
         android:ems="10"
         />
 
@@ -44,10 +44,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_gravity="center"
-        android:hint="@string/registration_email"
         android:text="@={viewModel.email}"
-        app:error="@{viewModel.emailError}"
+        android:hint="@string/registration_email"
         android:inputType="textEmailAddress"
+        app:error="@{viewModel.emailError}"
         android:ems="10"
         />
 
@@ -58,10 +58,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_gravity="center"
-        android:hint="@string/registration_password"
         android:text="@={viewModel.password}"
-        app:error="@{viewModel.passwordError}"
+        android:hint="@string/registration_password"
         android:inputType="textPassword"
+        app:error="@{viewModel.passwordError}"
         android:ems="10"
         />
 
@@ -72,10 +72,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_gravity="center"
-        android:hint="@string/registration_password_again"
         android:text="@={viewModel.passwordAgain}"
-        app:error="@{viewModel.passwordAgainError}"
+        android:hint="@string/registration_password_again"
         android:inputType="textPassword"
+        app:error="@{viewModel.passwordAgainError}"
         android:ems="10"
         />
 
@@ -83,8 +83,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_mega"
-        android:padding="@dimen/margin_mini"
         android:layout_gravity="center"
+        android:padding="@dimen/margin_mini"
         >
         <TextView
           style="@style/Base.TextAppearance.AppCompat.Medium"
