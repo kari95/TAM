@@ -59,7 +59,7 @@ class MyMealListViewModel: ViewModel() {
   }
 
   private fun getTestingData(): Observable<ArrayList<Meal>> {
-    val user = User(id = 1, name = "Jakub", email = "john@mail.com", gender = User.Gender.MALE)
+    val user = User(name = "Jakub", gender = User.Gender.MALE)
 
     return Observable.just(arrayListOf(
       Meal(name = "name", user = user, address = "", price = 500, peopleCount = 4,
