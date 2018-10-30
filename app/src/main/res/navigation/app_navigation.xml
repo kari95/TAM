@@ -73,6 +73,19 @@
   <!-- Account -->
   <fragment
     android:id="@+id/nav_account"
+    android:name="cz.vutbr.fit.meetmeal.fragment.UserDetailFragment"
+    android:label="@string/account"
+    tools:layout="@layout/fragment_user_detail"
+    >
+    <action
+      app:popUpTo="@id/nav_meal_list"
+      android:id="@+id/action_sign_in"
+      app:destination="@id/nav_sign_in"
+      />
+  </fragment>
+
+  <fragment
+    android:id="@+id/nav_sign_in"
     android:name="cz.vutbr.fit.meetmeal.fragment.LoginFragment"
     android:label="@string/login"
     tools:layout="@layout/fragment_login"
@@ -82,7 +95,6 @@
       app:destination="@id/nav_registration"
       />
   </fragment>
-
   <fragment
     android:id="@+id/nav_registration"
     android:name="cz.vutbr.fit.meetmeal.fragment.RegistrationFragment"

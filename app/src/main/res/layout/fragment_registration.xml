@@ -82,7 +82,7 @@
       <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_mega"
+        android:layout_marginTop="@dimen/margin_huge"
         android:padding="@dimen/margin_mini"
         android:layout_gravity="center"
         >
@@ -122,7 +122,7 @@
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_mega"
+        android:layout_marginTop="@dimen/margin_huge"
         android:layout_marginBottom="@dimen/margin_mega"
         android:layout_gravity="center"
         android:text="@string/registration_register"

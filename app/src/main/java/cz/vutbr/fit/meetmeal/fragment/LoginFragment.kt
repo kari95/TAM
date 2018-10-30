@@ -6,6 +6,7 @@ import androidx.databinding.*
 import androidx.fragment.app.*
 import androidx.lifecycle.*
 import androidx.navigation.*
+import androidx.navigation.fragment.*
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
