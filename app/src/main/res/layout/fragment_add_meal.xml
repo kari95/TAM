@@ -29,7 +29,6 @@
         android:layout_gravity="center"
         android:text="@={viewModel.name}"
         android:hint="@string/add_meal_event_name"
-        android:textAlignment="center"
         android:ems="10"
         />
       <EditText
@@ -42,7 +41,6 @@
         android:text="@={Converter.intToString(viewModel.price, viewModel.price)}"
         android:hint="@string/add_meal_cost"
         android:inputType="numberDecimal"
-        android:textAlignment="center"
         android:ems="10"
         />
       <EditText
@@ -55,7 +53,6 @@
         android:text="@={viewModel.address}"
         android:hint="@string/add_meal_address"
         android:inputType="textPersonName"
-        android:textAlignment="center"
         android:ems="10"
         />
       <TextView
@@ -64,11 +61,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
+        android:paddingLeft="@dimen/margin_mini"
         android:layout_gravity="center"
         android:text="@string/add_meal_pick_time"
         android:hint="@string/add_meal_time"
         android:textColor="@color/colorPrimary"
-        android:textAlignment="center"
         android:ems="10"
         />
       <TextView
@@ -77,10 +74,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
+        android:paddingLeft="@dimen/margin_mini"
         android:layout_gravity="center"
         android:text="@string/add_meal_pick_date"
         android:textColor="@color/colorPrimary"
-        android:textAlignment="center"
         android:ems="10"
         />
       <EditText
@@ -93,7 +90,6 @@
         android:text="@={Converter.intToString(viewModel.peopleCount, viewModel.peopleCount)}"
         android:hint="@string/add_meal_people_invited"
         android:inputType="numberDecimal"
-        android:textAlignment="center"
         android:ems="10"
         />
 
@@ -150,6 +146,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginBottom="@dimen/margin_mega"
         android:layout_gravity="center"
         android:text="@string/add_meal_create"
         android:textSize="@dimen/mdtp_material_button_textsize"
