@@ -7,13 +7,13 @@ import android.view.*
 import android.widget.*
 import androidx.databinding.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.*
 import com.google.firebase.*
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.model.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
-import kotlinx.android.synthetic.main.fragment_add_meal.*
 import java.util.*
 
 class AddMealFragment: Fragment() {
@@ -43,6 +43,11 @@ class AddMealFragment: Fragment() {
 
   private fun addListeners() {
 
+    binding.addMealSaveButton.setOnClickListener { _ ->
+      viewModel.onSaveClick()
+      NavHostFragment.findNavController(this).navigateUp()
+    }
+
     val onTimeSetListener = TimePickerDialog.OnTimeSetListener { timePicker: TimePicker, hour: Int, minute: Int ->
       viewModel.hour = hour
       viewModel.minute = minute
@@ -51,27 +56,19 @@ class AddMealFragment: Fragment() {
     }
 
     binding.addMealTimeEditText.setOnClickListener { view ->
-
-      // TODO Auto-generated method stub
       val currentTime = Calendar.getInstance()
       val hour = currentTime.get(Calendar.HOUR_OF_DAY)
       val minute = currentTime.get(Calendar.MINUTE)
       val timePicker: TimePickerDialog
-      timePicker = TimePickerDialog(context, onTimeSetListener, hour, minute, true)
 
+      timePicker = TimePickerDialog(context, onTimeSetListener, hour, minute, true)
       timePicker.setTitle(resources.getString(R.string.add_meal_pick_time))
       timePicker.show()
-
       timePicker.setOnDismissListener { view ->
-
       }
-
 
       binding.addMealTimeEditText.setTextColor(resources.getColor(R.color.colorSecondaryText))
     }
-
-
-
 
     binding.addMealDateEditText.setOnClickListener { view ->
       val mealDate = viewModel.createDateCalendar()
@@ -98,13 +95,9 @@ class AddMealFragment: Fragment() {
       dialog.show(activity?.fragmentManager, MEAL_DATE)
       binding.addMealDateEditText.setTextColor(resources.getColor(R.color.colorSecondaryText))
     }
-
-    add_meal_save_button.setOnClickListener { _ ->
-      viewModel.onSaveClick()
-    }
   }
 
-  fun doValidateDateField(view: TextView, timestamp: Long?) {
+  private fun doValidateDateField(view: TextView, timestamp: Long?) {
     if (viewModel.isMealDateValid(timestamp)) {
       view.error = null
     } else {

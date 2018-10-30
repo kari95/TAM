@@ -1,12 +1,14 @@
 package cz.vutbr.fit.meetmeal.viewmodel
 
 import androidx.databinding.*
+import androidx.navigation.fragment.*
 import com.google.firebase.*
 import cz.vutbr.fit.meetmeal.engine.*
 import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.android.schedulers.*
 import org.joda.time.*
 import java.util.*
+import kotlin.coroutines.experimental.*
 
 class AddMealViewModel: BaseObservable() {
 
