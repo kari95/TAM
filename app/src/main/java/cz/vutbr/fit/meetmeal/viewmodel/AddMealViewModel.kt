@@ -4,12 +4,15 @@ import androidx.databinding.*
 import com.google.firebase.*
 import cz.vutbr.fit.meetmeal.engine.*
 import cz.vutbr.fit.meetmeal.model.*
+import io.reactivex.android.schedulers.*
 import org.joda.time.*
 import java.util.*
 
 class AddMealViewModel: BaseObservable() {
 
   private val mealEngine = MealEngine()
+
+  private val userEngine = UserEngine()
 
   var name: String = ""
     @Bindable
@@ -84,6 +87,12 @@ class AddMealViewModel: BaseObservable() {
 
     val timestampDate = Date(dateTime.millis)
     time = Timestamp(timestampDate)
+
+    userEngine.getCurrentUser()
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe({
+        user = (it)
+      }, {})
 
     val meal = Meal(name, time, gender, user, peopleCount, price, address)
     mealEngine.add(meal)
