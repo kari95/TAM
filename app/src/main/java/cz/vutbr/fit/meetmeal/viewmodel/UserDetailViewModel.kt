@@ -14,7 +14,7 @@ class UserDetailViewModel: ViewModel() {
 
   private val userEngine = UserEngine()
 
-  init {
+  fun onScreenShowed() {
     firebaseUser.set(userEngine.getCurrentFirebaseUser())
     userEngine.getCurrentUser()
       .observeOn(AndroidSchedulers.mainThread())
@@ -27,5 +27,7 @@ class UserDetailViewModel: ViewModel() {
     userEngine.logoutUser()
     firebaseUser.set(null)
   }
+
+
 
 }

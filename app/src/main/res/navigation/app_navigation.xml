@@ -78,9 +78,12 @@
     tools:layout="@layout/fragment_user_detail"
     >
     <action
-      app:popUpTo="@id/nav_meal_list"
       android:id="@+id/action_sign_in"
       app:destination="@id/nav_sign_in"
+      />
+    <action
+      android:id="@+id/action_registration"
+      app:destination="@id/nav_registration"
       />
   </fragment>
 

@@ -26,6 +26,8 @@
   <string name="navigation_drawer_open">Open navigation drawer</string>
   <string name="navigation_drawer_close">Close navigation drawer</string>
 
+  <string name="not_logged_in">You are not logged in</string>
+
   <!-- Add meal -->
   <string name="add_meal">Add meal</string>
   <string name="add_meal_cost">Expected cost</string>

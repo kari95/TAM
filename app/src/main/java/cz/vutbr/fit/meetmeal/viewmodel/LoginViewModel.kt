@@ -23,9 +23,9 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
     if (validateEmail() && validatePassword()) {
       userEngine.loginUser(email.get() ?: "", password.get() ?: "")
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe { success ->
+        .subscribe({ success ->
           loggedInt.set(success)
-        }
+        }, {})
     }
   }
 

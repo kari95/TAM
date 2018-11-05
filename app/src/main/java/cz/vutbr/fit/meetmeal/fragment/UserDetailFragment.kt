@@ -23,6 +23,12 @@ class UserDetailFragment: Fragment(), MenuItem.OnMenuItemClickListener {
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?): View? {
     binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_detail, container, false)
+    binding.loginButton.setOnClickListener(
+      Navigation.createNavigateOnClickListener(R.id.action_sign_in)
+    )
+    binding.registrationButton.setOnClickListener(
+      Navigation.createNavigateOnClickListener(R.id.action_registration)
+    )
     setHasOptionsMenu(true)
     return binding.root
   }
@@ -32,9 +38,7 @@ class UserDetailFragment: Fragment(), MenuItem.OnMenuItemClickListener {
     viewModel = ViewModelProviders.of(this).get(
       UserDetailViewModel::class.java)
     binding.viewModel = viewModel
-
-    val controller = NavHostFragment.findNavController(this)
-    controller.navigate(UserDetailFragmentDirections.actionSignIn())
+    viewModel.onScreenShowed()
   }
 
   override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
