@@ -5,6 +5,7 @@ import android.view.*
 import androidx.databinding.*
 import androidx.fragment.app.*
 import androidx.lifecycle.*
+import androidx.navigation.fragment.*
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
@@ -29,6 +30,13 @@ class RegistrationFragment: Fragment() {
     viewModel = ViewModelProviders.of(this).get(
       RegistrationViewModel::class.java)
     binding.viewModel = viewModel
-    // TODO: Use the ViewModel
+
+    viewModel.registred.addOnPropertyChangedCallback(object: Observable.OnPropertyChangedCallback() {
+      override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+        if (viewModel.registred.get()) {
+          NavHostFragment.findNavController(this@RegistrationFragment).navigateUp()
+        }
+      }
+    })
   }
 }

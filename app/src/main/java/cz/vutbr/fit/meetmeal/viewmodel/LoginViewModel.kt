@@ -9,7 +9,7 @@ import io.reactivex.android.schedulers.*
 
 class LoginViewModel(application: Application): AndroidViewModel(application) {
 
-  val loggedInt: ObservableBoolean = ObservableBoolean(false)
+  val loggedIn: ObservableBoolean = ObservableBoolean(false)
 
   val email: ObservableField<String> = ObservableField()
   val emailError: ObservableField<String> = ObservableField()
@@ -24,7 +24,7 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
       userEngine.loginUser(email.get() ?: "", password.get() ?: "")
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ success ->
-          loggedInt.set(success)
+          loggedIn.set(success)
         }, {})
     }
   }

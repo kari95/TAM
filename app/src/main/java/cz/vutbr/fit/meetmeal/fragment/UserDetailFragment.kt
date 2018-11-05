@@ -23,10 +23,10 @@ class UserDetailFragment: Fragment(), MenuItem.OnMenuItemClickListener {
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?): View? {
     binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_detail, container, false)
-    binding.loginButton.setOnClickListener(
+    binding.layoutNotLoggedIn.loginButton.setOnClickListener(
       Navigation.createNavigateOnClickListener(R.id.action_sign_in)
     )
-    binding.registrationButton.setOnClickListener(
+    binding.layoutNotLoggedIn.registrationButton.setOnClickListener(
       Navigation.createNavigateOnClickListener(R.id.action_registration)
     )
     setHasOptionsMenu(true)

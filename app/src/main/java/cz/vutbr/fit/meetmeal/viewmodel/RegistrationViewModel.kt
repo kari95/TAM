@@ -24,6 +24,8 @@ class RegistrationViewModel(application: Application): AndroidViewModel(applicat
   val passwordAgain: ObservableField<String> = ObservableField()
   val passwordAgainError: ObservableField<String> = ObservableField()
 
+  val registred: ObservableBoolean = ObservableBoolean(false)
+
   private val userEngine = UserEngine()
 
   fun onRegister() {
@@ -44,8 +46,7 @@ class RegistrationViewModel(application: Application): AndroidViewModel(applicat
       userEngine.registerUser(email, password, user)
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ success ->
-          val suc = success
-
+          registred.set(success)
         }, {
 
         })

@@ -19,14 +19,25 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       app:onRefreshListener="@{() -> viewModel.onRefresh()}"
+      android:visibility="@{viewModel.firebaseUser == null ? View.GONE : View.VISIBLE}"
       app:refreshing="@{viewModel.isLoading}">
 
       <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/meal_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:visibility="@{viewModel.firebaseUser == null ? View.VISIBLE : View.GONE}"
+      >
+      <include
+        android:id="@+id/layout_not_logged_in"
+        layout="@layout/layout_not_logged_in"/>
+    </FrameLayout>
 
   </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

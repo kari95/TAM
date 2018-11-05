@@ -33,11 +33,10 @@ class LoginFragment: Fragment() {
     super.onActivityCreated(savedInstanceState)
     viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
     binding.viewModel = viewModel
-    // TODO: Use the ViewModel
 
-    viewModel.loggedInt.addOnPropertyChangedCallback(object: Observable.OnPropertyChangedCallback() {
+    viewModel.loggedIn.addOnPropertyChangedCallback(object: Observable.OnPropertyChangedCallback() {
       override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-        if (viewModel.loggedInt.get()) {
+        if (viewModel.loggedIn.get()) {
           NavHostFragment.findNavController(this@LoginFragment).navigateUp()
         }
       }

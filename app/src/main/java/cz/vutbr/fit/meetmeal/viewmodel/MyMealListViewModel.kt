@@ -3,6 +3,7 @@ package cz.vutbr.fit.meetmeal.viewmodel
 import android.util.*
 import androidx.databinding.*
 import androidx.lifecycle.*
+import com.google.firebase.auth.*
 import cz.vutbr.fit.meetmeal.engine.*
 import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.Observable
@@ -17,9 +18,15 @@ class MyMealListViewModel: ViewModel() {
   val isLoading: ObservableBoolean = ObservableBoolean(false)
   val dayTimePickerVisible: ObservableField<Boolean> = ObservableField()
 
+  val firebaseUser: ObservableField<FirebaseUser> = ObservableField()
+
   private val mealEngine = MealEngine()
 
-  init {
+  private val userEngine = UserEngine()
+
+  fun onScreenShowed() {
+    firebaseUser.set(userEngine.getCurrentFirebaseUser())
+
     requestMeals()
   }
 

@@ -5,6 +5,7 @@ import android.view.*
 import androidx.databinding.*
 import androidx.fragment.app.*
 import androidx.lifecycle.*
+import androidx.navigation.*
 import androidx.navigation.fragment.*
 import androidx.recyclerview.widget.*
 import cz.vutbr.fit.meetmeal.R
@@ -30,6 +31,12 @@ class MyMealListFragment: Fragment() {
     savedInstanceState: Bundle?): View? {
 
     binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_meal_list, container, false)
+    binding.layoutNotLoggedIn.loginButton.setOnClickListener(
+      Navigation.createNavigateOnClickListener(R.id.action_sign_in)
+    )
+    binding.layoutNotLoggedIn.registrationButton.setOnClickListener(
+      Navigation.createNavigateOnClickListener(R.id.action_registration)
+    )
     return binding.root
   }
 
@@ -37,6 +44,8 @@ class MyMealListFragment: Fragment() {
     super.onActivityCreated(savedInstanceState)
     viewModel = ViewModelProviders.of(this).get(MyMealListViewModel::class.java)
     binding.viewModel = viewModel
+
+    viewModel.onScreenShowed()
 
     setupView()
     setupListeners()

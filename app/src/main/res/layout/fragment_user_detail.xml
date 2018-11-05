@@ -46,44 +46,14 @@
         />
 
     </LinearLayout>
-    <LinearLayout
-      android:orientation="vertical"
+    <FrameLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_margin="@dimen/margin_normal"
-      android:layout_gravity="center"
+      android:layout_height="match_parent"
       android:visibility="@{viewModel.firebaseUser == null ? View.VISIBLE : View.GONE}"
       >
-      <TextView
-        style="@style/TextAppearance.AppCompat.Medium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:layout_gravity="center"
-        android:text="@string/not_logged_in"
-        />
-
-      <Button
-        style="@style/Widget.MaterialComponents.Button"
-        android:id="@+id/login_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:layout_gravity="center|bottom"
-        android:text="@string/sign_in"
-        android:textSize="@dimen/mdtp_material_button_textsize"
-        />
-
-      <Button
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:id="@+id/registration_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:layout_gravity="center"
-        android:text="@string/registration"
-        android:textSize="@dimen/mdtp_material_button_textsize"
-        />
-    </LinearLayout>
+      <include
+        android:id="@+id/layout_not_logged_in"
+        layout="@layout/layout_not_logged_in"/>
+    </FrameLayout>
   </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
