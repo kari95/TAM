@@ -22,14 +22,14 @@ class GroupsViewModel: ViewModel() {
     requestGroups()
   }
 
-  fun onMealClick() {
+  fun onGroupsClick() {
     requestGroups()
   }
 
   fun onSignInClick() {
   }
 
-  fun onGroupsClick() {
+  fun onMealClick() {
   }
 
   fun onRefresh() {
@@ -37,8 +37,8 @@ class GroupsViewModel: ViewModel() {
     requestGroups()
   }
 
-  private fun setGroups(newMeals: List<Group>) {
-    groups.value = ArrayList(newMeals)
+  private fun setGroups(newGroups: List<Group>) {
+    groups.value = ArrayList(newGroups)
   }
 
   private fun requestGroups(): Disposable {
