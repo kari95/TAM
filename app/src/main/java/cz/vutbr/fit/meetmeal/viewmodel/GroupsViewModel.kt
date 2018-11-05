@@ -22,14 +22,18 @@ class GroupsViewModel: ViewModel() {
     requestGroups()
   }
 
-  fun onMealClick() {
+  fun onGroupsClick() {
     requestGroups()
   }
 
+  fun onGroupClick(group: Group) {
+    // Tady to se provolá když se klikne na položku ze seznamu skupin
+  }
+  
   fun onSignInClick() {
   }
 
-  fun onGroupsClick() {
+  fun onMealClick() {
   }
 
   fun onRefresh() {
@@ -37,8 +41,8 @@ class GroupsViewModel: ViewModel() {
     requestGroups()
   }
 
-  private fun setGroups(newMeals: List<Group>) {
-    groups.value = ArrayList(newMeals)
+  private fun setGroups(newGroups: List<Group>) {
+    groups.value = ArrayList(newGroups)
   }
 
   private fun requestGroups(): Disposable {
