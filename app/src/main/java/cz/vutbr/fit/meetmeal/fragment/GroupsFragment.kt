@@ -32,9 +32,7 @@ class GroupsFragment: Fragment(), MenuItem.OnMenuItemClickListener {
     fun newInstance() = GroupsFragment()
   }
 
-  private val adapter = GroupAdapter { group ->
-    NavHostFragment.findNavController(this).navigate(GroupFragmentDirections.actionMealDetail(group).setGroup(group))
-  }
+  private val adapter = GroupAdapter { group -> viewModel.onGroupClick(group) }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?): View? {

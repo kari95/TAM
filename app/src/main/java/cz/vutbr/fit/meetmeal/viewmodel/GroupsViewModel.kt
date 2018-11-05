@@ -26,6 +26,10 @@ class GroupsViewModel: ViewModel() {
     requestGroups()
   }
 
+  fun onGroupClick(group: Group) {
+    // Tady to se provolá když se klikne na položku ze seznamu skupin
+  }
+  
   fun onSignInClick() {
   }
 
