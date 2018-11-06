@@ -28,6 +28,10 @@ class UserDetailViewModel: ViewModel() {
     firebaseUser.set(null)
   }
 
+  fun changePassword() {
+
+  }
+
 
 
 }
