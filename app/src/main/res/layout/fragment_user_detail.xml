@@ -45,6 +45,48 @@
         android:drawableRight="@{context.getDrawable(viewModel.user.gender.icon)}"
         />
 
+      <TextView
+          style="@style/TextAppearance.AppCompat.Medium"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/margin_huge"
+          android:layout_gravity="center"
+          android:text="Změna hesla:"
+          />
+
+      <EditText
+          style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
+          android:id="@+id/currentPassword"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/margin_mini"
+          android:layout_gravity="center"
+          android:hint="Současné heslo"
+          android:ems="10"
+        />
+
+      <EditText
+          style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
+          android:id="@+id/newPassword"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/margin_mini"
+          android:layout_gravity="center"
+          android:hint="Nové heslo"
+          android:ems="10"
+          />
+
+      <EditText
+          style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
+          android:id="@+id/newAgainPassword"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/margin_mini"
+          android:layout_gravity="center"
+          android:hint="Nové heslo znovu"
+          android:ems="10"
+          />
+
     </LinearLayout>
     <FrameLayout
       android:layout_width="match_parent"
