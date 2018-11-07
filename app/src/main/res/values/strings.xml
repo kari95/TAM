@@ -68,6 +68,11 @@
   <string name="registration_woman">Woman</string>
   <string name="registration_man">Man</string>
   <string name="registration_register">Register</string>
+  <string name="change_password">Change password:</string>
+  <string name="current_password">Current password</string>
+  <string name="new_password">New password</string>
+  <string name="new_again_password">New password again</string>
+  <string name="change_password_button">Change password</string>
 
   <!-- Edit meal -->
   <string name="edit_meal_save">Save</string>
