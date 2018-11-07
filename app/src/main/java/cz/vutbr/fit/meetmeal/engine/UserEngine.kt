@@ -7,6 +7,13 @@ import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import java.lang.Exception
+import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.OnCompleteListener
+import android.content.SharedPreferences
+import com.google.firebase.auth.EmailAuthProvider
+import com.google.firebase.auth.AuthCredential
+
+
 
 class UserEngine {
 
@@ -83,8 +90,20 @@ class UserEngine {
     getCurrentFirebaseUser()?.updatePassword(pass)
   }
 
-  fun checkCurrentPass(pass: String?){
-    //getCurrentFirebaseUser()?.reauthenticate(pass)
+  fun checkCurrentPass(password: String){
+    val email = getCurrentFirebaseUser()?.email.toString()
+
+    val credential = EmailAuthProvider.getCredential(email, password)
+
+    // Prompt the user to re-provide their sign-in credentials
+    getCurrentFirebaseUser()?.reauthenticate(credential)?.addOnCompleteListener { task ->
+              if (task.isSuccessful) {
+                task.isSuccessful
+              } else {
+                // Password is incorrect
+                task.isCanceled
+              }
+            }
   }
 
 }

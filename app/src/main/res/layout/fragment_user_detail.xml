@@ -100,7 +100,7 @@
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/margin_huge"
           android:layout_gravity="center"
-          android:text="Změnit heslo"
+          android:text="@string/change_password_button"
           android:textSize="@dimen/mdtp_material_button_textsize"
           android:onClick="@{() -> viewModel.changePassword()}"
           />

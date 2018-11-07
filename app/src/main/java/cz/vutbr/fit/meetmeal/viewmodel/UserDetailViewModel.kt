@@ -35,7 +35,7 @@ class UserDetailViewModel(application: Application): AndroidViewModel(applicatio
 
   fun changePassword() {
     // TODO zkontrolovani stavajiciho hesla
-    userEngine.checkCurrentPass(currentPass.get())
+    userEngine.checkCurrentPass(currentPass.get().toString())
     //userEngine.checkPassword() reautorizace
     // TODO verifikovani noveho hesla - neni prazdne
     if (newPass.get() != newAgainPass.get()){

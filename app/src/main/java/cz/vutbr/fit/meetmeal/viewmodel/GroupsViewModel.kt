@@ -65,7 +65,6 @@ class GroupsViewModel: ViewModel() {
       .doOnNext { isLoading.set(false) }
       .subscribe({
         setGroups(it)
-        // TODO projet seznam a vratit jiz oznacene skupiny
       }, {
         Log.e("OldMainViewModel", "getMeals(): onError", it)
       })
@@ -85,8 +84,10 @@ class GroupsViewModel: ViewModel() {
     } else {
       user.groups.add(group_name)
       userEngine.addGroupToUser(user,group_name)
-
     }
-    //userEngine.updateUser(user)
   }
+
+  /*private fun check_groups_in_checkboxes(){
+    // TODO projet seznam a vratit jiz oznacene skupiny
+  }*/
 }

@@ -39,7 +39,6 @@ class GroupViewHolder(val binding: ViewDataBinding): RecyclerView.ViewHolder(bin
             binding.group = group
             binding.isPickedCheckBox.setOnCheckedChangeListener { buttonView, isChecked -> listener(group) }
         }
-        setOnClickListener { listener(group) }
     }
 }
 
