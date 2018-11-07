@@ -1,9 +1,11 @@
 package cz.vutbr.fit.meetmeal.engine
 
+import androidx.databinding.ObservableField
 import com.google.firebase.auth.*
 import com.google.firebase.firestore.*
 import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.*
+import io.reactivex.android.schedulers.AndroidSchedulers
 import java.lang.Exception
 
 class UserEngine {
@@ -64,4 +66,25 @@ class UserEngine {
       }
     }
   }
+
+  fun addGroupToUser(user: User, group_name: String){
+    val id  = auth.currentUser?.uid ?: "none"
+    val ref = db.collection(collection).document(id)
+    ref.update("groups", FieldValue.arrayUnion(group_name))
+  }
+
+  fun deleteGroupToUser(user: User, group_name: String){
+    val id  = auth.currentUser?.uid ?: "none"
+    val ref = db.collection(collection).document(id)
+    ref.update("groups", FieldValue.arrayRemove(group_name))
+  }
+
+  fun changePass(pass: String){
+    getCurrentFirebaseUser()?.updatePassword(pass)
+  }
+
+  fun checkCurrentPass(pass: String?){
+    //getCurrentFirebaseUser()?.reauthenticate(pass)
+  }
+
 }

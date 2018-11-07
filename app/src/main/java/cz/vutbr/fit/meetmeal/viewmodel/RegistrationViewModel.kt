@@ -42,7 +42,7 @@ class RegistrationViewModel(application: Application): AndroidViewModel(applicat
     }
     if (name != null && email != null && password != null) {
 
-      val user = User(name, gender)
+      val user = User(name, arrayListOf(), gender)
       userEngine.registerUser(email, password, user)
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ success ->

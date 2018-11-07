@@ -3,8 +3,9 @@ package cz.vutbr.fit.meetmeal.model
 import cz.vutbr.fit.meetmeal.*
 
 data class User(
-  val name: String = "",
-  val gender: Gender = Gender.UNKNOWN
+        val name: String = "",
+        val groups: ArrayList<String> = arrayListOf(),
+        val gender: Gender = Gender.UNKNOWN
 ) {
   enum class Gender(
     val value: String,

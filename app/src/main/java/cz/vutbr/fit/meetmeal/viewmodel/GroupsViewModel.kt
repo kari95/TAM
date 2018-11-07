@@ -3,6 +3,7 @@ package cz.vutbr.fit.meetmeal.viewmodel
 import android.util.*
 import androidx.databinding.*
 import androidx.lifecycle.*
+import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.engine.*
 import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.Observable
@@ -18,6 +19,8 @@ class GroupsViewModel: ViewModel() {
 
   private val groupEngine = GroupEngine()
 
+  private val userEngine = UserEngine()
+
   init {
     requestGroups()
   }
@@ -27,7 +30,19 @@ class GroupsViewModel: ViewModel() {
   }
 
   fun onGroupClick(group: Group) {
-    // Tady to se provolá když se klikne na položku ze seznamu skupin
+
+    val user: ObservableField<User> = ObservableField(User())
+
+    userEngine.getCurrentUser()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+              user.set(it)
+              toggleCheckBox(it,group.name)
+
+            }, {
+
+              val err = it
+            })
   }
   
   fun onSignInClick() {
@@ -50,6 +65,7 @@ class GroupsViewModel: ViewModel() {
       .doOnNext { isLoading.set(false) }
       .subscribe({
         setGroups(it)
+        // TODO projet seznam a vratit jiz oznacene skupiny
       }, {
         Log.e("OldMainViewModel", "getMeals(): onError", it)
       })
@@ -59,5 +75,18 @@ class GroupsViewModel: ViewModel() {
     return groupEngine.findAll()
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
+  }
+
+  private fun toggleCheckBox(user:User, group_name: String){
+
+    if(user.groups.contains(group_name)){
+      user.groups.remove(group_name)
+      userEngine.deleteGroupToUser(user,group_name)
+    } else {
+      user.groups.add(group_name)
+      userEngine.addGroupToUser(user,group_name)
+
+    }
+    //userEngine.updateUser(user)
   }
 }

@@ -45,7 +45,6 @@ class GroupsFragment: Fragment(), MenuItem.OnMenuItemClickListener {
     super.onActivityCreated(savedInstanceState)
     viewModel = ViewModelProviders.of(this).get(GroupsViewModel::class.java)
     binding.viewModel = viewModel
-    // TODO: Use the ViewModel
 
     setupView()
     setupListeners()

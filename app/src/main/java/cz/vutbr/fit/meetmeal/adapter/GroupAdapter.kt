@@ -1,6 +1,7 @@
 package cz.vutbr.fit.meetmeal.adapter
 
 import android.view.*
+import android.widget.CompoundButton
 import androidx.databinding.*
 import androidx.recyclerview.widget.*
 import cz.vutbr.fit.meetmeal.databinding.*
@@ -34,8 +35,10 @@ class GroupAdapter(val listener: (Group) -> Unit): RecyclerView.Adapter<Recycler
 class GroupViewHolder(val binding: ViewDataBinding): RecyclerView.ViewHolder(binding.root) {
 
     fun bind(group: Group, listener: (Group) -> Unit) = with(binding.root) {
-        if (binding is ItemGroupBinding)
+        if (binding is ItemGroupBinding) {
             binding.group = group
+            binding.isPickedCheckBox.setOnCheckedChangeListener { buttonView, isChecked -> listener(group) }
+        }
         setOnClickListener { listener(group) }
     }
 }
