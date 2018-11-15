@@ -45,6 +45,13 @@
     tools:layout="@layout/fragment_add_meal"
     >
   </fragment>
+  <fragment
+    android:id="@+id/nav_edit_meal"
+    android:name="cz.vutbr.fit.meetmeal.fragment.EditMealFragment"
+    android:label="@string/edit_meal"
+    tools:layout="@layout/fragment_edit_meal"
+    >
+  </fragment>
 
   <!-- My meals -->
   <fragment
@@ -75,6 +82,10 @@
     <argument
       android:name="meal"
       app:argType="cz.vutbr.fit.meetmeal.model.Meal"
+      />
+    <action
+      android:id="@+id/action_edit_my_meal"
+      app:destination="@id/nav_edit_meal"
       />
   </fragment>
 

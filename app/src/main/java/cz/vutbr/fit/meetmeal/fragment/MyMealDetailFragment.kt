@@ -6,6 +6,7 @@ import androidx.appcompat.app.*
 import androidx.databinding.*
 import androidx.fragment.app.*
 import androidx.lifecycle.*
+import androidx.navigation.fragment.NavHostFragment
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.model.*
@@ -49,6 +50,12 @@ class MyMealDetailFragment: Fragment() {
         setTitle(viewModel.meal.get())
       }
     })
+
+    // edit my meal
+    binding.btnEditMealDetail.setOnClickListener(
+        { NavHostFragment.findNavController(this).navigate(R.id.action_edit_my_meal) }
+    )
+
   }
 
   private fun setTitle(meal: Meal?) {

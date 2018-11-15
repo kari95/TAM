@@ -76,6 +76,7 @@
 
   <!-- Edit meal -->
   <string name="edit_meal_save">Save</string>
+  <string name="edit_meal">Edit meal</string>
 
 
 </resources>
