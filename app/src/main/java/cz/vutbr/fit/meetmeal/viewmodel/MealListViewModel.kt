@@ -9,18 +9,39 @@ import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.*
 import io.reactivex.disposables.*
+import io.reactivex.rxkotlin.*
 import io.reactivex.schedulers.*
+import org.joda.time.*
 
 class MealListViewModel(app: Application): AndroidViewModel(app) {
+
+  enum class DayTime {
+    BREAKFAST{
+      override fun contains(date: DateTime) = date.hourOfDay().get() < 10
+    },
+    LUNCH{
+      override fun contains(date: DateTime) = date.hourOfDay().get() in 10..15
+    },
+    DINNER{
+      override fun contains(date: DateTime) = date.hourOfDay().get() > 15
+    };
+
+    abstract fun contains(date: DateTime): Boolean
+  }
 
   val meals: MutableLiveData<ArrayList<Meal>> = MutableLiveData()
 
   val isLoading: ObservableBoolean = ObservableBoolean(false)
+  val daytime: ObservableField<DayTime> = ObservableField()
+
+  private val cachedMeals = ArrayList<Meal>()
 
   private val mealEngine = MealEngine()
 
+  private val disposableComposite = CompositeDisposable()
+
   init {
-    requestMeals()
+    refreshMeals(true)
   }
 
   fun onMealClick() {
@@ -36,48 +57,45 @@ class MealListViewModel(app: Application): AndroidViewModel(app) {
     }*/
   }
 
-  fun onSignInClick() {
-  }
 
-  fun onGroupsClick() {
+  fun onDaytimeChanged(dt: DayTime?) {
+    daytime.set(dt)
+    refreshMeals(false)
   }
 
   fun onRefresh() {
     isLoading.set(true)
-    requestMeals()
+    refreshMeals()
   }
-  /*
-    private fun setMealType(type: Meal.MealType) {
-      dayTimePickerVisible.set(type == Meal.MealType.PLANNED)
-      mealType.set(type)
-      getMeals()
-        .subscribeOn(Schedulers.io())
-        .map {
-          it.filter {
-            type == it.type
-          }
-        }
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe {setMeals(it)}
-    }*/
+
+  override fun onCleared() {
+    disposableComposite.dispose()
+    super.onCleared()
+  }
 
   private fun setMeals(newMeals: List<Meal>) {
-    meals.value = ArrayList(newMeals)
+    meals.value = ArrayList(newMeals.filter {  meal ->
+      daytime.get()?.contains(meal.dateTime) ?: true
+    })
   }
 
-  private fun requestMeals(): Disposable {
-    return getMeals()
+  private fun refreshMeals(forceDownload: Boolean = true) {
+    getMeals(forceDownload)
       .doOnNext { isLoading.set(false) }
       .subscribe({
         setMeals(it)
-      }, {
-        Log.e("OldMainViewModel", "getMeals(): onError", it)
-      })
+      }, {}).addTo(disposableComposite)
   }
 
-  private fun getMeals(): Observable<List<Meal>> {
-    return mealEngine.findAll()
-      .subscribeOn(Schedulers.io())
-      .observeOn(AndroidSchedulers.mainThread())
+  private fun getMeals(forceDownload: Boolean = false): Observable<List<Meal>> {
+    if (forceDownload || cachedMeals.isEmpty()) {
+      return mealEngine.findAll()
+        .doOnNext {
+          cachedMeals.clear()
+          cachedMeals.addAll(it)
+        }.subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+    }
+    return Observable.just(cachedMeals)
   }
 }

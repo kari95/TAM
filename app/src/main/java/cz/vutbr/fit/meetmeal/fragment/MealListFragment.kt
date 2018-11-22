@@ -7,7 +7,9 @@ import androidx.fragment.app.*
 import androidx.lifecycle.*
 import androidx.navigation.fragment.*
 import androidx.recyclerview.widget.*
+import com.google.android.material.tabs.*
 import cz.vutbr.fit.meetmeal.R
+import cz.vutbr.fit.meetmeal.activity.*
 import cz.vutbr.fit.meetmeal.adapter.*
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
@@ -79,6 +81,28 @@ class MealListFragment: Fragment(), MenuItem.OnMenuItemClickListener {
 
     binding.fab.setOnClickListener(
       { NavHostFragment.findNavController(this).navigate(R.id.action_add_meal) }
+    )
+
+
+
+    (activity as MainActivity).binding.daytimeTabs.addOnTabSelectedListener(
+      object: TabLayout.OnTabSelectedListener {
+        override fun onTabReselected(tab: TabLayout.Tab?) { }
+
+        override fun onTabUnselected(tab: TabLayout.Tab?) { }
+
+        override fun onTabSelected(tab: TabLayout.Tab?) {
+          if (tab == null) {
+            return
+          }
+          viewModel.onDaytimeChanged(when(tab.position) {
+            1 -> MealListViewModel.DayTime.BREAKFAST
+            2 -> MealListViewModel.DayTime.LUNCH
+            3 -> MealListViewModel.DayTime.DINNER
+            else -> null
+          })
+        }
+      }
     )
   }
 }

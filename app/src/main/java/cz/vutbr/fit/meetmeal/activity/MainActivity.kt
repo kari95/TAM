@@ -8,6 +8,7 @@ import androidx.databinding.*
 import androidx.navigation.fragment.*
 import androidx.navigation.ui.*
 import com.google.android.material.bottomnavigation.*
+import com.google.android.material.tabs.*
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
 

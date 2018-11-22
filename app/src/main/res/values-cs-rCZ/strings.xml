@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <string name="all">Vše</string>
   <string name="breakfast">Snídaně</string>
   <string name="lunch">Oběd</string>
   <string name="dinner">Večeře</string>

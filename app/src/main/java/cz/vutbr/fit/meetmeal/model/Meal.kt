@@ -14,10 +14,11 @@ class Meal(
   var price: Int = 0,
   var address: String = ""
 ): Parcelable {
+  val dateTime: DateTime
+    get() = DateTime(time.toDate())
   val formatedTime: String
     get() {
       val formater = DateTimeFormat.forPattern("d. MMMM HH:mm")
-      val dateTime = DateTime(time.toDate())
       return dateTime.toString(formater)
     }
 
