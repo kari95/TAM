@@ -1,5 +1,6 @@
 package cz.vutbr.fit.meetmeal.engine
 
+import com.google.firebase.*
 import com.google.firebase.firestore.*
 import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.*
@@ -17,6 +18,8 @@ class MealEngine {
   fun findAll(): Observable<List<Meal>> {
     return Observable.create { singleSubscriber ->
       db.collection(collection)
+        .orderBy("time")
+        .whereGreaterThan("time", Timestamp.now())
         .get()
         .addOnCompleteListener { task ->
           val list = mutableListOf<Meal>()

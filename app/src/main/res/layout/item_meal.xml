@@ -22,7 +22,7 @@
       android:id="@+id/name"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@{meal.user.name}"
+      android:text="@{meal.name}"
       android:textColor="@color/colorPrimaryText"
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
