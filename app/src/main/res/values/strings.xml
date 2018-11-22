@@ -41,6 +41,7 @@
   <string name="add_meal_date_incorrect_value">Wrong date added</string>
   <string name="add_meal_pick_date">PICK DATE</string>
   <string name="add_meal_event_name">Event name</string>
+  <string name="add_meal_event_name_required">Event name is required</string>
   <string name="add_meal_pick_time">PICK TIME</string>
   <string name="time">%1$d : %2$d</string>
 

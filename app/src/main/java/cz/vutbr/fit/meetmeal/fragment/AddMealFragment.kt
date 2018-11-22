@@ -2,18 +2,14 @@ package cz.vutbr.fit.meetmeal.fragment
 
 import android.app.*
 import android.os.*
-import android.text.format.*
 import android.view.*
-import android.widget.*
 import androidx.databinding.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.*
 import androidx.navigation.*
-import androidx.navigation.fragment.*
-import com.google.firebase.*
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
-import cz.vutbr.fit.meetmeal.model.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
 import java.util.*
 
@@ -23,10 +19,7 @@ class AddMealFragment: Fragment() {
 
   lateinit var binding: FragmentAddMealBinding
 
-  var viewModel = AddMealViewModel()
-
-  val newMeal: Meal? = null
-  var mealTime = 0L
+  lateinit var viewModel: AddMealViewModel
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?): View? {
@@ -37,6 +30,7 @@ class AddMealFragment: Fragment() {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
+    viewModel = ViewModelProviders.of(this).get(AddMealViewModel::class.java)
     binding.viewModel = viewModel
 
     viewModel.onScreenShowed()
@@ -45,7 +39,7 @@ class AddMealFragment: Fragment() {
   }
 
   private fun addListeners() {
-    
+
     binding.layoutNotLoggedIn.loginButton.setOnClickListener(
       Navigation.createNavigateOnClickListener(R.id.action_sign_in)
     )
@@ -53,65 +47,57 @@ class AddMealFragment: Fragment() {
       Navigation.createNavigateOnClickListener(R.id.action_registration)
     )
 
-    binding.addMealSaveButton.setOnClickListener { _ ->
-      viewModel.onSaveClick()
-      NavHostFragment.findNavController(this).navigateUp()
+    binding.addMealTimeEditText.setOnClickListener {
+      showTimeDialog()
     }
 
-    val onTimeSetListener = TimePickerDialog.OnTimeSetListener { timePicker: TimePicker, hour: Int, minute: Int ->
-      viewModel.hour = hour
-      viewModel.minute = minute
-      binding.addMealTimeEditText.text = String.format(resources.getString(R.string.time), hour,
-        minute)
-    }
-
-    binding.addMealTimeEditText.setOnClickListener { view ->
-      val currentTime = Calendar.getInstance()
-      val hour = currentTime.get(Calendar.HOUR_OF_DAY)
-      val minute = currentTime.get(Calendar.MINUTE)
-      val timePicker: TimePickerDialog
-
-      timePicker = TimePickerDialog(context, onTimeSetListener, hour, minute, true)
-      timePicker.setTitle(resources.getString(R.string.add_meal_pick_time))
-      timePicker.show()
-      timePicker.setOnDismissListener { view ->
-      }
-
-      binding.addMealTimeEditText.setTextColor(resources.getColor(R.color.colorSecondaryText))
-    }
-
-    binding.addMealDateEditText.setOnClickListener { view ->
-      val mealDate = viewModel.createDateCalendar()
-      val dialog = DatePickerDialog.newInstance(
-        { dialogView, year, monthOfYear, dayOfMonth ->
-          val calendar = viewModel.createCalendar(year, monthOfYear, dayOfMonth)
-          mealTime = (calendar.timeInMillis / 1000L)
-
-          doValidateDateField(binding.addMealDateEditText, mealTime)
-
-          binding.addMealDateEditText.text = DateUtils.getRelativeTimeSpanString(mealTime * 1000,
-            TimeZone.getDefault().getRawOffset().toLong(), DateUtils.DAY_IN_MILLIS)
-        },
-        mealDate.get(Calendar.YEAR),
-        mealDate.get(Calendar.MONTH),
-        mealDate.get(Calendar.DAY_OF_MONTH)
-      )
-      dialog.setOnDismissListener { dialogView ->
-        viewModel.date = Timestamp(mealTime, 0)
-
-        doValidateDateField(binding.addMealDateEditText, mealTime)
-      }
-      dialog.minDate = Calendar.getInstance()
-      dialog.show(activity?.fragmentManager, MEAL_DATE)
-      binding.addMealDateEditText.setTextColor(resources.getColor(R.color.colorSecondaryText))
+    binding.addMealDateEditText.setOnClickListener {
+      showDateDialog()
     }
   }
 
-  private fun doValidateDateField(view: TextView, timestamp: Long?) {
-    if (viewModel.isMealDateValid(timestamp)) {
-      view.error = null
-    } else {
-      view.error = resources.getString(R.string.add_meal_date_incorrect_value)
+  private fun showTimeDialog() {
+    val onTimeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
+      viewModel.onTimeSelected(hour, minute)
     }
+
+    val currentTime = Calendar.getInstance()
+    val selectedTime = viewModel.time.get()
+
+    val hour = selectedTime?.hourOfDay()?.get() ?: currentTime.get(Calendar.HOUR_OF_DAY)
+    val minute = selectedTime?.minuteOfHour()?.get() ?: currentTime.get(Calendar.MINUTE)
+
+    val timePicker = TimePickerDialog(context, onTimeSetListener, hour, minute, true)
+    timePicker.setTitle(resources.getString(R.string.add_meal_pick_time))
+    timePicker.show()
+
+    binding.addMealTimeEditText.setTextColor(resources.getColor(R.color.colorSecondaryText))
+  }
+
+  private fun showDateDialog() {
+
+    val currentDate = Calendar.getInstance()
+    val selectedDate = viewModel.time.get()
+
+    val year = selectedDate?.year()?.get() ?: currentDate.get(Calendar.YEAR)
+    val month = selectedDate?.monthOfYear()?.get() ?: currentDate.get(Calendar.MONTH)
+    val day = selectedDate?.dayOfMonth()?.get() ?: currentDate.get(Calendar.DAY_OF_MONTH)
+
+    val dialog = DatePickerDialog.newInstance(
+      { _, year, monthOfYear, dayOfMonth ->
+        viewModel.onDateSelected(year, monthOfYear, dayOfMonth)
+      },
+      year,
+      month,
+      day
+    )
+    /*dialog.setOnDismissListener { dialogView ->
+      viewModel.time = Timestamp(mealTime, 0)
+
+      doValidateDateField(binding.addMealDateEditText, mealTime)
+    }*/
+    dialog.minDate = Calendar.getInstance()
+    dialog.show(activity?.fragmentManager, MEAL_DATE)
+    binding.addMealDateEditText.setTextColor(resources.getColor(R.color.colorSecondaryText))
   }
 }

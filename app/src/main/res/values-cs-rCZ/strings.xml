@@ -40,6 +40,7 @@
   <string name="add_meal_date_incorrect_value">Zadali jste špatné datum</string>
   <string name="add_meal_pick_date">VYBRAT DATUM</string>
   <string name="add_meal_event_name">Název akce</string>
+  <string name="add_meal_event_name_required">Název akce je povinný</string>
   <string name="add_meal_pick_time">VYBRAT ČAS</string>
   <string name="time">%1$d : %2$d</string>
 
