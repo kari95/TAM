@@ -3,6 +3,7 @@ package cz.vutbr.fit.meetmeal.viewmodel
 import androidx.databinding.*
 import androidx.navigation.fragment.*
 import com.google.firebase.*
+import com.google.firebase.auth.*
 import cz.vutbr.fit.meetmeal.engine.*
 import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.android.schedulers.*
@@ -11,6 +12,8 @@ import java.util.*
 import kotlin.coroutines.experimental.*
 
 class AddMealViewModel: BaseObservable() {
+
+  val firebaseUser: ObservableField<FirebaseUser> = ObservableField()
 
   private val mealEngine = MealEngine()
 
@@ -53,6 +56,12 @@ class AddMealViewModel: BaseObservable() {
   var hour: Int = 0
   var minute: Int = 0
   var date: Timestamp = Timestamp.now()
+
+
+  fun onScreenShowed() {
+    firebaseUser.set(userEngine.getCurrentFirebaseUser())
+
+  }
 
   fun createDateCalendar(): Calendar {
     val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))

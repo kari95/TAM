@@ -7,6 +7,7 @@ import android.view.*
 import android.widget.*
 import androidx.databinding.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.*
 import androidx.navigation.fragment.*
 import com.google.firebase.*
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
@@ -38,10 +39,19 @@ class AddMealFragment: Fragment() {
     super.onActivityCreated(savedInstanceState)
     binding.viewModel = viewModel
 
+    viewModel.onScreenShowed()
+
     addListeners()
   }
 
   private fun addListeners() {
+    
+    binding.layoutNotLoggedIn.loginButton.setOnClickListener(
+      Navigation.createNavigateOnClickListener(R.id.action_sign_in)
+    )
+    binding.layoutNotLoggedIn.registrationButton.setOnClickListener(
+      Navigation.createNavigateOnClickListener(R.id.action_registration)
+    )
 
     binding.addMealSaveButton.setOnClickListener { _ ->
       viewModel.onSaveClick()
