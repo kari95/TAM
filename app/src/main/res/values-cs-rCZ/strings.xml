@@ -43,6 +43,7 @@
   <string name="time">%1$d : %2$d</string>
 
   <!-- Meal detail -->
+  <string name="login_invalid_account">Nesprávný email e-mail či heslo</string>
   <string name="meal_detail_same_gender">Stejné pohlaví</string>
   <string name="meal_detail_provider">Pořadatel</string>
   <string name="meal_detail_time">Čas:</string>

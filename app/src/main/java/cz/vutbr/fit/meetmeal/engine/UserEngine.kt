@@ -23,9 +23,13 @@ class UserEngine {
   private var auth = FirebaseAuth.getInstance()
 
   fun loginUser(email: String, password: String)
-    : Observable<Boolean> = Observable.create { singleSubscriber ->
+    : Completable = Completable.create { singleSubscriber ->
     auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-      singleSubscriber.onNext(task.isSuccessful)
+      if (task.isSuccessful) {
+        singleSubscriber.onComplete()
+      } else {
+        singleSubscriber.onError(task.exception ?: Exception())
+      }
     }
   }
 

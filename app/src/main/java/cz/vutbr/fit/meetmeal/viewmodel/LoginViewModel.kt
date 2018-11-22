@@ -3,6 +3,7 @@ package cz.vutbr.fit.meetmeal.viewmodel
 import android.app.*
 import androidx.databinding.*
 import androidx.lifecycle.*
+import com.google.firebase.auth.*
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.engine.*
 import io.reactivex.android.schedulers.*
@@ -12,6 +13,8 @@ import cz.vutbr.fit.meetmeal.R.id.email
 
 
 class LoginViewModel(application: Application): AndroidViewModel(application) {
+
+  val message: ObservableField<String> = ObservableField()
 
   val loggedIn: ObservableBoolean = ObservableBoolean(false)
 
@@ -27,9 +30,11 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
     if (validateEmail() && validatePassword()) {
       userEngine.loginUser(email.get() ?: "", password.get() ?: "")
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe({ success ->
-          loggedIn.set(success)
-        }, {})
+        .subscribe({
+          loggedIn.set(true)
+        }, { err ->
+          handleLoginError(err)
+        })
     }
   }
 
@@ -52,6 +57,15 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
       else -> null
     })
     return passwordError.get() == null
+  }
+
+  private fun handleLoginError(err: Throwable) {
+    loggedIn.set(false)
+    message.set(null)
+    message.set(when (err) {
+      is FirebaseAuthInvalidUserException -> getString(R.string.login_invalid_account)
+      else -> null
+    })
   }
 
   private fun getString(id: Int): String {

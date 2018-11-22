@@ -7,6 +7,7 @@ import androidx.fragment.app.*
 import androidx.lifecycle.*
 import androidx.navigation.*
 import androidx.navigation.fragment.*
+import com.google.android.material.snackbar.*
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
@@ -46,6 +47,17 @@ class LoginFragment: Fragment() {
   }
 
   private fun setupListeners() {
+
+    viewModel.message.addOnPropertyChangedCallback(object: Observable.OnPropertyChangedCallback() {
+      override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+        val message = viewModel.message.get()
+        if (message != null) {
+          Snackbar.make(binding.login, message, Snackbar.LENGTH_SHORT)
+            .show()
+        }
+      }
+    })
+
     binding.email.setOnFocusChangeListener { _, hasFocus ->
       if (!hasFocus) {
         viewModel.validateEmail()
