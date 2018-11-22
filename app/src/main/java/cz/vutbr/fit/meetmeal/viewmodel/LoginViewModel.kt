@@ -79,7 +79,7 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
     message.set(null)
     message.set(when (err) {
       is FirebaseAuthInvalidUserException -> getString(R.string.login_invalid_account)
-      else -> null
+      else -> getString(R.string.unknown_error)
     })
   }
 

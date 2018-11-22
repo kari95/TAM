@@ -38,17 +38,21 @@ class UserEngine {
   }
 
   fun registerUser(email: String, password: String, user: User)
-    : Observable<Boolean> = Observable.create { singleSubscriber ->
+    : Completable = Completable.create { singleSubscriber ->
     auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
       val firebaseUser = auth.currentUser
       if (task.isSuccessful && firebaseUser != null) {
         db.collection(collection)
           .document(firebaseUser.uid)
-          .set(user).addOnCompleteListener{ task ->
-            singleSubscriber.onNext(task.isSuccessful)
+          .set(user).addOnCompleteListener{ task2 ->
+            if (task2.isSuccessful) {
+              singleSubscriber.onComplete()
+            } else {
+              singleSubscriber.onError(task2.exception ?: Exception())
+            }
           }
       } else {
-        singleSubscriber.onNext(false)
+        singleSubscriber.onError(task.exception ?: Exception())
       }
     }
   }

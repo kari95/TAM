@@ -57,6 +57,7 @@
   <string name="meal_detail_edit">Upravit</string>
 
   <!-- Registration -->
+  <string name="registration_weak_password">Příliš slabé heslo</string>
   <string name="registration_name">Jméno</string>
   <string name="registration_name_required">Je požadováno jméno</string>
   <string name="registration_email">E-mail</string>
@@ -65,7 +66,9 @@
   <string name="registration_password">Heslo</string>
   <string name="registration_password_again">Heslo znovu</string>
   <string name="registration_password_required">Je požadováno heslo</string>
+  <string name="registration_password_not_same">Hesla nejsou stejná</string>
   <string name="registration_gender">Pohlaví</string>
+  <string name="registration_gender_required">Vyberte pohlaví</string>
   <string name="registration_woman">Žena</string>
   <string name="registration_man">Muž</string>
   <string name="registration_register">Registrovat</string>
