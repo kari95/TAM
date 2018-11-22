@@ -32,10 +32,10 @@ class MealDetailFragment: Fragment() {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
-    val meal = MealDetailFragmentArgs.fromBundle(arguments).meal
+    val mealId = MealDetailFragmentArgs.fromBundle(arguments).mealId
 
     viewModel = ViewModelProviders.of(this).get(MealDetailViewModel::class.java)
-    viewModel.meal.set(meal)
+    viewModel.onMealIdChange(mealId)
     binding.viewModel = viewModel
 
     setupView()

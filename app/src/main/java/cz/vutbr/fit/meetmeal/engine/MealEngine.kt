@@ -27,10 +27,39 @@ class MealEngine {
             for (document in task.result!!) {
               try {
                 val meal = document.toObject(Meal::class.java)
+                meal.id = document.id
                 list.add(meal)
-              } catch (e: RuntimeException) {}
+              } catch (e: RuntimeException) {
+              }
             }
             singleSubscriber.onNext(list)
+          } else {
+            singleSubscriber.onError(Exception("no data"))
+          }
+        }
+    }
+  }
+
+  fun find(id: String): Observable<Meal> {
+    return Observable.create { singleSubscriber ->
+      db.collection(collection)
+        .document(id)
+        .get()
+        .addOnCompleteListener { task ->
+          if (task.isSuccessful) {
+            val result = task.result!!
+            try {
+              val meal = result.toObject(Meal::class.java)
+              meal?.id = result.id
+              if (meal == null) {
+                singleSubscriber.onError(Exception("parse error"))
+              } else {
+                singleSubscriber.onNext(meal)
+                singleSubscriber.onComplete()
+              }
+            } catch (e: RuntimeException) {
+              singleSubscriber.onError(Exception("parse error"))
+            }
           } else {
             singleSubscriber.onError(Exception("no data"))
           }

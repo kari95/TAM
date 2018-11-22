@@ -34,8 +34,7 @@
     tools:layout="@layout/fragment_meal_detail"
     >
     <argument
-      android:name="meal"
-      app:argType="cz.vutbr.fit.meetmeal.model.Meal"
+      android:name="mealId"
       />
   </fragment>
   <fragment
@@ -62,7 +61,7 @@
     >
     <action
       android:id="@+id/action_my_meal_detail"
-      app:destination="@id/nav_my_meal_detail"
+      app:destination="@id/nav_meal_detail"
       />
     <action
       android:id="@+id/action_sign_in"
@@ -71,21 +70,6 @@
     <action
       android:id="@+id/action_registration"
       app:destination="@id/nav_registration"
-      />
-  </fragment>
-  <fragment
-    android:id="@+id/nav_my_meal_detail"
-    android:name="cz.vutbr.fit.meetmeal.fragment.MyMealDetailFragment"
-    android:label="@string/app_name"
-    tools:layout="@layout/fragment_my_meal_detail"
-    >
-    <argument
-      android:name="meal"
-      app:argType="cz.vutbr.fit.meetmeal.model.Meal"
-      />
-    <action
-      android:id="@+id/action_edit_my_meal"
-      app:destination="@id/nav_edit_meal"
       />
   </fragment>
 

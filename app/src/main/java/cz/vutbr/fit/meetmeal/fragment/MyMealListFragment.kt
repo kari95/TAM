@@ -24,7 +24,7 @@ class MyMealListFragment: Fragment() {
 
   private val adapter = MealAdapter { meal ->
     NavHostFragment.findNavController(this).navigate(
-      MyMealListFragmentDirections.actionMyMealDetail(meal).setMeal(meal))
+      MyMealListFragmentDirections.actionMyMealDetail(meal.id))
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

@@ -22,7 +22,7 @@ class MealListFragment: Fragment(), MenuItem.OnMenuItemClickListener {
 
   private val adapter = MealAdapter { meal ->
     NavHostFragment.findNavController(this).navigate(
-      MealListFragmentDirections.actionMealDetail(meal).setMeal(meal))
+      MealListFragmentDirections.actionMealDetail(meal.id))
   }
 
   private lateinit var binding: FragmentMealListBinding

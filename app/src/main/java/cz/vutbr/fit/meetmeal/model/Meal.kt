@@ -1,11 +1,11 @@
 package cz.vutbr.fit.meetmeal.model
 
-import android.os.*
 import com.google.firebase.*
+import com.google.firebase.firestore.*
 import org.joda.time.*
 import org.joda.time.format.*
 
-class Meal(
+data class Meal(
   var name: String = "",
   var time: Timestamp = Timestamp.now(),
   var gender: User.Gender = User.Gender.BOTH,
@@ -13,42 +13,16 @@ class Meal(
   var peopleCount: Int = 0,
   var price: Int = 0,
   var address: String = ""
-): Parcelable {
+) {
+
+  @Exclude var id: String = ""
+
   val dateTime: DateTime
     get() = DateTime(time.toDate())
+
   val formatedTime: String
     get() {
       val formater = DateTimeFormat.forPattern("d. MMMM HH:mm")
       return dateTime.toString(formater)
     }
-
-  constructor(parcel: Parcel): this(
-    parcel.readString(),
-    TODO("time"),
-    TODO("gender"),
-    TODO("user"),
-    parcel.readInt(),
-    parcel.readInt(),
-    TODO("address")) {
-  }
-
-  override fun writeToParcel(parcel: Parcel, flags: Int) {
-    parcel.writeString(name)
-    parcel.writeInt(peopleCount)
-    parcel.writeInt(price)
-  }
-
-  override fun describeContents(): Int {
-    return 0
-  }
-
-  companion object CREATOR: Parcelable.Creator<Meal> {
-    override fun createFromParcel(parcel: Parcel): Meal {
-      return Meal(parcel)
-    }
-
-    override fun newArray(size: Int): Array<Meal?> {
-      return arrayOfNulls(size)
-    }
-  }
 }
