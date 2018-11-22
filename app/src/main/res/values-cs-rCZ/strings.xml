@@ -60,6 +60,7 @@
   <string name="registration_name_required">Je požadováno jméno</string>
   <string name="registration_email">E-mail</string>
   <string name="registration_email_required">Je požadován e-mail</string>
+  <string name="registration_email_format">Špatný formát e-mailu</string>
   <string name="registration_password">Heslo</string>
   <string name="registration_password_again">Heslo znovu</string>
   <string name="registration_password_required">Je požadováno heslo</string>

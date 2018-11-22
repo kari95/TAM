@@ -6,6 +6,10 @@ import androidx.lifecycle.*
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.engine.*
 import io.reactivex.android.schedulers.*
+import java.util.regex.*
+import cz.vutbr.fit.meetmeal.R.id.email
+
+
 
 class LoginViewModel(application: Application): AndroidViewModel(application) {
 
@@ -29,16 +33,19 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
     }
   }
 
-  private fun validateEmail(): Boolean {
+  fun validateEmail(): Boolean {
     val email = email.get()
+    val expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$"
+    val pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE)
     emailError.set(when {
       email == null || email.isEmpty() -> getString(R.string.registration_email_required)
+      !pattern.matcher(email).matches() -> getString(R.string.registration_email_format)
       else -> null
     })
     return emailError.get() == null
   }
 
-  private fun validatePassword(): Boolean {
+  fun validatePassword(): Boolean {
     val password = password.get()
     passwordError.set(when {
       password == null || password.isEmpty() -> getString(R.string.registration_password_required)

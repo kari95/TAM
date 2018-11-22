@@ -41,5 +41,21 @@ class LoginFragment: Fragment() {
         }
       }
     })
+
+    setupListeners()
+  }
+
+  private fun setupListeners() {
+    binding.email.setOnFocusChangeListener { _, hasFocus ->
+      if (!hasFocus) {
+        viewModel.validateEmail()
+      }
+    }
+
+    binding.password.setOnFocusChangeListener { _, hasFocus ->
+      if (!hasFocus) {
+        viewModel.validatePassword()
+      }
+    }
   }
 }
