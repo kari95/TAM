@@ -80,5 +80,6 @@
   <string name="edit_meal_save">Save</string>
   <string name="edit_meal">Edit meal</string>
 
+  <string name="unknown_error">Unknown error</string>
 
 </resources>

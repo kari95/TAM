@@ -9,14 +9,18 @@ import cz.vutbr.fit.meetmeal.engine.*
 import io.reactivex.android.schedulers.*
 import java.util.regex.*
 import cz.vutbr.fit.meetmeal.R.id.email
-
-
+import io.reactivex.disposables.*
+import io.reactivex.internal.disposables.*
+import io.reactivex.internal.util.NotificationLite.disposable
+import io.reactivex.internal.disposables.DisposableHelper.dispose
+import io.reactivex.rxkotlin.*
 
 class LoginViewModel(application: Application): AndroidViewModel(application) {
 
   val message: ObservableField<String> = ObservableField()
 
   val loggedIn: ObservableBoolean = ObservableBoolean(false)
+  val loading: ObservableBoolean = ObservableBoolean(false)
 
   val email: ObservableField<String> = ObservableField()
   val emailError: ObservableField<String> = ObservableField()
@@ -26,15 +30,21 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
 
   private val userEngine = UserEngine()
 
+  private val disposableComposite = CompositeDisposable()
+
   fun onSignIn() {
-    if (validateEmail() && validatePassword()) {
+    val emailOk = validateEmail()
+    val passwordOk = validatePassword()
+    if (emailOk && passwordOk) {
       userEngine.loginUser(email.get() ?: "", password.get() ?: "")
+        .doOnSubscribe { loading.set(true) }
+        .doOnTerminate { loading.set(false) }
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({
           loggedIn.set(true)
         }, { err ->
           handleLoginError(err)
-        })
+        }).addTo(disposableComposite)
     }
   }
 
@@ -57,6 +67,11 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
       else -> null
     })
     return passwordError.get() == null
+  }
+
+  override fun onCleared() {
+    disposableComposite.dispose()
+    super.onCleared()
   }
 
   private fun handleLoginError(err: Throwable) {

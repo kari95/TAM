@@ -12,82 +12,93 @@
       type="cz.vutbr.fit.meetmeal.viewmodel.LoginViewModel"
       />
   </data>
-  <ScrollView
+  <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
-    <LinearLayout
-      android:orientation="vertical"
+    <ScrollView
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_margin="@dimen/margin_normal"
+      android:layout_height="match_parent"
       >
-
-
-      <EditText
-        style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:layout_gravity="center"
-        android:hint="@string/registration_email"
-        android:inputType="textEmailAddress"
-        android:text="@={viewModel.email}"
-        app:error="@{viewModel.emailError}"
-        android:ems="10"
-        />
-
-      <EditText
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:layout_gravity="center"
-        android:hint="@string/registration_password"
-        android:text="@={viewModel.password}"
-        app:error="@{viewModel.passwordError}"
-        android:inputType="textPassword"
-        android:ems="10"
-        />
-
-      <Button
-        style="@style/Widget.MaterialComponents.Button"
-        android:id="@+id/login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_huge"
-        android:layout_gravity="center|bottom"
-        android:text="@string/sign_in"
-        android:textSize="@dimen/mdtp_material_button_textsize"
-        android:onClick="@{() -> viewModel.onSignIn()}"
-        />
 
       <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1"
-        android:gravity="center|bottom"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_normal"
         >
 
-        <Button
-          style="@style/Widget.MaterialComponents.Button.TextButton"
-          android:id="@+id/registration_button"
+
+        <EditText
+          style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
+          android:id="@+id/email"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/margin_mega"
-          android:layout_marginBottom="@dimen/margin_mega"
+          android:layout_marginTop="@dimen/margin_normal"
           android:layout_gravity="center"
-          android:text="@string/registration"
-          android:textSize="@dimen/mdtp_material_button_textsize"
+          android:text="@={viewModel.email}"
+          android:hint="@string/registration_email"
+          android:inputType="textEmailAddress"
+          app:error="@{viewModel.emailError}"
+          android:ems="10"
           />
+
+        <EditText
+          android:id="@+id/password"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/margin_normal"
+          android:layout_gravity="center"
+          android:text="@={viewModel.password}"
+          android:hint="@string/registration_password"
+          android:inputType="textPassword"
+          app:error="@{viewModel.passwordError}"
+          android:ems="10"
+          />
+
+        <Button
+          style="@style/Widget.MaterialComponents.Button"
+          android:id="@+id/login"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/margin_huge"
+          android:layout_gravity="center|bottom"
+          android:text="@string/sign_in"
+          android:textSize="@dimen/mdtp_material_button_textsize"
+          android:onClick="@{() -> viewModel.onSignIn()}"
+          />
+
+        <LinearLayout
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="0dip"
+          android:layout_weight="1"
+          android:gravity="center|bottom"
+          >
+
+          <Button
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:id="@+id/registration_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_mega"
+            android:layout_marginBottom="@dimen/margin_mega"
+            android:layout_gravity="center"
+            android:text="@string/registration"
+            android:textSize="@dimen/mdtp_material_button_textsize"
+            />
+
+        </LinearLayout>
+
 
       </LinearLayout>
 
+    </ScrollView>
 
-    </LinearLayout>
-
-  </ScrollView>
+    <include
+      layout="@layout/layout_loading_overlay"
+      app:visible="@{viewModel.loading}"
+      />
+  </FrameLayout>
 </layout>
