@@ -43,8 +43,10 @@ class UserDetailFragment: Fragment(), MenuItem.OnMenuItemClickListener {
 
   override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
     // Inflate the menu; this adds items to the action bar if it is present.
-    menuInflater.inflate(R.menu.account_actions_menu, menu)
-    menu.getItem(0).setOnMenuItemClickListener(this)
+    if (viewModel.firebaseUser.get() != null) {
+      menuInflater.inflate(R.menu.account_actions_menu, menu)
+      menu.getItem(0).setOnMenuItemClickListener(this)
+    }
   }
 
   override fun onMenuItemClick(menuItem: MenuItem): Boolean {
