@@ -16,7 +16,7 @@ import cz.vutbr.fit.meetmeal.viewmodel.*
 import org.joda.time.*
 import java.util.*
 
-class AddMealFragment: Fragment() {
+class AddMealFragment: Fragment(), MenuItem.OnMenuItemClickListener {
 
   private val MEAL_DATE = "meal_date"
 
@@ -28,6 +28,7 @@ class AddMealFragment: Fragment() {
     savedInstanceState: Bundle?): View? {
 
     binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_meal, container, false)
+    setHasOptionsMenu(true)
     return binding.root
   }
 
@@ -41,13 +42,31 @@ class AddMealFragment: Fragment() {
     addListeners()
   }
 
+  override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
+    // Inflate the menu; this adds items to the action bar if it is present.
+    if (viewModel.firebaseUser.get() != null) {
+      menuInflater.inflate(R.menu.add_meal_actions_menu, menu)
+      menu.getItem(0).setOnMenuItemClickListener(this)
+    }
+  }
+
+  override fun onMenuItemClick(item: MenuItem?): Boolean {
+    when (item?.itemId) {
+      R.id.action_done -> {
+        viewModel.onSaveClick()
+        return true
+      }
+    }
+    return false
+  }
+
   private fun addListeners() {
 
     viewModel.message.addOnPropertyChangedCallback(object: Observable.OnPropertyChangedCallback() {
       override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
         val message = viewModel.message.get()
         if (message != null) {
-          Snackbar.make(binding.addMealSaveButton, message, Snackbar.LENGTH_SHORT)
+          Snackbar.make(binding.addMealDateEditText, message, Snackbar.LENGTH_SHORT)
             .show()
         }
       }
