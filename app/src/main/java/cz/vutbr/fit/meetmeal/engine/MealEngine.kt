@@ -9,12 +9,16 @@ import java.lang.RuntimeException
 class MealEngine {
 
   private val collection = "meal"
-  private val userCollection = "user"
   private var db = FirebaseFirestore.getInstance()
 
-  fun add(meal: Meal) {
-
-    db.collection(collection).add(meal)
+  fun add(meal: Meal): Completable = Completable.create { singleSubscriber ->
+    db.collection(collection).add(meal).addOnCompleteListener { task ->
+      if (task.isSuccessful) {
+        singleSubscriber.onComplete()
+      } else {
+        singleSubscriber.onError(task.exception ?: Exception())
+      }
+    }
   }
 
   fun findAll(): Observable<List<Meal>> {

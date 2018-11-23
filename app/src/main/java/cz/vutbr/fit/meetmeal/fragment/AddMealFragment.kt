@@ -8,6 +8,7 @@ import androidx.databinding.Observable
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.navigation.*
+import androidx.navigation.fragment.*
 import com.google.android.material.snackbar.*
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import cz.vutbr.fit.meetmeal.R
@@ -68,6 +69,14 @@ class AddMealFragment: Fragment(), MenuItem.OnMenuItemClickListener {
         if (message != null) {
           Snackbar.make(binding.addMealDateEditText, message, Snackbar.LENGTH_SHORT)
             .show()
+        }
+      }
+    })
+
+    viewModel.added.addOnPropertyChangedCallback(object: Observable.OnPropertyChangedCallback() {
+      override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+        if (viewModel.added.get()) {
+          NavHostFragment.findNavController(this@AddMealFragment).navigateUp()
         }
       }
     })

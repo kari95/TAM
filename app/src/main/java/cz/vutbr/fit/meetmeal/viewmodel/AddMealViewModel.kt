@@ -35,6 +35,9 @@ class AddMealViewModel(application: Application): AndroidViewModel(application) 
   val timeSelected: ObservableBoolean = ObservableBoolean(false)
   val dateSelected: ObservableBoolean = ObservableBoolean(false)
 
+  val added: ObservableBoolean = ObservableBoolean(false)
+  val loading: ObservableBoolean = ObservableBoolean(false)
+
   val firebaseUser: ObservableField<FirebaseUser> = ObservableField()
 
   val timeFormatter =  DateTimeFormat.forPattern("HH:mm")
@@ -84,10 +87,20 @@ class AddMealViewModel(application: Application): AndroidViewModel(application) 
         else -> User.Gender.BOTH
       }
       userEngine.getCurrentUser()
+        .doOnSubscribe { loading.set(true) }
+        .doOnTerminate { loading.set(false) }
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ user ->
           val meal = Meal(name, time, gender, user, peopleCount, price, address)
           mealEngine.add(meal)
+            .doOnSubscribe { loading.set(true) }
+            .doOnTerminate { loading.set(false) }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+              added.set(true)
+            }, {
+              handleAddingError(it)
+            })
         }, {}).addTo(disposableComposite)
     }
 
@@ -154,6 +167,15 @@ class AddMealViewModel(application: Application): AndroidViewModel(application) 
       else -> null
     })
     return message.get() == null
+  }
+
+  private fun handleAddingError(err: Throwable) {
+    added.set(false)
+    message.set(null)
+    message.set(when (err) {
+      is FirebaseAuthWeakPasswordException -> getString(R.string.registration_weak_password)
+      else -> getString(R.string.unknown_error)
+    })
   }
 
   private fun getString(id: Int): String {

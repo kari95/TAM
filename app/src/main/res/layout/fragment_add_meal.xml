@@ -181,5 +181,10 @@
       layout="@layout/layout_not_logged_in"
       app:visible="@{viewModel.firebaseUser == null}"
       />
+
+    <include
+      layout="@layout/layout_loading_overlay"
+      app:visible="@{viewModel.loading}"
+      />
   </FrameLayout>
 </layout>
