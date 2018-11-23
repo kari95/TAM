@@ -71,6 +71,7 @@ class UserEngine {
       val result = task.result
       if (task.isSuccessful && result != null) {
         val user = result.toObject(User::class.java)
+        user?.id = result.id
         if (user != null) {
           singleSubscriber.onNext(user)
         } else {

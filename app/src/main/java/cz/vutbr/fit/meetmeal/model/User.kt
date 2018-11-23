@@ -1,12 +1,17 @@
 package cz.vutbr.fit.meetmeal.model
 
+import com.google.firebase.firestore.*
 import cz.vutbr.fit.meetmeal.*
+import cz.vutbr.fit.meetmeal.R
 
 data class User(
         val name: String = "",
         val groups: ArrayList<String> = arrayListOf(),
         val gender: Gender = Gender.UNKNOWN
 ) {
+
+  @Exclude var id: String = ""
+
   enum class Gender(
     val value: String,
     val string: Int,

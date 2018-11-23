@@ -68,8 +68,8 @@
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/margin_normal"
           android:layout_gravity="center"
-          android:text="@{viewModel.meal.user.name}"
-          android:drawableRight="@{context.getDrawable(viewModel.meal.user.gender.icon)}"
+          android:text="@{viewModel.user.name}"
+          android:drawableRight="@{context.getDrawable(viewModel.user.gender.icon)}"
           />
         <TextView
           style="@style/TextAppearance.AppCompat.Medium"

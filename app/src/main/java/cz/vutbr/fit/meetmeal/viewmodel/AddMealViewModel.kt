@@ -3,10 +3,14 @@ package cz.vutbr.fit.meetmeal.viewmodel
 import android.app.*
 import androidx.databinding.*
 import androidx.lifecycle.*
+import com.google.firebase.*
 import com.google.firebase.auth.*
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.engine.*
 import cz.vutbr.fit.meetmeal.model.*
+import io.reactivex.android.schedulers.*
+import io.reactivex.disposables.*
+import io.reactivex.rxkotlin.*
 import org.joda.time.*
 import org.joda.time.format.*
 import java.time.format.*
@@ -33,11 +37,13 @@ class AddMealViewModel(application: Application): AndroidViewModel(application) 
 
   val firebaseUser: ObservableField<FirebaseUser> = ObservableField()
 
-val timeFormatter =  DateTimeFormat.forPattern("HH:mm")
-val dateFormatter =  DateTimeFormat.forPattern("dd. MM. yyyy")
+  val timeFormatter =  DateTimeFormat.forPattern("HH:mm")
+  val dateFormatter =  DateTimeFormat.forPattern("dd. MM. yyyy")
 
   private val mealEngine = MealEngine()
   private val userEngine = UserEngine()
+
+  private val disposableComposite = CompositeDisposable()
 
   fun onScreenShowed() {
     firebaseUser.set(userEngine.getCurrentFirebaseUser())
@@ -65,6 +71,25 @@ val dateFormatter =  DateTimeFormat.forPattern("dd. MM. yyyy")
     val addressOk = validateAddress()
     val peopleCountOk = validateCount()
     val restOk = validateTime() && validateGender()
+
+    if (nameOk && priceOk && addressOk && peopleCountOk && restOk) {
+      val name = name.get() ?: ""
+      val time = Timestamp((time.get() ?: DateTime.now()).toDate())
+      val address = address.get() ?: ""
+      val peopleCount = peopleCount.get() ?: 0
+      val price = price.get() ?: 0
+      val gender = when {
+        female.get() -> User.Gender.FEMALE
+        male.get() -> User.Gender.MALE
+        else -> User.Gender.BOTH
+      }
+      userEngine.getCurrentUser()
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe({ user ->
+          val meal = Meal(name, time, gender, user, peopleCount, price, address)
+          mealEngine.add(meal)
+        }, {}).addTo(disposableComposite)
+    }
 
     /*val meal = Meal(name, time, gender, user, peopleCount, price, address)
     mealEngine.add(meal)*/

@@ -9,9 +9,11 @@ import java.lang.RuntimeException
 class MealEngine {
 
   private val collection = "meal"
+  private val userCollection = "user"
   private var db = FirebaseFirestore.getInstance()
 
   fun add(meal: Meal) {
+
     db.collection(collection).add(meal)
   }
 
@@ -30,6 +32,7 @@ class MealEngine {
                 meal.id = document.id
                 list.add(meal)
               } catch (e: RuntimeException) {
+                e
               }
             }
             singleSubscriber.onNext(list)

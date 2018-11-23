@@ -12,6 +12,7 @@ import io.reactivex.schedulers.*
 class MealDetailViewModel: ViewModel() {
 
   val meal: ObservableField<Meal> = ObservableField(Meal())
+  val user: ObservableField<User> = ObservableField(User())
   val gender: ObservableField<User.Gender> = ObservableField(User.Gender.UNKNOWN)
   val loading: ObservableBoolean = ObservableBoolean(true)
 
