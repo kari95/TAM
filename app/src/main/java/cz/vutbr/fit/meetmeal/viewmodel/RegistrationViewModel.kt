@@ -71,7 +71,7 @@ class RegistrationViewModel(application: Application): AndroidViewModel(applicat
   fun validateName(): Boolean {
     val name = name.get()
     nameError.set(when {
-      name == null || name.isEmpty() -> getString(R.string.registration_name_required)
+      name == null || name.isEmpty() -> getString(R.string.required_field)
       else -> null
     })
     return nameError.get() == null
@@ -82,7 +82,7 @@ class RegistrationViewModel(application: Application): AndroidViewModel(applicat
     val expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$"
     val pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE)
     emailError.set(when {
-      email == null || email.isEmpty() -> getString(R.string.registration_email_required)
+      email == null || email.isEmpty() -> getString(R.string.required_field)
       !pattern.matcher(email).matches() -> getString(R.string.registration_email_format)
       else -> null
     })
@@ -102,7 +102,7 @@ class RegistrationViewModel(application: Application): AndroidViewModel(applicat
   fun validatePassword(): Boolean {
     val password = password.get()
     passwordError.set(when {
-      password == null || password.isEmpty() -> getString(R.string.registration_password_required)
+      password == null || password.isEmpty() -> getString(R.string.required_field)
       else -> null
     })
     return passwordError.get() == null
@@ -112,7 +112,7 @@ class RegistrationViewModel(application: Application): AndroidViewModel(applicat
     val password = password.get()
     val passwordAgain = passwordAgain.get()
     passwordAgainError.set(when {
-      passwordAgain == null || passwordAgain.isEmpty() -> getString(R.string.registration_password_required)
+      passwordAgain == null || passwordAgain.isEmpty() -> getString(R.string.required_field)
       password == passwordAgain -> getString(R.string.registration_password_not_same)
       else -> null
     })

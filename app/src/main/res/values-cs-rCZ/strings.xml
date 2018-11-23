@@ -28,14 +28,17 @@
 
   <string name="not_logged_in">Nejste přihlášen</string>
 
+  <string name="required_field">Toto pole je povinné</string>
+
   <!-- Add meal -->
   <string name="add_meal">Přidat jídlo</string>
   <string name="add_meal_cost">Předpokládané náklady</string>
   <string name="add_meal_address">Adresa</string>
-  <string name="add_meal_time">Čas</string>
-  <string name="add_meal_date">Datum</string>
+  <string name="add_meal_address_required">Addresa je povinná</string>
+  <string name="add_meal_time">Čas:</string>
+  <string name="add_meal_date">Datum:</string>
   <string name="add_meal_people_invited">Počet pozvaných lidí</string>
-  <string name="add_meal_same_gender">Stejné pohlaví?</string>
+  <string name="add_meal_same_gender">Pohlaví:</string>
   <string name="add_meal_create">Vytvořit</string>
   <string name="add_meal_date_incorrect_value">Zadali jste špatné datum</string>
   <string name="add_meal_pick_date">VYBRAT DATUM</string>
@@ -61,16 +64,15 @@
   <!-- Registration -->
   <string name="registration_weak_password">Příliš slabé heslo</string>
   <string name="registration_name">Jméno</string>
-  <string name="registration_name_required">Je požadováno jméno</string>
   <string name="registration_email">E-mail</string>
-  <string name="registration_email_required">Je požadován e-mail</string>
   <string name="registration_email_format">Špatný formát e-mailu</string>
   <string name="registration_password">Heslo</string>
   <string name="registration_password_again">Heslo znovu</string>
-  <string name="registration_password_required">Je požadováno heslo</string>
   <string name="registration_password_not_same">Hesla nejsou stejná</string>
   <string name="registration_gender">Pohlaví</string>
   <string name="registration_gender_required">Vyberte pohlaví</string>
+  <string name="registration_time_required">Datum a čas jsou povínné</string>
+  <string name="registration_time_before_now">Datum a čas musí být v budoucnosti</string>
   <string name="registration_woman">Žena</string>
   <string name="registration_man">Muž</string>
   <string name="registration_register">Registrovat</string>

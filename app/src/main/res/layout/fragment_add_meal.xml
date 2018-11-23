@@ -35,58 +35,8 @@
           android:layout_marginTop="@dimen/margin_normal"
           android:layout_gravity="center"
           android:text="@={viewModel.name}"
-          app:error="@{viewModel.nameError}"
           android:hint="@string/add_meal_event_name"
-          android:ems="10"
-          />
-        <EditText
-          style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
-          android:id="@+id/add_meal_cost_edit_text"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/margin_normal"
-          android:layout_gravity="center"
-          android:text="@={Converter.intToString(viewModel.price, viewModel.price)}"
-          android:hint="@string/add_meal_cost"
-          android:inputType="numberDecimal"
-          android:ems="10"
-          />
-        <EditText
-          style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
-          android:id="@+id/add_meal_address_edit_text"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/margin_normal"
-          android:layout_gravity="center"
-          android:text="@={viewModel.address}"
-          app:error="@{viewModel.addressError}"
-          android:hint="@string/add_meal_address"
-          android:inputType="textPersonName"
-          android:ems="10"
-          />
-        <TextView
-          style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
-          android:id="@+id/add_meal_time_edit_text"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/margin_normal"
-          android:layout_gravity="center"
-          android:paddingLeft="@dimen/margin_mini"
-          android:text="@string/add_meal_pick_time"
-          android:hint="@string/add_meal_time"
-          android:textColor="@color/colorPrimary"
-          android:ems="10"
-          />
-        <TextView
-          style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
-          android:id="@+id/add_meal_date_edit_text"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/margin_normal"
-          android:layout_gravity="center"
-          android:paddingLeft="@dimen/margin_mini"
-          android:text="@string/add_meal_pick_date"
-          android:textColor="@color/colorPrimary"
+          app:error="@{viewModel.nameError}"
           android:ems="10"
           />
         <EditText
@@ -99,30 +49,107 @@
           android:text="@={Converter.intToString(viewModel.peopleCount, viewModel.peopleCount)}"
           android:hint="@string/add_meal_people_invited"
           android:inputType="numberDecimal"
+          app:error="@{viewModel.peopleCountError}"
           android:ems="10"
           />
+        <EditText
+          style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
+          android:id="@+id/add_meal_cost_edit_text"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/margin_normal"
+          android:layout_gravity="center"
+          android:text="@={Converter.intToString(viewModel.price, viewModel.price)}"
+          android:hint="@string/add_meal_cost"
+          android:inputType="numberDecimal"
+          app:error="@{viewModel.priceError}"
+          android:ems="10"
+          />
+        <EditText
+          style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
+          android:id="@+id/add_meal_address_edit_text"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/margin_normal"
+          android:layout_gravity="center"
+          android:text="@={viewModel.address}"
+          android:hint="@string/add_meal_address"
+          android:inputType="textPersonName"
+          app:error="@{viewModel.addressError}"
+          android:ems="10"
+          />
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/margin_normal"
+          android:layout_gravity="center"
+          >
+          <TextView
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:text="@string/add_meal_date"
+            />
+          <TextView
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:id="@+id/add_meal_date_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:paddingLeft="@dimen/margin_mini"
+            android:text="@{viewModel.dateSelected ? viewModel.time.toString(viewModel.dateFormatter) : @string/add_meal_pick_date}"
+            android:textColor="@{viewModel.dateSelected ? @color/colorSecondaryText : @color/colorPrimary}"
+            android:ems="10"
+            />
+        </LinearLayout>
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/margin_normal"
+          android:layout_gravity="center"
+          >
+          <TextView
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:text="@string/add_meal_time"
+            />
+          <TextView
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:id="@+id/add_meal_time_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="@{viewModel.timeSelected ? viewModel.time.toString(viewModel.timeFormatter) : @string/add_meal_pick_time}"
+            android:hint="@string/add_meal_time"
+            android:textColor="@{viewModel.timeSelected ? @color/colorSecondaryText : @color/colorPrimary}"
+            android:ems="10"
+            />
+        </LinearLayout>
 
         <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/margin_mega"
+          android:layout_marginTop="@dimen/margin_normal"
           android:layout_gravity="center"
-          android:padding="@dimen/margin_mini"
           >
           <TextView
             style="@style/Base.TextAppearance.AppCompat.Medium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:layout_gravity="top"
             android:text="@string/add_meal_same_gender"
             />
 
           <RadioGroup
             android:orientation="vertical"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             >
 
             <RadioButton
