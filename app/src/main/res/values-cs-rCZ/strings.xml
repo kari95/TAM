@@ -81,6 +81,7 @@
   <string name="new_password">Nové heslo</string>
   <string name="new_again_password">Nové heslo znovu</string>
   <string name="change_password_button">Změnit heslo</string>
+  <string name="password_changed">Heslo úspěšně změněno</string>
 
 
   <!-- Edit meal -->

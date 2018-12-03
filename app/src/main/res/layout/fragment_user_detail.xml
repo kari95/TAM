@@ -78,9 +78,9 @@
           android:layout_marginTop="@dimen/margin_mega"
           android:layout_gravity="center"
           android:text="@={viewModel.currentPass}"
+          app:error="@{viewModel.currentPassError}"
           android:hint="@string/current_password"
           android:inputType="textPassword"
-          android:ems="10"
           />
 
         <EditText
@@ -91,9 +91,9 @@
           android:layout_marginTop="@dimen/margin_normal"
           android:layout_gravity="center"
           android:text="@={viewModel.newPass}"
+          app:error="@{viewModel.newPassError}"
           android:hint="@string/new_password"
           android:inputType="textPassword"
-          android:ems="10"
           />
 
         <EditText
@@ -104,9 +104,9 @@
           android:layout_marginTop="@dimen/margin_normal"
           android:layout_gravity="center"
           android:text="@={viewModel.newAgainPass}"
+          app:error="@{viewModel.newAgainPassError}"
           android:hint="@string/new_again_password"
           android:inputType="textPassword"
-          android:ems="10"
           />
 
         <Button
@@ -119,7 +119,7 @@
           android:layout_gravity="center"
           android:text="@string/change_password_button"
           android:textSize="@dimen/mdtp_material_button_textsize"
-          android:onClick="@{() -> viewModel.changePassword()}"
+          android:onClick="@{() -> viewModel.onChangePassword()}"
           />
 
       </LinearLayout>
@@ -128,6 +128,11 @@
       android:id="@+id/layout_not_logged_in"
       layout="@layout/layout_not_logged_in"
       app:visible="@{viewModel.firebaseUser == null}"
+      />
+
+    <include
+      layout="@layout/layout_loading_overlay"
+      app:visible="@{viewModel.loading}"
       />
   </FrameLayout>
 </layout>

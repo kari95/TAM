@@ -113,7 +113,7 @@ class RegistrationViewModel(application: Application): AndroidViewModel(applicat
     val passwordAgain = passwordAgain.get()
     passwordAgainError.set(when {
       passwordAgain == null || passwordAgain.isEmpty() -> getString(R.string.required_field)
-      password == passwordAgain -> getString(R.string.registration_password_not_same)
+      password != passwordAgain -> getString(R.string.registration_password_not_same)
       else -> null
     })
     return passwordError.get() == null

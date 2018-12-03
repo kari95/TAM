@@ -1,19 +1,11 @@
 package cz.vutbr.fit.meetmeal.engine
 
-import androidx.databinding.ObservableField
 import com.google.firebase.auth.*
 import com.google.firebase.firestore.*
 import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.*
-import io.reactivex.android.schedulers.AndroidSchedulers
 import java.lang.Exception
-import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.OnCompleteListener
-import android.content.SharedPreferences
 import com.google.firebase.auth.EmailAuthProvider
-import com.google.firebase.auth.AuthCredential
-
-
 
 class UserEngine {
 
@@ -95,24 +87,32 @@ class UserEngine {
     ref.update("groups", FieldValue.arrayRemove(group_name))
   }
 
-  fun changePass(pass: String){
-    getCurrentFirebaseUser()?.updatePassword(pass)
+  fun changePassword(password: String) = Completable.create { singleSubscriber ->
+    getCurrentFirebaseUser()?.updatePassword(password)?.addOnCompleteListener { task ->
+      if (task.isSuccessful) {
+        singleSubscriber.onComplete()
+      } else {
+        singleSubscriber.onError(task.exception ?: Exception())
+      }
+    }
   }
 
-  fun checkCurrentPass(password: String){
+
+  fun checkCurrentPassword(password: String): Completable {
     val email = getCurrentFirebaseUser()?.email.toString()
 
     val credential = EmailAuthProvider.getCredential(email, password)
 
-    // Prompt the user to re-provide their sign-in credentials
-    getCurrentFirebaseUser()?.reauthenticate(credential)?.addOnCompleteListener { task ->
-              if (task.isSuccessful) {
-                task.isSuccessful
-              } else {
-                // Password is incorrect
-                task.isCanceled
-              }
-            }
+    return Completable.create { singleSubscriber ->
+      getCurrentFirebaseUser()?.reauthenticate(credential)?.addOnCompleteListener { task ->
+        if (task.isSuccessful) {
+          singleSubscriber.onComplete()
+        } else {
+          singleSubscriber.onError(task.exception ?: Exception())
+        }
+      }
+
+    }
   }
 
 }
