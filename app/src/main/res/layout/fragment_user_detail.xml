@@ -10,108 +10,124 @@
       type="cz.vutbr.fit.meetmeal.viewmodel.UserDetailViewModel"
       />
   </data>
-  <androidx.coordinatorlayout.widget.CoordinatorLayout
+  <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <LinearLayout
-      android:orientation="vertical"
+    <ScrollView
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_margin="@dimen/margin_normal"
-      android:visibility="@{viewModel.firebaseUser == null ? View.GONE : View.VISIBLE}"
+      android:layout_height="match_parent"
       >
-
-      <TextView
-        style="@style/TextAppearance.MaterialComponents.Headline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@{viewModel.user.name}"
-        />
-
-      <TextView
-        style="@style/TextAppearance.MaterialComponents.Headline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@{viewModel.firebaseUser.email}"
-        />
-      <TextView
-        style="@style/TextAppearance.AppCompat.Medium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:layout_gravity="center"
-        android:text="@{viewModel.user.gender.string}"
-        android:drawableRight="@{context.getDrawable(viewModel.user.gender.icon)}"
-        />
-
-      <TextView
-        style="@style/TextAppearance.AppCompat.Medium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_huge"
-        android:layout_gravity="center"
-        android:text="@string/change_password"
-        />
-
-      <EditText
-        style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
-        android:id="@+id/currentPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_mini"
-        android:layout_gravity="center"
-        android:text="@={viewModel.currentPass}"
-        android:hint="@string/current_password"
-        android:inputType="textPassword"
-        android:ems="10"
-        />
-
-      <EditText
-        style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
-        android:id="@+id/newPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_mini"
-        android:layout_gravity="center"
-        android:text="@={viewModel.newPass}"
-        android:hint="@string/new_password"
-        android:inputType="textPassword"
-        android:ems="10"
-        />
-
-      <EditText
-        style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
-        android:id="@+id/newAgainPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_mini"
-        android:layout_gravity="center"
-        android:text="@={viewModel.newAgainPass}"
-        android:hint="@string/new_again_password"
-        android:inputType="textPassword"
-        android:ems="10"
-        />
-
-      <Button
-        style="@style/Widget.MaterialComponents.Button"
-        android:id="@+id/changePassword_button"
+      <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_huge"
-        android:layout_gravity="center"
-        android:text="@string/change_password_button"
-        android:textSize="@dimen/mdtp_material_button_textsize"
-        android:onClick="@{() -> viewModel.changePassword()}"
-        />
+        android:layout_margin="@dimen/margin_normal"
+        android:visibility="@{viewModel.firebaseUser == null ? View.GONE : View.VISIBLE}"
+        >
 
-    </LinearLayout>
+        <LinearLayout
+          android:orientation="horizontal"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          >
+          <TextView
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@{viewModel.user.name}"
+            />
+
+          <TextView
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.firebaseUser.email}"
+            />
+        </LinearLayout>
+        <LinearLayout
+          android:orientation="horizontal"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          >
+          <TextView
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="@string/add_meal_same_gender"
+            />
+          <TextView
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:gravity="right"
+            android:text="@{viewModel.user.gender.string}"
+            android:drawableStart="@{context.getDrawable(viewModel.user.gender.icon)}"
+            />
+        </LinearLayout>
+
+        <EditText
+          style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
+          android:id="@+id/currentPassword"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/margin_mega"
+          android:layout_gravity="center"
+          android:text="@={viewModel.currentPass}"
+          android:hint="@string/current_password"
+          android:inputType="textPassword"
+          android:ems="10"
+          />
+
+        <EditText
+          style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
+          android:id="@+id/newPassword"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/margin_normal"
+          android:layout_gravity="center"
+          android:text="@={viewModel.newPass}"
+          android:hint="@string/new_password"
+          android:inputType="textPassword"
+          android:ems="10"
+          />
+
+        <EditText
+          style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
+          android:id="@+id/newAgainPassword"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/margin_normal"
+          android:layout_gravity="center"
+          android:text="@={viewModel.newAgainPass}"
+          android:hint="@string/new_again_password"
+          android:inputType="textPassword"
+          android:ems="10"
+          />
+
+        <Button
+          style="@style/Widget.MaterialComponents.Button"
+          android:id="@+id/changePassword_button"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/margin_mega"
+          android:layout_marginBottom="@dimen/margin_mega"
+          android:layout_gravity="center"
+          android:text="@string/change_password_button"
+          android:textSize="@dimen/mdtp_material_button_textsize"
+          android:onClick="@{() -> viewModel.changePassword()}"
+          />
+
+      </LinearLayout>
+    </ScrollView>
     <include
       android:id="@+id/layout_not_logged_in"
       layout="@layout/layout_not_logged_in"
       app:visible="@{viewModel.firebaseUser == null}"
       />
-  </androidx.coordinatorlayout.widget.CoordinatorLayout>
+  </FrameLayout>
 </layout>
