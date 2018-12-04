@@ -96,7 +96,7 @@ class EditMealViewModel: BaseObservable() {
           user = (it)
         }, {})
 
-    val meal = Meal(name, time, gender, user, peopleCount, price, address)
+    val meal = Meal(name, time, gender, user.id, peopleCount, price, address)
     mealEngine.add(meal)
   }
 

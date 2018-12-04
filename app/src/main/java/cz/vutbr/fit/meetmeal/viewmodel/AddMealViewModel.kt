@@ -91,7 +91,7 @@ class AddMealViewModel(application: Application): AndroidViewModel(application) 
         .doOnTerminate { loading.set(false) }
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ user ->
-          val meal = Meal(name, time, gender, user, peopleCount, price, address)
+          val meal = Meal(name, time, gender, user.id, peopleCount, price, address)
           mealEngine.add(meal)
             .doOnSubscribe { loading.set(true) }
             .doOnTerminate { loading.set(false) }

@@ -9,8 +9,7 @@ data class Meal(
   var name: String = "",
   var time: Timestamp = Timestamp.now(),
   var gender: User.Gender = User.Gender.BOTH,
-  @Exclude @set:Exclude @get:Exclude
-  var user: User = User(),
+  var userId: String = "",
   var peopleCount: Int = 0,
   var price: Int = 0,
   var address: String = ""
@@ -19,15 +18,12 @@ data class Meal(
   @Exclude @set:Exclude @get:Exclude
   var id: String = ""
 
-  val userId: String
-    get() = "user/" + user.id
-
   val dateTime: DateTime
     @Exclude get() = DateTime(time.toDate())
 
-  val formatedTime: String
+  val formattedTime: String
     @Exclude get() {
-      val formater = DateTimeFormat.forPattern("d. MMMM HH:mm")
-      return dateTime.toString(formater)
+      val formatter = DateTimeFormat.forPattern("d. MMMM HH:mm")
+      return dateTime.toString(formatter)
     }
 }

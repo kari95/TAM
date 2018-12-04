@@ -7,7 +7,6 @@ import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.android.schedulers.*
 import io.reactivex.disposables.*
 import io.reactivex.rxkotlin.*
-import io.reactivex.schedulers.*
 
 class MealDetailViewModel: ViewModel() {
 
@@ -16,25 +15,46 @@ class MealDetailViewModel: ViewModel() {
   val gender: ObservableField<User.Gender> = ObservableField(User.Gender.UNKNOWN)
   val loading: ObservableBoolean = ObservableBoolean(true)
 
+  val swipeLoading: ObservableBoolean = ObservableBoolean(false)
+
   private val mealEngine = MealEngine()
+  private val userEngine = UserEngine()
 
   private val disposableComposite = CompositeDisposable()
-
-  fun getReadableDate(): String {
-    return meal.get()!!.formatedTime
-  }
 
   fun onMealIdChange(id: String) {
     requestMeal(id)
   }
 
+  fun onRefresh() {
+    swipeLoading.set(true)
+    requestMeal(meal.get()?.id ?: "")
+  }
+
   private fun requestMeal(id: String) {
     mealEngine.find(id)
       .doOnSubscribe { loading.set(true) }
-      .doOnTerminate { loading.set(false) }
+      .doOnError {
+        loading.set(false)
+        swipeLoading.set(false)
+      }
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe({
         meal.set(it)
+        requestUser(it.userId)
+      }, {}).addTo(disposableComposite)
+  }
+
+  private fun requestUser(id: String) {
+    userEngine.find(id)
+      .doOnSubscribe { loading.set(true) }
+      .doOnTerminate {
+        loading.set(false)
+        swipeLoading.set(false)
+      }
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe({
+        user.set(it)
       }, {}).addTo(disposableComposite)
   }
 }

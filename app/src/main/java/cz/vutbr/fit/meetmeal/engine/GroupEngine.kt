@@ -24,6 +24,7 @@ class GroupEngine {
               list.add(group)
             }
             singleSubscriber.onNext(list)
+            singleSubscriber.onComplete()
           } else {
             singleSubscriber.onError(Exception("no data"))
           }

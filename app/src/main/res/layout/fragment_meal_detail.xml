@@ -15,81 +15,123 @@
     android:layout_height="match_parent"
     >
 
-    <ScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:visibility="@{viewModel.loading ? View.GONE : View.VISIBLE}"
+      app:onRefreshListener="@{() -> viewModel.onRefresh()}"
+      app:refreshing="@{viewModel.swipeLoading}"
       >
-      <LinearLayout
-        android:orientation="vertical"
+      <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_normal"
+        android:layout_height="match_parent"
+        android:visibility="@{viewModel.loading ? View.GONE : View.VISIBLE}"
         >
-
-        <TextView
-          style="@style/TextAppearance.AppCompat.Medium"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/margin_normal"
-          android:layout_gravity="center"
-          android:text="@{viewModel.getReadableDate()}"
-          />
-        <TextView
-          style="@style/TextAppearance.AppCompat.Medium"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/margin_normal"
-          android:layout_gravity="center"
-          android:text='@{String.format(@string/meal_detail_people_count, viewModel.meal.peopleCount)}'
-          android:drawableRight="@{context.getDrawable(viewModel.meal.gender.icon)}"
-          />
-        <TextView
-          style="@style/TextAppearance.AppCompat.Medium"
-          android:id="@+id/gender"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/margin_normal"
-          android:layout_gravity="center"
-          android:text='@{String.format(@string/meal_detail_price_per_person, viewModel.meal.price)}'
-          />
-
-        <TextView
-          style="@style/TextAppearance.MaterialComponents.Headline5"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/margin_huge"
-          android:layout_gravity="center"
-          android:text="@string/meal_detail_invited_by"
-          />
-        <TextView
-          style="@style/TextAppearance.AppCompat.Medium"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/margin_normal"
-          android:layout_gravity="center"
-          android:text="@{viewModel.user.name}"
-          android:drawableRight="@{context.getDrawable(viewModel.user.gender.icon)}"
-          />
-        <TextView
-          style="@style/TextAppearance.AppCompat.Medium"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/margin_normal"
-          android:layout_gravity="center"
-          android:text="@{viewModel.meal.address}"
-          />
-        <Button
-          style="@style/Widget.MaterialComponents.Button"
+        <LinearLayout
+          android:orientation="vertical"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/margin_huge"
-          android:layout_gravity="center"
-          android:text="@string/meal_detail_sign_in"
-          android:textSize="@dimen/mdtp_material_button_textsize"
-          />
-      </LinearLayout>
-    </ScrollView>
+          android:layout_margin="@dimen/margin_normal"
+          >
+
+          <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            >
+            <TextView
+              style="@style/TextAppearance.AppCompat.Medium"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text='@{String.format(@string/meal_detail_people_count, viewModel.meal.peopleCount)}'
+              android:drawableEnd="@{context.getDrawable(viewModel.meal.gender.icon)}"
+              />
+            <TextView
+              style="@style/TextAppearance.AppCompat.Medium"
+              android:id="@+id/gender"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:gravity="right"
+              android:text='@{String.format(@string/meal_detail_price_per_person, viewModel.meal.price)}'
+              />
+          </LinearLayout>
+
+          <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            >
+            <TextView
+              style="@style/TextAppearance.AppCompat.Medium"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:text='@string/add_meal_date'
+              />
+            <TextView
+              style="@style/TextAppearance.AppCompat.Medium"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="right"
+              android:text="@{viewModel.meal.formattedTime}"
+              />
+          </LinearLayout>
+          <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            >
+            <TextView
+              style="@style/TextAppearance.AppCompat.Medium"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:text='@string/add_meal_address'
+              />
+            <TextView
+              style="@style/TextAppearance.AppCompat.Medium"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="right"
+              android:text="@{viewModel.meal.address}"
+              />
+          </LinearLayout>
+          <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            >
+            <TextView
+              style="@style/TextAppearance.AppCompat.Medium"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:text="@string/meal_detail_invited_by"
+              />
+            <TextView
+              style="@style/TextAppearance.AppCompat.Medium"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@{viewModel.user.name}"
+              android:drawableRight="@{context.getDrawable(viewModel.user.gender.icon)}"
+              />
+          </LinearLayout>
+          <Button
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_huge"
+            android:layout_gravity="center"
+            android:text="@string/meal_detail_sign_in"
+            android:textSize="@dimen/mdtp_material_button_textsize"
+            />
+        </LinearLayout>
+      </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <include
       layout="@layout/layout_loading_overlay"

@@ -69,10 +69,10 @@ class MyMealListViewModel: ViewModel() {
     val user = User(name = "Jakub", gender = User.Gender.MALE)
 
     return Observable.just(arrayListOf(
-      Meal(name = "name", user = user, address = "", price = 500, peopleCount = 4,
+      Meal(name = "name", address = "", price = 500, peopleCount = 4,
         gender = User.Gender.MALE),
-      Meal(name = "name", user = user, address = "", price = 350, peopleCount = 3),
-      Meal(name = "name", user = user, address = "", price = 420, peopleCount = 2,
+      Meal(name = "name", address = "", price = 350, peopleCount = 3),
+      Meal(name = "name", address = "", price = 420, peopleCount = 2,
         gender = User.Gender.FEMALE)
     ))
   }

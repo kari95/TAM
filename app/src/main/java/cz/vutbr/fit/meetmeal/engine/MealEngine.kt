@@ -40,6 +40,7 @@ class MealEngine {
               }
             }
             singleSubscriber.onNext(list)
+            singleSubscriber.onComplete()
           } else {
             singleSubscriber.onError(Exception("no data"))
           }

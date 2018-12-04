@@ -51,12 +51,12 @@ class UserEngine {
 
   fun getCurrentUser() : Observable<User> {
     val currentUserId = auth.currentUser?.uid ?: "none"
-    return findUser(currentUserId)
+    return find(currentUserId)
   }
 
   fun getCurrentFirebaseUser() : FirebaseUser? = auth.currentUser
 
-  fun findUser(id: String)
+  fun find(id: String)
     : Observable<User> = Observable.create { singleSubscriber ->
     var docRef = db.collection(collection).document(id)
     docRef.get().addOnCompleteListener { task ->
@@ -66,6 +66,7 @@ class UserEngine {
         user?.id = result.id
         if (user != null) {
           singleSubscriber.onNext(user)
+          singleSubscriber.onComplete()
         } else {
           singleSubscriber.onError(Exception("User not found"))
         }
