@@ -60,6 +60,8 @@
   <string name="meal_detail_invited_by">Na jídlo zve:</string>
   <string name="meal_detail_sign_in">Chci se přidat!</string>
   <string name="meal_detail_edit">Upravit</string>
+  <string name="meal_unable_join">Již se není možné přidat</string>
+  <string name="meal_successfull_join">Uspěšně přidán</string>
 
   <!-- Registration -->
   <string name="registration_weak_password">Příliš slabé heslo</string>

@@ -7,6 +7,7 @@ import androidx.databinding.*
 import androidx.fragment.app.*
 import androidx.lifecycle.*
 import androidx.navigation.*
+import com.google.android.material.snackbar.*
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.model.*
@@ -55,6 +56,17 @@ class MealDetailFragment: Fragment() {
   }
 
   private fun setupListeners() {
+
+    viewModel.message.addOnPropertyChangedCallback(object: Observable.OnPropertyChangedCallback() {
+      override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+        val message = viewModel.message.get()
+        if (message != null) {
+          Snackbar.make(binding.joinButton, message, Snackbar.LENGTH_SHORT)
+            .show()
+        }
+      }
+    })
+
     viewModel.meal.addOnPropertyChangedCallback(object: Observable.OnPropertyChangedCallback() {
       override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
         setTitle(viewModel.meal.get())

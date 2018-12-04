@@ -60,6 +60,8 @@
   <string name="meal_detail_invited_by">You\'re invited by</string>
   <string name="meal_detail_sign_in">I\'m in!</string>
   <string name="meal_detail_edit">Edit</string>
+  <string name="meal_unable_join">Unable join yet</string>
+  <string name="meal_successfull_join">Joined successfully</string>
 
   <!-- Registration -->
   <string name="login_invalid_account">Invalid e-mail or password</string>

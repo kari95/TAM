@@ -27,9 +27,9 @@
         android:visibility="@{viewModel.loading ? View.GONE : View.VISIBLE}"
         >
         <LinearLayout
+          android:orientation="vertical"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:orientation="vertical"
           >
 
           <LinearLayout
@@ -122,20 +122,28 @@
                 style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.user.name}"
-                android:drawableRight="@{context.getDrawable(viewModel.user.gender.icon)}"
+                android:text="@{viewModel.createdBy.name}"
+                android:drawableRight="@{context.getDrawable(viewModel.createdBy.gender.icon)}"
                 />
             </LinearLayout>
+            <TextView
+              style="@style/TextAppearance.AppCompat.Medium"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="@dimen/margin_huge"
+              android:text="@{String.format(@string/meal_detail_rest_places, viewModel.meal.freeSpaces)}"
+              />
             <Button
               style="@style/Widget.MaterialComponents.Button"
+              android:id="@+id/join_button"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginTop="@dimen/margin_huge"
               android:layout_gravity="center"
               android:text="@string/meal_detail_sign_in"
-              android:visibility="@{viewModel.firebaseUser != null ? View.VISIBLE : View.GONE}"
-              android:onClick="@{v -> viewModel.onJoinClick()}"
               android:textSize="@dimen/mdtp_material_button_textsize"
+              android:visibility="@{viewModel.firebaseUser != null &amp;&amp; !viewModel.meal.joinedUsers.contains(viewModel.firebaseUser.uid) ? View.VISIBLE : View.GONE}"
+              android:onClick="@{v -> viewModel.onJoinClick()}"
               />
           </LinearLayout>
           <include

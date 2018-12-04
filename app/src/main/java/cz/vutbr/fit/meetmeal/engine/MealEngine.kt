@@ -21,6 +21,19 @@ class MealEngine {
     }
   }
 
+  fun join(user: User, meal: Meal): Completable = Completable.create { singleSubscriber ->
+    db.collection(collection)
+      .document(meal.id)
+      .update("joinedUsers", FieldValue.arrayUnion(user.id))
+      .addOnCompleteListener { task ->
+        if (task.isSuccessful) {
+          singleSubscriber.onComplete()
+        } else {
+          singleSubscriber.onError(task.exception ?: Exception())
+        }
+      }
+  }
+
   fun findAll(): Observable<List<Meal>> {
     return Observable.create { singleSubscriber ->
       db.collection(collection)

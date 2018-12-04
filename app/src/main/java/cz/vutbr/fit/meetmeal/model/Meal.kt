@@ -15,6 +15,8 @@ data class Meal(
   var address: String = ""
 ) {
 
+  val joinedUsers = ArrayList<String>()
+
   @Exclude @set:Exclude @get:Exclude
   var id: String = ""
 
@@ -26,4 +28,7 @@ data class Meal(
       val formatter = DateTimeFormat.forPattern("d. MMMM HH:mm")
       return dateTime.toString(formatter)
     }
+
+  val freeSpaces: Int
+    @Exclude get() = peopleCount - joinedUsers.size
 }

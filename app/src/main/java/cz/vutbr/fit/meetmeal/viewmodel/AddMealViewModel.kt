@@ -104,7 +104,7 @@ class AddMealViewModel(application: Application): AndroidViewModel(application) 
         }, {}).addTo(disposableComposite)
     }
 
-    /*val meal = Meal(name, time, gender, user, peopleCount, price, address)
+    /*val meal = Meal(name, time, gender, createdBy, peopleCount, price, address)
     mealEngine.add(meal)*/
   }
 
