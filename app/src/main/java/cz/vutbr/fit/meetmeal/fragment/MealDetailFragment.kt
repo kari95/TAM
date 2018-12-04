@@ -6,6 +6,7 @@ import androidx.appcompat.app.*
 import androidx.databinding.*
 import androidx.fragment.app.*
 import androidx.lifecycle.*
+import androidx.navigation.*
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.model.*
@@ -27,6 +28,12 @@ class MealDetailFragment: Fragment() {
     savedInstanceState: Bundle?): View? {
 
     binding = DataBindingUtil.inflate(inflater, R.layout.fragment_meal_detail, container, false)
+    binding.layoutNotLoggedIn.loginButton.setOnClickListener(
+      Navigation.createNavigateOnClickListener(R.id.action_sign_in)
+    )
+    binding.layoutNotLoggedIn.registrationButton.setOnClickListener(
+      Navigation.createNavigateOnClickListener(R.id.action_registration)
+    )
     return binding.root
   }
 
@@ -35,6 +42,7 @@ class MealDetailFragment: Fragment() {
     val mealId = MealDetailFragmentArgs.fromBundle(arguments).mealId
 
     viewModel = ViewModelProviders.of(this).get(MealDetailViewModel::class.java)
+    viewModel.onScreenShowed()
     viewModel.onMealIdChange(mealId)
     binding.viewModel = viewModel
 

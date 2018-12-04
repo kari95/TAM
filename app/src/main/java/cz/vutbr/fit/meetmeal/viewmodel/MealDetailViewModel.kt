@@ -3,6 +3,7 @@ package cz.vutbr.fit.meetmeal.viewmodel
 import android.text.TextUtils.*
 import androidx.databinding.*
 import androidx.lifecycle.*
+import com.google.firebase.auth.*
 import cz.vutbr.fit.meetmeal.engine.*
 import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.android.schedulers.*
@@ -16,12 +17,18 @@ class MealDetailViewModel: ViewModel() {
   val gender: ObservableField<User.Gender> = ObservableField(User.Gender.UNKNOWN)
   val loading: ObservableBoolean = ObservableBoolean(true)
 
+  val firebaseUser: ObservableField<FirebaseUser> = ObservableField()
+
   val swipeLoading: ObservableBoolean = ObservableBoolean(false)
 
   private val mealEngine = MealEngine()
   private val userEngine = UserEngine()
 
   private val disposableComposite = CompositeDisposable()
+
+  fun onScreenShowed() {
+    firebaseUser.set(userEngine.getCurrentFirebaseUser())
+  }
 
   fun onMealIdChange(id: String) {
     requestMeal(id)
@@ -30,6 +37,10 @@ class MealDetailViewModel: ViewModel() {
   fun onRefresh() {
     swipeLoading.set(true)
     requestMeal(meal.get()?.id ?: "")
+  }
+
+  fun onJoinClick() {
+    onRefresh()
   }
 
   private fun requestMeal(id: String) {
