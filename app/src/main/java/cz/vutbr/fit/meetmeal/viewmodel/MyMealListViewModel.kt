@@ -9,6 +9,7 @@ import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.*
 import io.reactivex.disposables.*
+import io.reactivex.rxkotlin.*
 import io.reactivex.schedulers.*
 
 class MyMealListViewModel: ViewModel() {
@@ -21,59 +22,47 @@ class MyMealListViewModel: ViewModel() {
   val firebaseUser: ObservableField<FirebaseUser> = ObservableField()
 
   private val mealEngine = MealEngine()
-
   private val userEngine = UserEngine()
+
+  private val cachedMeals = ArrayList<Meal>()
+
+  private val disposableComposite = CompositeDisposable()
 
   fun onScreenShowed() {
     firebaseUser.set(userEngine.getCurrentFirebaseUser())
-
-    requestMeals()
-  }
-
-  fun onMealClick() {
-    requestMeals()
-  }
-
-  fun onSignInClick() {
-  }
-
-  fun onGroupsClick() {
+    refreshMeals(true)
   }
 
   fun onRefresh() {
     isLoading.set(true)
-    requestMeals()
+    refreshMeals()
   }
 
   private fun setMeals(newMeals: List<Meal>) {
-    meals.value = ArrayList(newMeals)
+    meals.value = ArrayList(newMeals.filter {  meal ->
+      val userId = firebaseUser.get()?.uid
+      return@filter meal.joinedUsers.contains(userId) || meal.userId == userId
+    })
   }
 
-  private fun requestMeals(): Disposable {
-    return getTestingData()
+
+  private fun refreshMeals(forceDownload: Boolean = true) {
+    getMeals(forceDownload)
       .doOnNext { isLoading.set(false) }
       .subscribe({
         setMeals(it)
-      }, {
-        Log.e("OldMainViewModel", "getMeals(): onError", it)
-      })
+      }, {}).addTo(disposableComposite)
   }
 
-  private fun getMeals(): Observable<List<Meal>> {
-    return mealEngine.findAll()
-      .subscribeOn(Schedulers.io())
-      .observeOn(AndroidSchedulers.mainThread())
-  }
-
-  private fun getTestingData(): Observable<ArrayList<Meal>> {
-    val user = User(name = "Jakub", gender = User.Gender.MALE)
-
-    return Observable.just(arrayListOf(
-      Meal(name = "name", address = "", price = 500, peopleCount = 4,
-        gender = User.Gender.MALE),
-      Meal(name = "name", address = "", price = 350, peopleCount = 3),
-      Meal(name = "name", address = "", price = 420, peopleCount = 2,
-        gender = User.Gender.FEMALE)
-    ))
+  private fun getMeals(forceDownload: Boolean = false): Observable<List<Meal>> {
+    if (forceDownload || cachedMeals.isEmpty()) {
+      return mealEngine.findAll()
+        .doOnNext {
+          cachedMeals.clear()
+          cachedMeals.addAll(it)
+        }.subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+    }
+    return Observable.just(cachedMeals)
   }
 }

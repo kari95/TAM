@@ -44,20 +44,6 @@ class MealListViewModel(app: Application): AndroidViewModel(app) {
     refreshMeals(true)
   }
 
-  fun onMealClick() {
-  }
-
-  fun onAddClick() {
-
-    //MealListFragmentDirections.actionAddMeal()
-    /*getTestingData().subscribe {
-      for (item in it) {
-        mealEngine.add(item)
-      }
-    }*/
-  }
-
-
   fun onDaytimeChanged(dt: DayTime?) {
     daytime.set(dt)
     refreshMeals(false)
