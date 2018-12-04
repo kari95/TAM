@@ -1,5 +1,6 @@
 package cz.vutbr.fit.meetmeal.viewmodel
 
+import android.text.TextUtils.*
 import androidx.databinding.*
 import androidx.lifecycle.*
 import cz.vutbr.fit.meetmeal.engine.*
@@ -33,7 +34,7 @@ class MealDetailViewModel: ViewModel() {
 
   private fun requestMeal(id: String) {
     mealEngine.find(id)
-      .doOnSubscribe { loading.set(true) }
+      .doOnSubscribe { loading.set(isEmpty(meal.get()?.id)) }
       .doOnError {
         loading.set(false)
         swipeLoading.set(false)
@@ -47,7 +48,6 @@ class MealDetailViewModel: ViewModel() {
 
   private fun requestUser(id: String) {
     userEngine.find(id)
-      .doOnSubscribe { loading.set(true) }
       .doOnTerminate {
         loading.set(false)
         swipeLoading.set(false)
