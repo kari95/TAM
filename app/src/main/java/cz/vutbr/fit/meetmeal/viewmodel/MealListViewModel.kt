@@ -63,7 +63,7 @@ class MealListViewModel(app: Application): AndroidViewModel(app) {
   private fun setMeals(newMeals: List<Meal>) {
     meals.value = ArrayList(newMeals.filter { meal ->
       daytime.get()?.contains(meal.dateTime) ?: true &&
-        checkedGroups.get()?.contains(meal.group.id) ?: true
+        checkedGroups.get()?.contains(meal.groupId) ?: true
     })
   }
 

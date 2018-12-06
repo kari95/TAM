@@ -48,6 +48,12 @@ class MealListFragment: Fragment(), MenuItem.OnMenuItemClickListener {
     setupListeners()
   }
 
+  override fun onResume() {
+    super.onResume()
+
+    viewModel.onRefresh()
+  }
+
   override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
     // Inflate the menu; this adds items to the action bar if it is present.
     menuInflater.inflate(R.menu.actions_menu, menu)
