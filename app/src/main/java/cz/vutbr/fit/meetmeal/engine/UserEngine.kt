@@ -4,8 +4,7 @@ import com.google.firebase.auth.*
 import com.google.firebase.firestore.*
 import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.*
-import java.lang.Exception
-import com.google.firebase.auth.EmailAuthProvider
+import java.lang.*
 
 class UserEngine {
 
@@ -36,7 +35,7 @@ class UserEngine {
       if (task.isSuccessful && firebaseUser != null) {
         db.collection(collection)
           .document(firebaseUser.uid)
-          .set(user).addOnCompleteListener{ task2 ->
+          .set(user).addOnCompleteListener { task2 ->
             if (task2.isSuccessful) {
               singleSubscriber.onComplete()
             } else {
@@ -49,12 +48,12 @@ class UserEngine {
     }
   }
 
-  fun getCurrentUser() : Observable<User> {
+  fun getCurrentUser(): Observable<User> {
     val currentUserId = auth.currentUser?.uid ?: "none"
     return find(currentUserId)
   }
 
-  fun getCurrentFirebaseUser() : FirebaseUser? = auth.currentUser
+  fun getCurrentFirebaseUser(): FirebaseUser? = auth.currentUser
 
   fun find(id: String)
     : Observable<User> = Observable.create { singleSubscriber ->
@@ -63,7 +62,7 @@ class UserEngine {
       val result = task.result
       if (task.isSuccessful && result != null) {
         val user = result.toObject(User::class.java)
-          user?.id = result.id
+        user?.id = result.id
         if (user != null) {
           singleSubscriber.onNext(user)
           singleSubscriber.onComplete()
@@ -84,6 +83,7 @@ class UserEngine {
         singleSubscriber.onError(task.exception ?: Exception())
       }
     }
+  }
 
   fun checkCurrentPassword(password: String): Completable {
     val email = getCurrentFirebaseUser()?.email.toString()
@@ -98,8 +98,6 @@ class UserEngine {
           singleSubscriber.onError(task.exception ?: Exception())
         }
       }
-
     }
   }
-
 }
