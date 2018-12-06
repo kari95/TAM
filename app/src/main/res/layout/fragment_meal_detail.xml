@@ -126,6 +126,26 @@
                 android:drawableRight="@{context.getDrawable(viewModel.createdBy.gender.icon)}"
                 />
             </LinearLayout>
+            <LinearLayout
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="@dimen/margin_normal"
+              >
+              <TextView
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/group"
+                />
+              <TextView
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.group.name}"
+                />
+            </LinearLayout>
             <TextView
               style="@style/TextAppearance.AppCompat.Medium"
               android:layout_width="match_parent"

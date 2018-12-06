@@ -78,6 +78,14 @@
           app:error="@{viewModel.addressError}"
           android:ems="10"
           />
+        <Spinner
+          style="@style/ThemeOverlay.MaterialComponents.TextInputEditText"
+          android:id="@+id/group_spinner"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/margin_normal"
+          android:onItemSelected="@{(p, v, pos, id) -> viewModel.onGroupSelected(pos)}"
+          />
         <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"

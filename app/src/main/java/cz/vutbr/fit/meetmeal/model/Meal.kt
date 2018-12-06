@@ -10,6 +10,7 @@ data class Meal(
   var time: Timestamp = Timestamp.now(),
   var gender: User.Gender = User.Gender.BOTH,
   var userId: String = "",
+  var groupId: String = "",
   var peopleCount: Int = 0,
   var price: Int = 0,
   var address: String = ""
