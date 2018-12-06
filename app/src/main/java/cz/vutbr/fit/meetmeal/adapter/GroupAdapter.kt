@@ -10,14 +10,8 @@ class GroupAdapter(val listener: (Group) -> Unit): RecyclerView.Adapter<Recycler
 
   var checkedGroups: MutableSet<String>? = mutableSetOf()
     set(value) {
-      val result = DiffUtil.calculateDiff(DiffCallbackCheckedGroup(
-        field ?: emptySet(),
-        value ?: emptySet(),
-        groups
-      ))
       field = value
       notifyDataSetChanged()
-      //result.dispatchUpdatesTo(this)
     }
 
   var groups: List<Group> = emptyList()
