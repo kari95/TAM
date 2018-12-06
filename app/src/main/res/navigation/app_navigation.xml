@@ -117,7 +117,7 @@
     />
   <fragment
     android:id="@+id/nav_groups"
-    android:name="cz.vutbr.fit.meetmeal.fragment.GroupsFragment"
+    android:name="cz.vutbr.fit.meetmeal.fragment.GroupFragment"
     android:label="@string/groups_selection"
     tools:layout="@layout/fragment_groups"
     />

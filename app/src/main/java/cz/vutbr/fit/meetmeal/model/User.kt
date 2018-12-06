@@ -6,7 +6,6 @@ import cz.vutbr.fit.meetmeal.R
 
 data class User(
         val name: String = "",
-        val groups: ArrayList<String> = arrayListOf(),
         val gender: Gender = Gender.UNKNOWN
 ) {
 

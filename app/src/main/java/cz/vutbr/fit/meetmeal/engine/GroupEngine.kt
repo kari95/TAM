@@ -21,6 +21,7 @@ class GroupEngine {
           if (task.isSuccessful) {
             for (document in task.result!!) {
               val group = document.toObject(Group::class.java)
+              group.id = document.id
               list.add(group)
             }
             singleSubscriber.onNext(list)

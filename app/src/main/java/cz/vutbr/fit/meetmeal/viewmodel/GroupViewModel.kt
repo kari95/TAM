@@ -1,9 +1,9 @@
 package cz.vutbr.fit.meetmeal.viewmodel
 
+import android.content.*
 import android.util.*
 import androidx.databinding.*
 import androidx.lifecycle.*
-import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.engine.*
 import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.Observable
@@ -11,44 +11,48 @@ import io.reactivex.android.schedulers.*
 import io.reactivex.disposables.*
 import io.reactivex.schedulers.*
 
-class GroupsViewModel: ViewModel() {
+class GroupViewModel: ViewModel() {
 
   val groups: MutableLiveData<ArrayList<Group>> = MutableLiveData()
-
   val isLoading: ObservableBoolean = ObservableBoolean(false)
 
-  private val groupEngine = GroupEngine()
+  var sharedPreferences: SharedPreferences? = null
+    set(value) {
+      field = value
+      checkedGroups.set(sharedPreferences?.getStringSet(GROUP_TAG, mutableSetOf()))
+    }
 
-  private val userEngine = UserEngine()
+  var editor: SharedPreferences.Editor? = null
+  var checkedGroups = ObservableField<MutableSet<String>>()
+
+  private val groupEngine = GroupEngine()
 
   init {
     requestGroups()
   }
 
-  fun onGroupsClick() {
-    requestGroups()
+  companion object {
+    const val GROUP_TAG = "group"
   }
 
   fun onGroupClick(group: Group) {
-
-    val user: ObservableField<User> = ObservableField(User())
-
-    userEngine.getCurrentUser()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-              user.set(it)
-              toggleCheckBox(it,group.name)
-
-            }, {
-
-              val err = it
-            })
-  }
-  
-  fun onSignInClick() {
+    val newGroups = checkedGroups.get()
+    if (newGroups != null) {
+      if (newGroups.contains(group.id)) {
+        newGroups.remove(group.id)
+      } else {
+        newGroups.add(group.id)
+      }
+      checkedGroups.set(HashSet(newGroups))
+    } else {
+      checkedGroups.set(mutableSetOf(group.id))
+    }
   }
 
-  fun onMealClick() {
+  fun onSaveClick(value: MutableSet<String>?) {
+    sharedPreferences?.edit()
+      ?.putStringSet(GROUP_TAG, value)
+      ?.apply()
   }
 
   fun onRefresh() {
@@ -75,19 +79,4 @@ class GroupsViewModel: ViewModel() {
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
   }
-
-  private fun toggleCheckBox(user:User, group_name: String){
-
-    if(user.groups.contains(group_name)){
-      user.groups.remove(group_name)
-      userEngine.deleteGroupToUser(user,group_name)
-    } else {
-      user.groups.add(group_name)
-      userEngine.addGroupToUser(user,group_name)
-    }
-  }
-
-  /*private fun check_groups_in_checkboxes(){
-    // TODO projet seznam a vratit jiz oznacene skupiny
-  }*/
 }
