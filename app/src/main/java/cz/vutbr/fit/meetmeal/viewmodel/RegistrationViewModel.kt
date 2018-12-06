@@ -54,7 +54,7 @@ class RegistrationViewModel(application: Application): AndroidViewModel(applicat
       }
       if (name != null && email != null && password != null) {
 
-        val user = User(name, arrayListOf(), gender)
+        val user = User(name, gender)
         userEngine.registerUser(email, password, user)
           .doOnSubscribe { loading.set(true) }
           .doOnTerminate { loading.set(false) }
