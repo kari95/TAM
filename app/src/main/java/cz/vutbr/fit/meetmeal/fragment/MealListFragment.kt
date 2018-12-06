@@ -40,6 +40,9 @@ class MealListFragment: Fragment(), MenuItem.OnMenuItemClickListener {
     super.onActivityCreated(savedInstanceState)
     viewModel = ViewModelProviders.of(this).get(MealListViewModel::class.java)
     binding.viewModel = viewModel
+    viewModel.checkedGroups.set(
+      context?.getSharedPreferences(GroupViewModel.GROUP_TAG, 0)?.getStringSet(
+        GroupViewModel.GROUP_TAG, mutableSetOf()))
 
     setupView()
     setupListeners()
@@ -87,15 +90,15 @@ class MealListFragment: Fragment(), MenuItem.OnMenuItemClickListener {
 
     (activity as MainActivity).binding.daytimeTabs.addOnTabSelectedListener(
       object: TabLayout.OnTabSelectedListener {
-        override fun onTabReselected(tab: TabLayout.Tab?) { }
+        override fun onTabReselected(tab: TabLayout.Tab?) {}
 
-        override fun onTabUnselected(tab: TabLayout.Tab?) { }
+        override fun onTabUnselected(tab: TabLayout.Tab?) {}
 
         override fun onTabSelected(tab: TabLayout.Tab?) {
           if (tab == null) {
             return
           }
-          viewModel.onDaytimeChanged(when(tab.position) {
+          viewModel.onDaytimeChanged(when (tab.position) {
             1 -> MealListViewModel.DayTime.BREAKFAST
             2 -> MealListViewModel.DayTime.LUNCH
             3 -> MealListViewModel.DayTime.DINNER

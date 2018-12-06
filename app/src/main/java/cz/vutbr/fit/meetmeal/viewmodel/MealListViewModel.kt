@@ -1,7 +1,6 @@
 package cz.vutbr.fit.meetmeal.viewmodel
 
 import android.app.*
-import android.util.*
 import androidx.databinding.*
 import androidx.lifecycle.*
 import cz.vutbr.fit.meetmeal.engine.*
@@ -16,13 +15,13 @@ import org.joda.time.*
 class MealListViewModel(app: Application): AndroidViewModel(app) {
 
   enum class DayTime {
-    BREAKFAST{
+    BREAKFAST {
       override fun contains(date: DateTime) = date.hourOfDay().get() < 10
     },
-    LUNCH{
+    LUNCH {
       override fun contains(date: DateTime) = date.hourOfDay().get() in 10..15
     },
-    DINNER{
+    DINNER {
       override fun contains(date: DateTime) = date.hourOfDay().get() > 15
     };
 
@@ -33,6 +32,8 @@ class MealListViewModel(app: Application): AndroidViewModel(app) {
 
   val isLoading: ObservableBoolean = ObservableBoolean(false)
   val daytime: ObservableField<DayTime> = ObservableField()
+
+  var checkedGroups = ObservableField<MutableSet<String>>()
 
   private val cachedMeals = ArrayList<Meal>()
 
@@ -60,8 +61,9 @@ class MealListViewModel(app: Application): AndroidViewModel(app) {
   }
 
   private fun setMeals(newMeals: List<Meal>) {
-    meals.value = ArrayList(newMeals.filter {  meal ->
-      daytime.get()?.contains(meal.dateTime) ?: true
+    meals.value = ArrayList(newMeals.filter { meal ->
+      daytime.get()?.contains(meal.dateTime) ?: true &&
+        checkedGroups.get()?.contains(meal.group.id) ?: true
     })
   }
 
