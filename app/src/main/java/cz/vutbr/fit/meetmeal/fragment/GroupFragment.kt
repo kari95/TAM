@@ -12,6 +12,7 @@ import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.adapter.*
 import cz.vutbr.fit.meetmeal.databinding.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class GroupFragment: Fragment(), MenuItem.OnMenuItemClickListener {
 
@@ -66,6 +67,7 @@ class GroupFragment: Fragment(), MenuItem.OnMenuItemClickListener {
       }
       R.id.action_done -> {
         viewModel.onSaveClick(adapter.checkedGroups)
+        NavHostFragment.findNavController(this).navigateUp()
         return true
       }
     }

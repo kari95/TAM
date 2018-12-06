@@ -11,37 +11,48 @@
       type="cz.vutbr.fit.meetmeal.viewmodel.GroupViewModel"
       />
   </data>
-  <LinearLayout
-    android:orientation="vertical"
+
+  <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      app:layout_behavior="@string/appbar_scrolling_view_behavior"
-      tools:showIn="@layout/fragment_group"
-      tools:context=".activity.OldMainActivity"
+      app:onRefreshListener="@{() -> viewModel.onRefresh()}"
+      app:refreshing="@{viewModel.isLoading}"
       >
-
-      <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+      <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:onRefreshListener="@{() -> viewModel.onRefresh()}"
-        app:refreshing="@{viewModel.isLoading}"
         >
 
-        <androidx.recyclerview.widget.RecyclerView
-          android:id="@+id/group_list"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-            >
+          app:layout_behavior="@string/appbar_scrolling_view_behavior"
+          tools:showIn="@layout/fragment_group"
+          tools:context=".activity.OldMainActivity"
+          >
+
+            <androidx.recyclerview.widget.RecyclerView
+              android:id="@+id/group_list"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              >
 
 
-        </androidx.recyclerview.widget.RecyclerView>
-      </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            </androidx.recyclerview.widget.RecyclerView>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-  </LinearLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+      </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <include
+      layout="@layout/layout_loading_overlay"
+      app:visible="@{viewModel.loading}"
+      />
+  </FrameLayout>
 </layout>

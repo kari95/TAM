@@ -4,6 +4,7 @@ import android.content.*
 import android.util.*
 import androidx.databinding.*
 import androidx.lifecycle.*
+import com.google.android.gms.common.util.CollectionUtils.*
 import cz.vutbr.fit.meetmeal.engine.*
 import cz.vutbr.fit.meetmeal.model.*
 import io.reactivex.Observable
@@ -15,6 +16,7 @@ class GroupViewModel: ViewModel() {
 
   val groups: MutableLiveData<ArrayList<Group>> = MutableLiveData()
   val isLoading: ObservableBoolean = ObservableBoolean(false)
+  val loading: ObservableBoolean = ObservableBoolean(true)
 
   var sharedPreferences: SharedPreferences? = null
     set(value) {
@@ -66,7 +68,11 @@ class GroupViewModel: ViewModel() {
 
   private fun requestGroups(): Disposable {
     return getGroups()
-      .doOnNext { isLoading.set(false) }
+      .doOnSubscribe { loading.set(isEmpty(groups.value)) }
+      .doOnError { loading.set(false) }
+      .doOnNext {
+        isLoading.set(false)
+      }
       .subscribe({
         setGroups(it)
       }, {
@@ -76,6 +82,13 @@ class GroupViewModel: ViewModel() {
 
   private fun getGroups(): Observable<List<Group>> {
     return groupEngine.findAll()
+      .doOnComplete{
+        loading.set(false)
+      }
+      .doOnError {
+        loading.set(false)
+        isLoading.set(false)
+      }
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
   }
