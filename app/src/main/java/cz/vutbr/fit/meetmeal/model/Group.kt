@@ -7,4 +7,6 @@ class Group(
 ) {
   @Exclude @set:Exclude @get:Exclude
   var id: String = ""
+
+  override fun toString() = name
 }

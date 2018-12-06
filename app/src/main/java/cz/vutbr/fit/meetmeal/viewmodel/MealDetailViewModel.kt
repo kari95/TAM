@@ -18,6 +18,7 @@ class MealDetailViewModel(application: Application): AndroidViewModel(applicatio
 
   val meal: ObservableField<Meal> = ObservableField(Meal())
   val createdBy: ObservableField<User> = ObservableField(User())
+  val group: ObservableField<Group> = ObservableField(Group())
   val gender: ObservableField<User.Gender> = ObservableField(User.Gender.UNKNOWN)
   val loading: ObservableBoolean = ObservableBoolean(true)
 
@@ -27,6 +28,7 @@ class MealDetailViewModel(application: Application): AndroidViewModel(applicatio
 
   private val mealEngine = MealEngine()
   private val userEngine = UserEngine()
+  private val groupEngine = GroupEngine()
 
   private val disposableComposite = CompositeDisposable()
 
@@ -100,13 +102,26 @@ class MealDetailViewModel(application: Application): AndroidViewModel(applicatio
 
   private fun requestUser(id: String) {
     userEngine.find(id)
-      .doOnTerminate {
+      .doOnError {
         loading.set(false)
         swipeLoading.set(false)
       }
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe({
         createdBy.set(it)
+        requestGroup(meal.get()?.groupId ?: "")
+      }, {}).addTo(disposableComposite)
+  }
+
+  private fun requestGroup(id: String) {
+    groupEngine.find(id)
+      .doOnTerminate {
+        loading.set(false)
+        swipeLoading.set(false)
+      }
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe({
+        group.set(it)
       }, {}).addTo(disposableComposite)
   }
 

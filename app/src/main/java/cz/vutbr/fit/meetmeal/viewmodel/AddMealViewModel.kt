@@ -31,6 +31,7 @@ class AddMealViewModel(application: Application): AndroidViewModel(application) 
   val booth: ObservableBoolean = ObservableBoolean(true)
   val address: ObservableField<String> = ObservableField()
   val addressError: ObservableField<String> = ObservableField()
+  val group: ObservableField<Group> = ObservableField()
   val time: ObservableField<DateTime> = ObservableField()
   val timeSelected: ObservableBoolean = ObservableBoolean(false)
   val dateSelected: ObservableBoolean = ObservableBoolean(false)
@@ -39,17 +40,33 @@ class AddMealViewModel(application: Application): AndroidViewModel(application) 
   val loading: ObservableBoolean = ObservableBoolean(false)
 
   val firebaseUser: ObservableField<FirebaseUser> = ObservableField()
+  val groups: ObservableField<List<Group>> = ObservableField()
 
   val timeFormatter =  DateTimeFormat.forPattern("HH:mm")
   val dateFormatter =  DateTimeFormat.forPattern("dd. MM. yyyy")
 
   private val mealEngine = MealEngine()
   private val userEngine = UserEngine()
+  private val groupEngine = GroupEngine()
 
   private val disposableComposite = CompositeDisposable()
 
   fun onScreenShowed() {
     firebaseUser.set(userEngine.getCurrentFirebaseUser())
+    groupEngine.findAll()
+      .doOnSubscribe { loading.set(true) }
+      .doOnTerminate { loading.set(false) }
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe({
+        groups.set(it)
+      }, {}).addTo(disposableComposite)
+  }
+
+  fun onGroupSelected(position: Int) {
+    val list = groups.get()
+    if (list != null && list.size > position) {
+      group.set(list[position])
+    }
   }
 
   fun onTimeSelected(hour: Int, minute: Int) {
@@ -77,6 +94,7 @@ class AddMealViewModel(application: Application): AndroidViewModel(application) 
 
     if (nameOk && priceOk && addressOk && peopleCountOk && restOk) {
       val name = name.get() ?: ""
+      val groupId = group.get()?.id ?: ""
       val time = Timestamp((time.get() ?: DateTime.now()).toDate())
       val address = address.get() ?: ""
       val peopleCount = peopleCount.get() ?: 0
@@ -91,7 +109,7 @@ class AddMealViewModel(application: Application): AndroidViewModel(application) 
         .doOnTerminate { loading.set(false) }
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ user ->
-          val meal = Meal(name, time, gender, user.id, peopleCount, price, address)
+          val meal = Meal(name, time, gender, user.id, groupId, peopleCount, price, address)
           mealEngine.add(meal)
             .doOnSubscribe { loading.set(true) }
             .doOnTerminate { loading.set(false) }

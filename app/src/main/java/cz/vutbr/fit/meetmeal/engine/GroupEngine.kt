@@ -32,4 +32,24 @@ class GroupEngine {
         }
     }
   }
+
+  fun find(id: String)
+    : Observable<Group> = Observable.create { singleSubscriber ->
+    var docRef = db.collection(collection).document(id)
+    docRef.get().addOnCompleteListener { task ->
+      val result = task.result
+      if (task.isSuccessful && result != null) {
+        val user = result.toObject(Group::class.java)
+        user?.id = result.id
+        if (user != null) {
+          singleSubscriber.onNext(user)
+          singleSubscriber.onComplete()
+        } else {
+          singleSubscriber.onError(java.lang.Exception("Group not found"))
+        }
+      } else {
+        singleSubscriber.onError(java.lang.Exception("Group not found"))
+      }
+    }
+  }
 }

@@ -3,6 +3,7 @@ package cz.vutbr.fit.meetmeal.fragment
 import android.app.*
 import android.os.*
 import android.view.*
+import android.widget.*
 import androidx.databinding.*
 import androidx.databinding.Observable
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import com.google.android.material.snackbar.*
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import cz.vutbr.fit.meetmeal.R
 import cz.vutbr.fit.meetmeal.databinding.*
+import cz.vutbr.fit.meetmeal.model.*
 import cz.vutbr.fit.meetmeal.viewmodel.*
 import org.joda.time.*
 import java.util.*
@@ -77,6 +79,19 @@ class AddMealFragment: Fragment(), MenuItem.OnMenuItemClickListener {
       override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
         if (viewModel.added.get()) {
           NavHostFragment.findNavController(this@AddMealFragment).navigateUp()
+        }
+      }
+    })
+
+    viewModel.groups.addOnPropertyChangedCallback(object: Observable.OnPropertyChangedCallback() {
+      override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+        val list = viewModel.groups.get() ?: emptyList()
+        if (!list.isEmpty()) {
+          binding.groupSpinner.adapter = ArrayAdapter<Group>(
+            context,
+            android.R.layout.simple_spinner_item,
+            list
+          )
         }
       }
     })
